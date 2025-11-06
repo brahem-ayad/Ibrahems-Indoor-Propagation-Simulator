@@ -2,8 +2,9 @@
 - [x] Implement Rays
 - [x] Implement Walls
 - [x] Implement Ray-Wall hit detection and reflection
-- [ ] Implement Friss Transmission Formula for Power Loss vs distance 
-- [ ] Implement Reflection Losses
+- [ ] Implement Friss Transmission Formula for Power Loss vs distance
+- [ ] Implement a Wall Drawing System
+- [ ] Implement Reflection Losses (use data from ITU-R P.1238-10 indoor path loss model)
 - [ ] Implement Wall penetration
 - [ ] Implement Antenna gain / pattern
 - [ ] Implement Phase / coherent summation
