@@ -1,3 +1,5 @@
+[![Watch the demo](https://img.youtube.com/vi/6B_SI_-gUX4/hqdefault.jpg)](https://youtu.be/6B_SI_-gUX4)
+
 ## Project Road Map :
 - [x] Implement Rays
 - [x] Implement Walls
