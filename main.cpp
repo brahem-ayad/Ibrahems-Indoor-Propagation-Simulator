@@ -16,10 +16,10 @@ Vector2 GetSnappedMousePosition(int gridSize) {
 int main() {
 
   std::vector<BRay> rays;
-  int number_of_rays = 256;
 
+  int number_of_rays = 256;
   for(int i = 0; i < number_of_rays; i ++){
-    rays.push_back( BRay({400, 300}, {sinf(i*6.28/number_of_rays), cosf(i*6.28/number_of_rays)}, 10) );
+    rays.push_back( BRay({400, 300}, {sinf(i*6.28/number_of_rays), cosf(i*6.28/number_of_rays)}, 10, 2.4e9, 100e-3/number_of_rays) );
   }
 
   std::vector<Wall> walls;
