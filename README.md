@@ -2,16 +2,17 @@
 
 ## To Do List :
 
-Now :
+- Implement a better Collision Detection Algorithm (to fix the tunneling problem)
+
+- Simple 2D Rooms Planing System
 
 - Heat Map of Average Received Power.
 - Power Delay Profile at a certain point.
 
-- Simple 2D Rooms Planing System
+---
 
-- More Complex 3D Rooms Planing System
-
-Later on :
+- Re-Implement Rays, Walls, Collision Detection,... But in 3D.
+- Make a more complex 3D rooms planing system
 
 - Diffraction
 - Wall Penetration
