@@ -12,11 +12,12 @@ class BRay {
     float distance;
     Vector2 start_position;
     std::deque<Vector2> lines;
-    Color color = {255, 0, 0, 255};
-
+    
     float Initial_Power;
 
   public:
+    Color color = {255, 0, 0, 255};
+
     Vector2 position;
     Vector2 direction;
     float speed;
@@ -45,15 +46,15 @@ class BRay {
 
     void draw() {
       //for(int i = 0; i < lines.size() - 1; i++){ // Previous Lines
-      //  DrawLineEx(lines[i], lines[i+1], 1, {255,0,0, 10});
+      //  DrawLineEx(lines[i], lines[i+1], 1, color);
       //}
-      //DrawLineEx(start_position, position, 1, {255,0,0, 10}); // Current Line Path
+      //DrawLineEx(start_position, position, 1, color); // Current Line Path
 
       DrawCircle(position.x, position.y, 1, color);
     }
 
-    void update(Rectangle Wall_Rec, Vector2 Wall_Normal) {
-      if(CheckCollisionCircleRec(position, 1, Wall_Rec)){
+    void update(Vector2 Wall_Start, Vector2 Wall_End, Vector2 Wall_Normal) {
+      if(CheckCollisionCircleLine(position, 3, Wall_Start, Wall_End)){
         direction = Vector2Reflect(direction, Wall_Normal);
         start_position = position;
 
