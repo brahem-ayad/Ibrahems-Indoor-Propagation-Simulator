@@ -17,4 +17,3 @@
 - Diffraction
 - Wall Penetration
 - The ability to choose Antenna Parameters
-
