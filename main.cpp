@@ -7,20 +7,13 @@
 #include "Wall.h"
 #include "Ray.h"
 
-Vector2 GetSnappedMousePosition(int gridSize) {
-    Vector2 pos = GetMousePosition();
-    pos.x = round(pos.x / gridSize) * gridSize;
-    pos.y = round(pos.y / gridSize) * gridSize;
-    return pos;
-}
-
 int main() {
 
   std::vector<BRay> rays;
 
-  int number_of_rays = 256;
-  for(int i = 0; i < number_of_rays; i ++){
-    rays.push_back( BRay({200, 400}, {sinf(i*6.28/number_of_rays), cosf(i*6.28/number_of_rays)}, 20, 2.4e9, 100e-3/number_of_rays) );
+  int number_of_rays = 360;
+  for(int i = 0; i < number_of_rays; i++){
+    rays.push_back( BRay({200, 400}, {sinf(i*6.28/number_of_rays), cosf(i*6.28/number_of_rays)}, 2, 2.4e9, 100e-3/number_of_rays) );
   }
 
   std::vector<Wall> walls;
@@ -36,19 +29,24 @@ int main() {
   InitWindow(800, 600, "Indoor Propagation Simulator");
   SetTargetFPS(60);
 
+
+
   while(!WindowShouldClose()) {
     BeginDrawing();
     ClearBackground(BLACK);
 
-    for(int j = 0; j < walls.size(); j++){
-      walls[j].draw();
+    float dt = GetFrameTime() * 60;
+
+    for (int i = 0; i < rays.size(); ++i) {
+      rays[i].ResolveCollisions(walls, dt);
     }
 
-    for(int i = 0; i < rays.size(); i++) {
-    for(int j = 0; j < walls.size(); j++){
+    for (int i = 0; i < rays.size(); i++){
       rays[i].draw();
-      rays[i].update(walls[j].start, walls[j].end, walls[j].GetNormal());
-    }}
+    }
+    for (int i = 0; i < walls.size(); i++){
+      walls[i].draw();
+    }
 
     rays.erase(
     std::remove_if(rays.begin(), rays.end(),

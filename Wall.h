@@ -4,24 +4,20 @@
 #include "raymath.h"
 
 class Wall {
-  private:
-    float thickness = 10;
-
   public:
-    Vector2 start;
-    Vector2 end;
+    Vector2 Start;
+    Vector2 End;
+    Vector2 Normal;
+    Vector2 LineVector;
 
-    Wall(Vector2 start, Vector2 end){
-      this->start = start;
-      this->end = end;
+    Wall(Vector2 Start, Vector2 End){
+      this->Start = Start;
+      this->End = End;
+      this->Normal= Vector2Normalize({Start.y - End.y, End.x - Start.x});
+      this->LineVector = {End.x - Start.x, End.y - Start.y};
     }
-
-    Vector2 GetNormal() {
-      return Vector2Normalize({start.y - end.y, end.x - start.x});
-    }
-
 
     void draw() {
-      DrawLineEx(start, end, thickness/2, WHITE);
+      DrawLineV(Start, End, WHITE);
     }
 };

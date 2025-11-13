@@ -26,14 +26,10 @@ class Point{
       DrawCircleV(Next_Position, 2, {255, 0, 0, 100});
     }
 
-    // Helper that checks collision against a single wall segment
-    // Returns true if collision occurs along the segment from curPos to curPos + moveVec.
-    // If collision occurs, outHitT is the factor along moveVec (0..1), outHitPos is the hit position, and outWallNormal is the wall normal.
     bool ComputeHitAgainstWall(const Vector2& curPos, const Vector2& moveVec,
                                const Vector2& a, const Vector2& b, const Vector2& wallNormal,
                                float &outHitT, Vector2 &outHitPos) const
     {
-        // We'll reuse the signed-distance approach (project to wall segment).
         Vector2 nextPos = Vector2Add(curPos, moveVec);
 
         Vector2 ab = Vector2Subtract(b, a);
@@ -41,16 +37,12 @@ class Point{
         Vector2 ap = Vector2Subtract(curPos, a);
         Vector2 apn = Vector2Subtract(nextPos, a);
 
-        float ab2 = Vector2DotProduct(ab, ab);
-        if (ab2 == 0.0f) return false; // degenerate wall
-
-        float t  = std::clamp(Vector2DotProduct(ap, ab) / ab2, 0.0f, 1.0f);
-        float tn = std::clamp(Vector2DotProduct(apn, ab) / ab2, 0.0f, 1.0f);
+        float t  = std::clamp(Vector2DotProduct(ap, ab) / Vector2DotProduct(ab, ab), 0.0f, 1.0f);
+        float tn = std::clamp(Vector2DotProduct(apn, ab) / Vector2DotProduct(ab, ab), 0.0f, 1.0f);
 
         Vector2 Closest  = Vector2Add(a, Vector2Scale(ab, t));
         Vector2 Closestn = Vector2Add(a, Vector2Scale(ab, tn));
 
-        // signed distances (use cross to get sign)
         float sign  = ((ab.x * ap.y  - ab.y * ap.x)  < 0.0f) ? -1.0f : 1.0f;
         float signn = ((ab.x * apn.y - ab.y * apn.x) < 0.0f) ? -1.0f : 1.0f;
 
@@ -66,9 +58,8 @@ class Point{
             float hitFactor = distance / denom; // between 0 and 1 if crossing along the segment
             if (hitFactor < 0.0f || hitFactor > 1.0f) return false;
 
-            // Now check that the hit point projects onto the wall segment (we used clamped projections, but we must ensure projection between 0..1)
             Vector2 hitPoint = Vector2Add(curPos, Vector2Scale(moveVec, hitFactor));
-            float proj = Vector2DotProduct(Vector2Subtract(hitPoint, a), ab) / ab2;
+            float proj = Vector2DotProduct(Vector2Subtract(hitPoint, a), ab) / Vector2DotProduct(ab, ab);
             if (proj < 0.0f || proj > 1.0f) return false;
 
             outHitT = hitFactor;
@@ -79,10 +70,8 @@ class Point{
         return false;
     }
 
-    // Resolve movement and collisions against all walls for one frame.
-    // delta is frame time in seconds (use GetFrameTime()).
     void ResolveCollisions(const std::vector<Wall>& walls, float delta) {
-        // Movement vector for this frame (units per second * seconds)
+
         Vector2 remainingMove = Vector2Scale(Direction, speed * delta);
 
         const int MAX_ITER = 8;     // allow up to N reflections per frame
