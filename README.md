@@ -2,8 +2,6 @@
 
 ## To Do List :
 
-- Implement a better Collision Detection Algorithm (to fix the tunneling problem)
-
 - Simple 2D Rooms Planing System
 
 - Heat Map of Average Received Power.
