@@ -9,7 +9,7 @@
 
 class BRay {
   private:
-    float distance;
+    float ray_distance;
     Vector2 Start_Position;
     std::deque<Vector2> lines;
 
@@ -17,7 +17,6 @@ class BRay {
 
   public:
     Color color = {255, 0, 0, 255};
-    Color dimcolor = {255,0,0, 50};
 
     Vector2 Position;
     Vector2 Next_Position;
@@ -39,7 +38,7 @@ class BRay {
       this->Start_Position = Position;
       lines.push_back(Position);
 
-      this->distance = 0;
+      this->ray_distance = 1e-6f;
 
       this->wavelength = 0.125;
 
@@ -53,11 +52,13 @@ class BRay {
 
     void draw() {
       for(int i = 0; i < lines.size() - 1; i++){ // Previous Lines
-        DrawLineEx(lines[i], lines[i+1], 1, dimcolor);
+        DrawLineV(lines[i], lines[i+1], color);
       }
-      DrawLineEx(Start_Position, Position, 1, dimcolor); // Current Line Path
+      DrawLineV(Start_Position, Position, color); // Current Line Path
 
       DrawCircleV(Position, 1, color);
+      //DrawText(TextFormat("Power = %f", Power), 25, 25, 25, WHITE);
+      //DrawText(TextFormat("Distance = %f", ray_distance), 25, 60, 25, WHITE);
     }
 
 
@@ -135,8 +136,8 @@ class BRay {
                         foundHit = true;
 
                         Start_Position = Position;
-                        Power *= 0.8;
-                        Initial_Power = Power;
+                        Initial_Power *= 0.8;
+                        //Initial_Power = Power;
                         lines.push_back(Position);
                     }
                 }
@@ -174,9 +175,12 @@ class BRay {
 
         // Update Next_Position as the predicted next step using the (possibly changed) Direction.
         Next_Position = Vector2Add(Position, Vector2Scale(Direction, speed * delta));
-        distance = Vector2Distance(Start_Position, Position);
-        Power = Initial_Power * pow( wavelength/(4 * M_PI * distance/1000) ,2);
-        //color.r = (int)fmin(fmax((10*log10(Power/0.001) + 90)/110 * 255.0, 0.0), 255.0);
+
+        ray_distance += Vector2Distance(Next_Position, Position)/100;
+
+        Power = Initial_Power * pow( wavelength/(4*M_PI*ray_distance) ,2);
+
+        color.a = (int)fmin(fmax((10*log10(Power/0.001) + 90)/110 * 255.0, 0.0), 255.0);
     }
 
 
