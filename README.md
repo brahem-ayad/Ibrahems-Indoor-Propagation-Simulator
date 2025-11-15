@@ -2,6 +2,8 @@
 
 ## To Do List :
 
+- Fix Collision at End Points
+
 - Simple 2D Rooms Planing System
 
 - Heat Map of Average Received Power.
