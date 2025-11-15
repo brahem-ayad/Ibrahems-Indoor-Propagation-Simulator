@@ -12,10 +12,11 @@ int main() {
   std::vector<BRay> rays;
 
   float speed = 2;
+  Vector2 Start_Pos = {400, 150};
 
-  int number_of_rays = 360;
+  int number_of_rays = 360*3;
   for(int i = 0; i < number_of_rays; i++){
-    rays.push_back( BRay({400, 150}, {sinf(i*6.28/number_of_rays), cosf(i*6.28/number_of_rays)}, speed, 2.4e9, 100e-3/number_of_rays) );
+    rays.push_back( BRay(Start_Pos, {sinf(i*6.28/number_of_rays), cosf(i*6.28/number_of_rays)}, speed, 2.4e9, 100e-3/number_of_rays) );
   }
 
   std::vector<Wall> walls;
@@ -29,7 +30,6 @@ int main() {
   walls.push_back( Wall({200, 200}, {200, 500}) );
   walls.push_back( Wall({200, 500}, {100, 500}) );
   walls.push_back( Wall({100, 500}, {100, 100}) );
-
 
   InitWindow(800, 600, "Indoor Propagation Simulator");
   SetTargetFPS(60);
@@ -61,7 +61,7 @@ int main() {
 
     if(IsKeyPressed(KEY_SPACE)){
       for(int i = 0; i < number_of_rays; i ++){
-        rays.push_back( BRay({400, 150}, {sinf(i*6.28/number_of_rays), cosf(i*6.28/number_of_rays)}, speed, 2.4e9, 100e-3/number_of_rays) );
+        rays.push_back( BRay(Start_Pos, {sinf(i*6.28/number_of_rays), cosf(i*6.28/number_of_rays)}, speed, 2.4e9, 100e-3/number_of_rays) );
       }
     }
 

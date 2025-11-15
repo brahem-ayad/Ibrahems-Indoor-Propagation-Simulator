@@ -7,6 +7,8 @@
 #include <iostream>
 #include <math.h>
 
+float PixelPerMeter = 100;
+
 class BRay {
   private:
     float ray_distance;
@@ -14,6 +16,10 @@ class BRay {
     std::deque<Vector2> lines;
 
     float Initial_Power;
+
+    float direction_to_wall_normal;
+    float best_direction_to_wall_normal;
+
 
   public:
     Color color = {255, 0, 0, 255};
@@ -56,15 +62,13 @@ class BRay {
       }
       DrawLineV(Start_Position, Position, color); // Current Line Path
 
-      DrawCircleV(Position, 1, color);
-      //DrawText(TextFormat("Power = %f", Power), 25, 25, 25, WHITE);
-      //DrawText(TextFormat("Distance = %f", ray_distance), 25, 60, 25, WHITE);
-    }
+      DrawCircleV(Position, 3, color);
 
+    }
 
     bool ComputeHitAgainstWall(const Vector2& curPos, const Vector2& moveVec,
                                const Vector2& a, const Vector2& b, const Vector2& wallNormal,
-                               float &outHitT, Vector2 &outHitPos) const
+                               float &outHitT, Vector2 &outHitPos)
     {
         Vector2 nextPos = Vector2Add(curPos, moveVec);
 
@@ -84,6 +88,8 @@ class BRay {
 
         float distance  = Vector2Distance(curPos, Closest)  * sign;
         float distancen = Vector2Distance(nextPos, Closestn) * signn;
+
+        direction_to_wall_normal = distancen;
 
         // if they have opposite signs -> crossing occurred (or one exactly zero)
         if (distance * distancen < 0.0f) {
@@ -135,10 +141,10 @@ class BRay {
                         bestHitPos = hitPos;
                         foundHit = true;
 
-                        Start_Position = Position;
+                        best_direction_to_wall_normal = direction_to_wall_normal;
+                        Start_Position = hitPos;
                         Initial_Power *= 0.8;
-                        //Initial_Power = Power;
-                        lines.push_back(Position);
+                        lines.push_back(hitPos);
                     }
                 }
             }
@@ -158,7 +164,6 @@ class BRay {
             // Reflect direction using the wall's normal
             Vector2 oldDir = Direction;
             Direction = Vector2Reflect(Direction, walls[bestWallIdx].Normal);
-            reflected = true;
 
             // Compute remaining movement: remaining portion of remainingMove after hit
             float leftoverFactor = 1.0f - bestT;
@@ -167,8 +172,13 @@ class BRay {
             // New remainingMove is along the reflected direction keeping the leftover length
             remainingMove = Vector2Scale(Vector2Normalize(Direction), totalLeftLen);
 
-            // Nudge the position slightly along the normal of the wall outward to avoid being numerically "inside" the wall
-            Position = Vector2Add(Position, Vector2Scale(walls[bestWallIdx].Normal, kepsilon));
+           // Nudge the position slightly along the normal of the wall outward to avoid being numerically "inside" the wall
+            if ( best_direction_to_wall_normal < 0 ) {
+              Position = Vector2Add(Position, Vector2Scale(walls[bestWallIdx].Normal, kepsilon) );
+            }
+            else if ( best_direction_to_wall_normal > 0 ) {
+              Position = Vector2Add(Position, Vector2Negate( Vector2Scale(walls[bestWallIdx].Normal, kepsilon) ) );
+            }
 
             // continue the loop to check for further collisions with the rest of the remainingMove
         }
@@ -176,13 +186,11 @@ class BRay {
         // Update Next_Position as the predicted next step using the (possibly changed) Direction.
         Next_Position = Vector2Add(Position, Vector2Scale(Direction, speed * delta));
 
-        ray_distance += Vector2Distance(Next_Position, Position)/100;
+        ray_distance += Vector2Distance(Next_Position, Position)/PixelPerMeter;
 
         Power = Initial_Power * pow( wavelength/(4*M_PI*ray_distance) ,2);
 
         color.a = (int)fmin(fmax((10*log10(Power/0.001) + 90)/110 * 255.0, 0.0), 255.0);
     }
-
-
 
 };
