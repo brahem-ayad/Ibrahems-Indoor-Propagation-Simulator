@@ -14,10 +14,16 @@ int main() {
   float speed = 2;
   Vector2 Start_Pos = {400, 150};
 
-  int number_of_rays = 360*3;
+  bool Draw_Lines = true;
+
+  int number_of_rays = 360;
   for(int i = 0; i < number_of_rays; i++){
     rays.push_back( BRay(Start_Pos, {sinf(i*6.28/number_of_rays), cosf(i*6.28/number_of_rays)}, speed, 2.4e9, 100e-3/number_of_rays) );
   }
+
+  //rays.push_back( BRay({400, 400}, {0, -1}, speed, 2.4e9, 100e-3) );
+  //rays.push_back( BRay({300, 400}, {1, -1}, speed, 2.4e9, 100e-3) );
+  //rays.push_back( BRay({500, 400}, {-1, -1}, speed, 2.4e9, 100e-3) );
 
   std::vector<Wall> walls;
   walls.push_back( Wall({100, 100}, {700, 100}) );
@@ -31,6 +37,10 @@ int main() {
   walls.push_back( Wall({200, 500}, {100, 500}) );
   walls.push_back( Wall({100, 500}, {100, 100}) );
 
+  //walls.push_back( Wall({100, 100}, {400, 300}) );
+  //walls.push_back( Wall({400, 300}, {700, 100}) );
+
+
   InitWindow(800, 600, "Indoor Propagation Simulator");
   SetTargetFPS(60);
 
@@ -40,6 +50,13 @@ int main() {
     BeginDrawing();
     ClearBackground(BLACK);
 
+    if(IsKeyPressed(KEY_D) and Draw_Lines == true){
+      Draw_Lines = false;
+    }
+    else if(IsKeyPressed(KEY_D) and Draw_Lines == false){
+      Draw_Lines = true;
+    }
+
     float dt = GetFrameTime() * 60;
 
     for (int i = 0; i < rays.size(); ++i) {
@@ -47,7 +64,7 @@ int main() {
     }
 
     for (int i = 0; i < rays.size(); i++){
-      rays[i].draw();
+      rays[i].draw(Draw_Lines);
     }
     for (int i = 0; i < walls.size(); i++){
       walls[i].draw();

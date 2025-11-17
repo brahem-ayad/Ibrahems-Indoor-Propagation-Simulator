@@ -56,13 +56,15 @@ class BRay {
 
     float t = 0;
 
-    void draw() {
-      for(int i = 0; i < lines.size() - 1; i++){ // Previous Lines
-        DrawLineV(lines[i], lines[i+1], color);
+    void draw(bool Draw_Lines) {
+      if (Draw_Lines == true) {
+        for(int i = 0; i < lines.size() - 1; i++){ // Previous Lines
+          DrawLineV(lines[i], lines[i+1], color);
+        }
+        DrawLineV(Start_Position, Position, color); // Current Line Path
       }
-      DrawLineV(Start_Position, Position, color); // Current Line Path
 
-      DrawCircleV(Position, 3, color);
+      DrawCircleV(Position, 2, color);
 
     }
 
@@ -95,7 +97,7 @@ class BRay {
         if (distance * distancen < 0.0f) {
             // compute interpolation factor along moveVec
             float denom = (distance - distancen);
-            if (denom == 0.0f) return false; // numerically degenerate
+            if (denom < 1e-6) return false; // numerically degenerate
 
             float hitFactor = distance / denom; // between 0 and 1 if crossing along the segment
             if (hitFactor < 0.0f || hitFactor > 1.0f) return false;
@@ -148,6 +150,7 @@ class BRay {
                     }
                 }
             }
+
 
             if (!foundHit) {
                 // No collision: consume the remaining movement and finish
