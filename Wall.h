@@ -19,5 +19,7 @@ class Wall {
 
     void draw() {
       DrawLineV(Start, End, WHITE);
+      DrawCircleV(Start, 2, WHITE);
+      DrawCircleV(End, 2, WHITE);
     }
 };

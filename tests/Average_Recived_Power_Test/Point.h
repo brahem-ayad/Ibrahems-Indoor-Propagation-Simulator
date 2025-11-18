@@ -8,13 +8,15 @@ class Point{
 
   public:
     Vector2 Position;
+    float Radius;
 
-    Point(Vector2 Position){
+    Point(Vector2 Position, float Radius){
       this->Position = Position;
+      this->Radius = Radius;
     }
 
     void Draw() {
-      DrawCircleV(Position, 5, RED);
+      DrawCircleV(Position, Radius, RED);
     }
 
     void Update() {

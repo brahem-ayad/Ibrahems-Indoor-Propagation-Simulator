@@ -59,9 +59,9 @@ class BRay {
     void draw(bool Draw_Lines) {
       if (Draw_Lines == true) {
         for(int i = 0; i < lines.size() - 1; i++){ // Previous Lines
-          DrawLineV(lines[i], lines[i+1], color);
+          DrawLineEx(lines[i], lines[i+1], 1, color);
         }
-        DrawLineV(Start_Position, Position, color); // Current Line Path
+        DrawLineEx(Start_Position, Position, 1, color); // Current Line Path
       }
 
       DrawCircleV(Position, 2, color);

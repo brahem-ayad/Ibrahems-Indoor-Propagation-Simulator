@@ -5,7 +5,7 @@
 
 int main() {
 
-  Point point = Point({400, 300});
+  Point point = Point({400, 300}, 5);
   Square square = Square({100, 100}, 100);
 
   InitWindow(800, 600, "Something");
@@ -16,6 +16,7 @@ int main() {
     ClearBackground(BLACK);
 
     square.Draw();
+    square.Update(point.Position, point.Radius, square.Rect);
 
     point.Draw();
     point.Update();

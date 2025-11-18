@@ -15,3 +15,5 @@
 - Diffraction
 - Wall Penetration
 - The ability to choose Antenna Parameters
+
+- I might rewrite it in a way to include steady state operation (meaning that after a while, what will the waves look like).
