@@ -70,24 +70,6 @@ int main() {
   //walls.push_back( Wall({200, 500}, {100, 500}) );
   //walls.push_back( Wall({100, 500}, {100, 100}) );
 
-  //std::vector<Cell> cells;
-  //float cell_size = 25;
-  //for (int i = 0; i < 24 ; i++) {
-  //for (int j = 0; j < 4; j++) {
-  //  cells.push_back( Cell({100+i*cell_size, 100+j*cell_size}, cell_size) );
-  //}}
-  //for (int i = 0; i < 4 ; i++) {
-  //for (int j = 0; j < 12; j++) {
-  //  cells.push_back( Cell({100+i*cell_size, 200+j*cell_size}, cell_size) );
-  //}}
-  //for (int i = 0; i < 4 ; i++) {
-  //for (int j = 0; j < 12; j++) {
-  //  cells.push_back( Cell({600+i*cell_size, 200+j*cell_size}, cell_size) );
-  //}}
-  //for (int i = 0; i < 14 ; i++) {
-  //for (int j = 0; j < 4; j++) {
-  //  cells.push_back( Cell({250+i*cell_size, 400+j*cell_size}, cell_size) );
-  //}}
 
   InitWindow(800, 600, "Indoor Propagation Simulator");
   SetTargetFPS(60);

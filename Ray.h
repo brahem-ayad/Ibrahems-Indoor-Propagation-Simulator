@@ -97,7 +97,7 @@ class BRay {
         if (distance * distancen < 0.0f) {
             // compute interpolation factor along moveVec
             float denom = (distance - distancen);
-            if (denom < 1e-6 and denom > -1e-6) return false; // numerically degenerate
+            if (denom < 1e-6 and best_direction_to_wall_normal < 0) return false; // numerically degenerate
 
             float hitFactor = distance / denom; // between 0 and 1 if crossing along the segment
             if (hitFactor < 0.0f || hitFactor > 1.0f) return false;
