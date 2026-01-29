@@ -17,3 +17,7 @@
 - The ability to choose Antenna Parameters
 
 - I might rewrite it in a way to include steady state operation (meaning that after a while, what will the waves look like).
+
+---
+Idea : if i leave a point/ball at each point the ray has passed, where each points holds a position, a power level, and a time, Then i may be able to draw a heat map of average power and a power delay profile.
+

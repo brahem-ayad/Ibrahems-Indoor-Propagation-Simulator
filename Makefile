@@ -1,3 +1,5 @@
+SRC := $(wildcard *.cpp)
+
 main:
-	g++ main.cpp -lraylib -o Program
+	g++ $(SRC) -lraylib -o Program
 	./Program
