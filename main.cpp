@@ -3,7 +3,8 @@
 
 #include<vector>
 #include<math.h>
-
+#include<cmath>
+#include<iostream>
 
 int main(void)
 {
@@ -38,26 +39,29 @@ int main(void)
 
     walls.push_back((BoundingBox){{0, 0, 0}, {5, 5, 0.1}});
 
-    Vector3 BS_Position = {0, 1, 4};
-
-    int number_of_rays = 360;
+    Vector3 BS_Position = {4, 3, 4.5};
+    int number_of_rays = 1000;
     std::vector<Ray> rays;
-
+    rays.reserve(number_of_rays); // Optimization: prevent multiple reallocations
+ 
+    const float phi = 1.61803398875f; // Golden Ratio
+ 
     for (int i = 0; i < number_of_rays; i++) {
-      float u = (float)i / number_of_rays;
-      float v = (float)(i * 296 % number_of_rays) / number_of_rays;
-
-      float theta = 2.0f * PI * u;
-      float z = 2.0f * v - 1.0f;   // cos(phi)
-      float r = sqrtf(1.0f - z*z);
-
-      Vector3 dir = {
-          r * cosf(theta),
-          r * sinf(theta),
-          z
-      };
-
-      rays.push_back({ BS_Position, Vector3Normalize(dir) });
+        // Uniformly distribute Z from 1 to -1
+        float z = 1.0f - (i / (float)(number_of_rays - 1)) * 2.0f; 
+        float radius = sqrtf(1.0f - z * z);
+ 
+        // Use the golden ratio to increment the angle
+        float theta = 2.0f * PI * i / phi; 
+ 
+        Vector3 dir = {
+            radius * cosf(theta),
+            radius * sinf(theta),
+            z
+        };
+ 
+        // No need to normalize 'dir' if radius and z are calculated this way
+        rays.push_back({ BS_Position, dir });
     }
 
     float t = 0;
@@ -65,24 +69,24 @@ int main(void)
     while (!WindowShouldClose())        // Detect window close button or ESC key
     {
         //UpdateCamera(&camera, CAMERA_FREE);
-        t += 0.01;
+        t += 0.005;
         camera.position = {20*cosf(t), 10.0f, 20*sinf(t)};
 
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(BLACK);
 
             BeginMode3D(camera);
 
                 for(int j = 0; j < walls.size(); j++){
-                  DrawBoundingBox(walls[j], RED);
+                  DrawBoundingBox(walls[j], WHITE);
                 }
 
-                DrawSphere(BS_Position, 0.1, BLUE);
+                DrawSphere(BS_Position, 0.1, RED);
 
-                DrawGrid(10, 1.0f);
+                //DrawGrid(10, 1.0f);
 
                 for(int i = 0; i < number_of_rays; i++){
                   RayCollision col;
@@ -90,6 +94,7 @@ int main(void)
                   Vector3 Hit_Position;
                   bool Hit_Trueness = false;
                   float length = 100;
+                  Vector3 Normal = {0, 0, 0};
 
                   for(int j = 0; j < walls.size(); j++){
                     col = GetRayCollisionBox(rays[i], walls[j]);
@@ -97,12 +102,15 @@ int main(void)
                       length = Vector3Distance(BS_Position, col.point);
                       Hit_Position = col.point;
                       Hit_Trueness = true;
+                      Normal = col.normal;
                     }
                   }
 
                   if(Hit_Trueness){
-                    DrawLine3D(BS_Position, Hit_Position, BLUE);
-                    DrawSphere(Hit_Position, 0.02, BLUE);
+                    Color color = {255*(std::abs(Normal.x)+std::abs(Normal.z)), 255*std::abs(Normal.y), 0, 100};
+                    DrawLine3D(BS_Position, Hit_Position, {255, 0, 0, 100} );
+                    DrawCubeV(Hit_Position, {0.03, 0.03, 0.03}, color);
+                    //DrawPoint3D(Hit_Position, {255, 0, 0, 255});
                   }
                   else{
                     //DrawRay(rays[i], {0, 0, 255, 10});
