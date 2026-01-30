@@ -31,10 +31,16 @@ int main(void)
     std::vector<BoundingBox> walls;
     walls.push_back((BoundingBox){{5, 0, -5}, {5.1, 5, 5}});
     walls.push_back((BoundingBox){{-5, 5, -5}, {5, 5.1, 5}});
+    walls.push_back((BoundingBox){{-5.1, 0, -5}, {-5, 5, 5}});
+    walls.push_back((BoundingBox){{-5, -0.1, -5}, {5, 0, 5}});
+    walls.push_back((BoundingBox){{-5, 0, 5}, {5, 5, 5.1}});
+    walls.push_back((BoundingBox){{-5, 0, -5.1}, {5, 5, -5}});
 
-    Vector3 BS_Position = {0, 1, 0};
+    walls.push_back((BoundingBox){{0, 0, 0}, {5, 5, 0.1}});
 
-    int number_of_rays = 1000;
+    Vector3 BS_Position = {0, 1, 4};
+
+    int number_of_rays = 360;
     std::vector<Ray> rays;
 
     for (int i = 0; i < number_of_rays; i++) {
@@ -79,16 +85,29 @@ int main(void)
                 DrawGrid(10, 1.0f);
 
                 for(int i = 0; i < number_of_rays; i++){
-                for(int j = 0; j < walls.size(); j++){
-                  RayCollision col = GetRayCollisionBox(rays[i], walls[j]);
+                  RayCollision col;
 
-                  if(col.hit){
-                    DrawLine3D(rays[i].position, col.point, BLUE);
+                  Vector3 Hit_Position;
+                  bool Hit_Trueness = false;
+                  float length = 100;
+
+                  for(int j = 0; j < walls.size(); j++){
+                    col = GetRayCollisionBox(rays[i], walls[j]);
+                    if(col.hit == true and Vector3Distance(BS_Position, col.point) < length ){
+                      length = Vector3Distance(BS_Position, col.point);
+                      Hit_Position = col.point;
+                      Hit_Trueness = true;
+                    }
+                  }
+
+                  if(Hit_Trueness){
+                    DrawLine3D(BS_Position, Hit_Position, BLUE);
+                    DrawSphere(Hit_Position, 0.02, BLUE);
                   }
                   else{
-                    //DrawRay(rays[i], {255, 0, 0, 10});
+                    //DrawRay(rays[i], {0, 0, 255, 10});
                   }
-                }}
+                }
 
             EndMode3D();
 
