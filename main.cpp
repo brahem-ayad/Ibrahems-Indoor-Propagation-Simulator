@@ -21,10 +21,16 @@ int main(void)
 
     // Define the camera to look into our 3d world
     Camera3D camera = { 0 };
-    camera.target = (Vector3){ 0.0f, 1.0f, 0.0f };      // Camera looking at point
-    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
-    camera.fovy = 20.0f;                                // Camera field-of-view Y
-    camera.projection = CAMERA_PERSPECTIVE;             // Camera projection type
+    camera.target = (Vector3){ 0.0f, 1.0f, 0.0f };
+    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };
+    camera.fovy = 20.0f;
+    camera.projection = CAMERA_PERSPECTIVE;
+
+    // for a top down camera ( the lines below that make the camera rotate need to be commented )
+    //camera.position = {0, 30, 0};
+    //camera.up = (Vector3){ 1.0f, 0.0f, 0.0f };
+    //camera.projection = CAMERA_ORTHOGRAPHIC;
+    //camera.fovy = 8.0f;
 
     DisableCursor();                    // Limit cursor to relative movement inside the window
 
@@ -41,10 +47,12 @@ int main(void)
 
     walls.push_back((BoundingBox){{0, 0, 0}, {3, 3, 0.05}});
 
+    float number_of_reflections = 10;
+
     Vector3 BS_Position = {1.5, 1.5, 1.5};
-    int number_of_rays = 1000;
+    int number_of_rays = 360;
     std::vector<Ray> rays;
-    rays.reserve(number_of_rays); // Optimization: prevent multiple reallocations
+    rays.reserve(number_of_rays * number_of_reflections); // Optimization: prevent multiple reallocations
  
     const float phi = 1.61803398875f; // Golden Ratio
  
@@ -66,8 +74,35 @@ int main(void)
         rays.push_back({ BS_Position, dir });
     }
 
-    bool show_full_path = false;
+    for(int k = 0; k < number_of_reflections; k++){
+    for(int i = number_of_rays*k; i < number_of_rays*(k+1); i++){
+      RayCollision col;
 
+      Vector3 Hit_Position;
+      bool Hit_Trueness = false;
+      float length = 100;
+      Vector3 Normal = {0, 0, 0};
+
+      for(int j = 0; j < walls.size(); j++){
+        col = GetRayCollisionBox(rays[i], walls[j]);
+        float distance = Vector3Distance(rays[i].position, col.point);
+        if(col.hit == true and distance < length ){
+          length = distance;
+          Hit_Position = col.point;
+          Hit_Trueness = true;
+          Normal = col.normal;
+        }
+      }
+
+      Vector3 Reflection_Direction = Vector3Normalize(Vector3Reflect(Vector3Normalize(rays[i].direction), Vector3Normalize(Normal))) ;
+      rays.push_back( { Vector3Add(Hit_Position, Vector3Scale(Reflection_Direction, 0.01)), Reflection_Direction } );
+    }
+    }
+
+    bool show_full_path = true;
+
+
+    float n = 6;
     float t = 0;
     float q = 0;
     // Main game loop
@@ -94,7 +129,7 @@ int main(void)
 
                 //DrawGrid(10, 1.0f);
 
-                for(int i = 0; i < number_of_rays; i++){
+                for(int i = 0; i < number_of_rays*n; i++){
                   RayCollision col;
 
                   Vector3 Hit_Position;
@@ -104,8 +139,9 @@ int main(void)
 
                   for(int j = 0; j < walls.size(); j++){
                     col = GetRayCollisionBox(rays[i], walls[j]);
-                    if(col.hit == true and Vector3Distance(BS_Position, col.point) < length ){
-                      length = Vector3Distance(BS_Position, col.point);
+                    float distance = Vector3Distance(rays[i].position, col.point);
+                    if(col.hit == true and distance < length ){
+                      length = distance;
                       Hit_Position = col.point;
                       Hit_Trueness = true;
                       Normal = col.normal;
@@ -114,15 +150,15 @@ int main(void)
 
                   if(Hit_Trueness){
                     Color color = {(unsigned char)(255*(std::abs(Normal.x)+std::abs(Normal.z))), 0, (unsigned char)(255*std::abs(Normal.y)), 150};
-                    float Length = Vector3Length(Vector3Subtract(Hit_Position, BS_Position));
-                    Vector3 Interpolated_End_Pos = Vector3Add(BS_Position, Vector3Scale( Vector3Normalize( Vector3Subtract(Hit_Position, BS_Position) ) , q ));
-                    float Segment_Length = 0.3;
-                    Vector3 Interpolated_Start_Pos = BS_Position;
+                    float Length = Vector3Length(Vector3Subtract(Hit_Position, rays[i].position));
+                    Vector3 Interpolated_End_Pos = Vector3Add(rays[i].position, Vector3Scale( Vector3Normalize( Vector3Subtract(Hit_Position, rays[i].position) ) , q ));
+                    float Segment_Length = 0.1;
+                    Vector3 Interpolated_Start_Pos = rays[i].position;
                     if (Segment_Length < q){
-                      Interpolated_Start_Pos = Vector3Add(BS_Position, Vector3Scale( Vector3Normalize( Vector3Subtract(Hit_Position, BS_Position) ) , q - Segment_Length ));
+                      Interpolated_Start_Pos = Vector3Add(rays[i].position, Vector3Scale( Vector3Normalize( Vector3Subtract(Hit_Position, rays[i].position) ) , q - Segment_Length ));
                     }
                     if(show_full_path){
-                      DrawLine3D(BS_Position, Hit_Position, {255, 0, 0, 100} );
+                      DrawLine3D(rays[i].position, Hit_Position, {255, 0, 0, 100} );
                       DrawSphereEx(Hit_Position, 0.015, 3, 3, color);
                     }
                     else{
@@ -139,11 +175,20 @@ int main(void)
                     }
                   }
                   else{
-                    //DrawRay(rays[i], {0, 0, 255, 10});
+                    DrawRay(rays[i], {0, 0, 255, 10});
                   }
                 }
 
             EndMode3D();
+
+            if (IsKeyPressed(KEY_UP))
+            {
+                if (n < number_of_reflections) n++;
+            }
+            if (IsKeyPressed(KEY_DOWN))
+            {
+                if (n > 0) n--;
+            }
 
         EndDrawing();
         //----------------------------------------------------------------------------------
