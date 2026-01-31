@@ -14,8 +14,8 @@ int main() {
 
   std::vector<BRay> rays;
 
-  float speed = 1;
-  Vector2 Start_Pos = {400, 150};
+  float speed = 2;
+  Vector2 Start_Pos = {1100, 600};
 
   bool Draw_Lines = true;
 
@@ -25,17 +25,13 @@ int main() {
   //}
 
   std::vector<Wall> walls;
-  walls.push_back( Wall({100, 100}, {700, 100}) );
-  walls.push_back( Wall({700, 100}, {700, 500}) );
-  walls.push_back( Wall({700, 500}, {250, 500}) );
-  walls.push_back( Wall({250, 500}, {250, 400}) );
-  walls.push_back( Wall({250, 400}, {600, 400}) );
-  walls.push_back( Wall({600, 400}, {600, 200}) );
-  walls.push_back( Wall({600, 200}, {200, 200}) );
-  walls.push_back( Wall({200, 200}, {200, 500}) );
-  walls.push_back( Wall({200, 500}, {100, 500}) );
-  walls.push_back( Wall({100, 500}, {100, 100}) );
-
+  walls.push_back( Wall({100, 100}, {1500, 100}) );
+  walls.push_back( Wall({1500, 100}, {1500, 800}) );
+  walls.push_back( Wall({1500, 800}, {100, 800}) );
+  walls.push_back( Wall({100, 800}, {100, 100}) );
+  walls.push_back( Wall({800, 445}, {1500, 445}) );
+  walls.push_back( Wall({800, 455}, {1500, 455}) );
+  walls.push_back( Wall({800, 445}, {800, 455}) );
 
   InitWindow(1600, 900, "Indoor Propagation Simulator");
   ToggleFullscreen();

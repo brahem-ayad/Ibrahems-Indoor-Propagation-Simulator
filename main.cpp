@@ -16,12 +16,14 @@ int main(void)
     InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d camera free");
     ToggleFullscreen();
 
+    float Camera_Height = 8.0f;
+    float Camera_Radius = 20.0f;
+
     // Define the camera to look into our 3d world
     Camera3D camera = { 0 };
-    camera.position = (Vector3){ 0.0f, 10.0f, 20.0f }; // Camera position
-    camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };      // Camera looking at point
+    camera.target = (Vector3){ 0.0f, 1.0f, 0.0f };      // Camera looking at point
     camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
-    camera.fovy = 45.0f;                                // Camera field-of-view Y
+    camera.fovy = 20.0f;                                // Camera field-of-view Y
     camera.projection = CAMERA_PERSPECTIVE;             // Camera projection type
 
     DisableCursor();                    // Limit cursor to relative movement inside the window
@@ -30,16 +32,16 @@ int main(void)
     //--------------------------------------------------------------------------------------
 
     std::vector<BoundingBox> walls;
-    walls.push_back((BoundingBox){{5, 0, -5}, {5.1, 5, 5}});
-    walls.push_back((BoundingBox){{-5, 5, -5}, {5, 5.1, 5}});
-    walls.push_back((BoundingBox){{-5.1, 0, -5}, {-5, 5, 5}});
-    walls.push_back((BoundingBox){{-5, -0.1, -5}, {5, 0, 5}});
-    walls.push_back((BoundingBox){{-5, 0, 5}, {5, 5, 5.1}});
-    walls.push_back((BoundingBox){{-5, 0, -5.1}, {5, 5, -5}});
+    walls.push_back((BoundingBox){{3, 0, -3}, {3.01, 3, 3}});
+    walls.push_back((BoundingBox){{-3, 3, -3}, {3, 3.01, 3}});
+    walls.push_back((BoundingBox){{-3.01, 0, -3}, {-3, 3, 3}});
+    walls.push_back((BoundingBox){{-3, -0.01, -3}, {3, 0, 3}});
+    walls.push_back((BoundingBox){{-3, 0, 3}, {3, 3, 3.01}});
+    walls.push_back((BoundingBox){{-3, 0, -3.01}, {3, 3, -3}});
 
-    walls.push_back((BoundingBox){{0, 0, 0}, {5, 5, 0.1}});
+    walls.push_back((BoundingBox){{0, 0, 0}, {3, 3, 0.05}});
 
-    Vector3 BS_Position = {4, 3, 4.5};
+    Vector3 BS_Position = {1.5, 1.5, 1.5};
     int number_of_rays = 1000;
     std::vector<Ray> rays;
     rays.reserve(number_of_rays); // Optimization: prevent multiple reallocations
@@ -64,13 +66,17 @@ int main(void)
         rays.push_back({ BS_Position, dir });
     }
 
+    bool show_full_path = false;
+
     float t = 0;
+    float q = 0;
     // Main game loop
     while (!WindowShouldClose())        // Detect window close button or ESC key
     {
         //UpdateCamera(&camera, CAMERA_FREE);
         t += 0.005;
-        camera.position = {20*cosf(t), 10.0f, 20*sinf(t)};
+        q += 0.01;
+        camera.position = {Camera_Radius*cosf(t), Camera_Height, Camera_Radius*sinf(t)};
 
         // Draw
         //----------------------------------------------------------------------------------
@@ -84,7 +90,7 @@ int main(void)
                   DrawBoundingBox(walls[j], WHITE);
                 }
 
-                DrawSphere(BS_Position, 0.1, RED);
+                //DrawSphere(BS_Position, 0.1, RED);
 
                 //DrawGrid(10, 1.0f);
 
@@ -107,10 +113,30 @@ int main(void)
                   }
 
                   if(Hit_Trueness){
-                    Color color = {255*(std::abs(Normal.x)+std::abs(Normal.z)), 255*std::abs(Normal.y), 0, 100};
-                    DrawLine3D(BS_Position, Hit_Position, {255, 0, 0, 100} );
-                    DrawCubeV(Hit_Position, {0.03, 0.03, 0.03}, color);
-                    //DrawPoint3D(Hit_Position, {255, 0, 0, 255});
+                    Color color = {(unsigned char)(255*(std::abs(Normal.x)+std::abs(Normal.z))), 0, (unsigned char)(255*std::abs(Normal.y)), 150};
+                    float Length = Vector3Length(Vector3Subtract(Hit_Position, BS_Position));
+                    Vector3 Interpolated_End_Pos = Vector3Add(BS_Position, Vector3Scale( Vector3Normalize( Vector3Subtract(Hit_Position, BS_Position) ) , q ));
+                    float Segment_Length = 0.3;
+                    Vector3 Interpolated_Start_Pos = BS_Position;
+                    if (Segment_Length < q){
+                      Interpolated_Start_Pos = Vector3Add(BS_Position, Vector3Scale( Vector3Normalize( Vector3Subtract(Hit_Position, BS_Position) ) , q - Segment_Length ));
+                    }
+                    if(show_full_path){
+                      DrawLine3D(BS_Position, Hit_Position, {255, 0, 0, 100} );
+                      DrawSphereEx(Hit_Position, 0.015, 3, 3, color);
+                    }
+                    else{
+                    if(q < Length){
+                      DrawLine3D(Interpolated_Start_Pos, Interpolated_End_Pos, {255, 0, 0, 100});
+                    }
+                    else if(q < Segment_Length + Length){
+                      DrawLine3D(Interpolated_Start_Pos, Hit_Position, {255, 0, 0, 100});
+                    }
+                    else {
+                      //DrawLine3D(BS_Position, Hit_Position, {255, 0, 0, 100} );
+                      DrawSphereEx(Hit_Position, 0.015, 3, 3, color);
+                    }
+                    }
                   }
                   else{
                     //DrawRay(rays[i], {0, 0, 255, 10});
