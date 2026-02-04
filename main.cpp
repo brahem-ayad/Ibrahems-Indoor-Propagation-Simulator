@@ -41,7 +41,7 @@ int main(void)
   walls.push_back((BoundingBox){{-3, 0, 3}, {3, 3, 3.01}});
   walls.push_back((BoundingBox){{-3, 0, -3.01}, {3, 3, -3}});
 
-  walls.push_back((BoundingBox){{0, 0, 0}, {3, 3, 0.05}});
+  walls.push_back((BoundingBox){{-2, 0, 0}, {3, 3, 0.05}});
 
   float number_of_reflections = 10;
 
@@ -86,7 +86,7 @@ int main(void)
 
     Vector3 Hit_Position;
     bool Hit_Trueness = false;
-    float length = 10;
+    float length = 100;
     Vector3 Normal = {0, 0, 0};
 
     for(int j = 0; j < walls.size(); j++){
@@ -109,7 +109,7 @@ int main(void)
 
   float q_speed = 0.01;
   float n = 10;
-  float t = 0;
+  float t = 2;
   // Main game loop
   while (!WindowShouldClose())        // Detect window close button or ESC key
   {
@@ -128,7 +128,7 @@ int main(void)
     }
 
     for(int i = 0; i < number_of_rays*n; i++){
-      if(done[i] == false && start[i] == true){
+      if(done[i] == false && start[i] == true or show_full_path){
         RayCollision col;
 
         Vector3 Hit_Position;
@@ -157,7 +157,7 @@ int main(void)
           Color color = {(unsigned char)(255*(std::abs(Normal.x)+std::abs(Normal.z))), 0, (unsigned char)(255*std::abs(Normal.y)), 150};
           float Length = Vector3Length(Vector3Subtract(Hit_Position, rays[i].position));
           Vector3 Interpolated_End_Pos = Vector3Add(rays[i].position, Vector3Scale( Vector3Normalize( Vector3Subtract(Hit_Position, rays[i].position) ) , q[i] ));
-          float Segment_Length = 0.025;
+          float Segment_Length = 0.1;
           Vector3 Interpolated_Start_Pos = rays[i].position;
           if (Segment_Length < q[i]){
             Interpolated_Start_Pos = Vector3Add(rays[i].position, Vector3Scale( Vector3Normalize( Vector3Subtract(Hit_Position, rays[i].position) ) , q[i] - Segment_Length ));
