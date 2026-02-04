@@ -50,10 +50,16 @@ int main(void)
     float number_of_reflections = 10;
 
     Vector3 BS_Position = {1.5, 1.5, 1.5};
-    int number_of_rays = 360;
+    int number_of_rays = 1000;
     std::vector<Ray> rays;
     rays.reserve(number_of_rays * number_of_reflections); // Optimization: prevent multiple reallocations
- 
+
+    std::vector<bool> done;
+    done.assign(number_of_rays * number_of_reflections, false);
+
+    std::vector<float> q;
+    q.assign(number_of_rays * number_of_reflections, 0.0f);
+
     const float phi = 1.61803398875f; // Golden Ratio
  
     for (int i = 0; i < number_of_rays; i++) {
@@ -80,7 +86,7 @@ int main(void)
 
       Vector3 Hit_Position;
       bool Hit_Trueness = false;
-      float length = 100;
+      float length = 10;
       Vector3 Normal = {0, 0, 0};
 
       for(int j = 0; j < walls.size(); j++){
@@ -99,18 +105,16 @@ int main(void)
     }
     }
 
-    bool show_full_path = true;
+    bool show_full_path = false;
 
-
-    float n = 6;
+    float q_speed = 0.04;
+    float n = 10;
     float t = 0;
-    float q = 0;
     // Main game loop
     while (!WindowShouldClose())        // Detect window close button or ESC key
     {
         //UpdateCamera(&camera, CAMERA_FREE);
         t += 0.005;
-        q += 0.01;
         camera.position = {Camera_Radius*cosf(t), Camera_Height, Camera_Radius*sinf(t)};
 
         // Draw
@@ -147,31 +151,53 @@ int main(void)
                       Normal = col.normal;
                     }
                   }
+                  if(i < number_of_rays){
+                    q[i] += q_speed;
+                  }
+                  else if( i > number_of_rays and done[i - number_of_rays]){
+                    q[i] += q_speed;
+                  }
 
                   if(Hit_Trueness){
                     Color color = {(unsigned char)(255*(std::abs(Normal.x)+std::abs(Normal.z))), 0, (unsigned char)(255*std::abs(Normal.y)), 150};
                     float Length = Vector3Length(Vector3Subtract(Hit_Position, rays[i].position));
-                    Vector3 Interpolated_End_Pos = Vector3Add(rays[i].position, Vector3Scale( Vector3Normalize( Vector3Subtract(Hit_Position, rays[i].position) ) , q ));
+                    Vector3 Interpolated_End_Pos = Vector3Add(rays[i].position, Vector3Scale( Vector3Normalize( Vector3Subtract(Hit_Position, rays[i].position) ) , q[i] ));
                     float Segment_Length = 0.1;
                     Vector3 Interpolated_Start_Pos = rays[i].position;
-                    if (Segment_Length < q){
-                      Interpolated_Start_Pos = Vector3Add(rays[i].position, Vector3Scale( Vector3Normalize( Vector3Subtract(Hit_Position, rays[i].position) ) , q - Segment_Length ));
+                    if (Segment_Length < q[i]){
+                      Interpolated_Start_Pos = Vector3Add(rays[i].position, Vector3Scale( Vector3Normalize( Vector3Subtract(Hit_Position, rays[i].position) ) , q[i] - Segment_Length ));
                     }
                     if(show_full_path){
                       DrawLine3D(rays[i].position, Hit_Position, {255, 0, 0, 100} );
                       DrawSphereEx(Hit_Position, 0.015, 3, 3, color);
                     }
                     else{
-                    if(q < Length){
-                      DrawLine3D(Interpolated_Start_Pos, Interpolated_End_Pos, {255, 0, 0, 100});
-                    }
-                    else if(q < Segment_Length + Length){
-                      DrawLine3D(Interpolated_Start_Pos, Hit_Position, {255, 0, 0, 100});
-                    }
-                    else {
-                      //DrawLine3D(BS_Position, Hit_Position, {255, 0, 0, 100} );
-                      DrawSphereEx(Hit_Position, 0.015, 3, 3, color);
-                    }
+                      if(i < number_of_rays){
+                        if(q[i] < Length){
+                          DrawLine3D(Interpolated_Start_Pos, Interpolated_End_Pos, {255, 0, 0, 100});
+                        }
+                        else if(q[i] < Segment_Length + Length){
+                          DrawLine3D(Interpolated_Start_Pos, Hit_Position, {255, 0, 0, 100});
+                        }
+                        else {
+                          DrawSphereEx(Hit_Position, 0.015, 3, 3, color);
+                          done[i] = true;
+                        }
+                      }
+                      else{
+                        if(done[i - number_of_rays]){
+                          if(q[i] < Length){
+                            DrawLine3D(Interpolated_Start_Pos, Interpolated_End_Pos, {255, 0, 0, 100});
+                          }
+                          else if(q[i] < Segment_Length + Length){
+                            DrawLine3D(Interpolated_Start_Pos, Hit_Position, {255, 0, 0, 100});
+                          }
+                          else {
+                            done[i] = true;
+                            DrawSphereEx(Hit_Position, 0.015, 3, 3, color);
+                          }
+                        }
+                      }
                     }
                   }
                   else{
