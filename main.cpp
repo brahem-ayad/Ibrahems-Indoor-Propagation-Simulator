@@ -23,11 +23,14 @@ int main(void)
   camera.fovy = 20.0f;
   camera.projection = CAMERA_PERSPECTIVE;
 
-  // for a top down camera ( the lines below that make the camera rotate need to be commented )
-  //camera.position = {0, 30, 0};
-  //camera.up = (Vector3){ 1.0f, 0.0f, 0.0f };
-  //camera.projection = CAMERA_ORTHOGRAPHIC;
-  //camera.fovy = 8.0f;
+  bool top_down_view = false;
+
+  if(top_down_view){
+    camera.position = {0, 30, 0};
+    camera.up = (Vector3){ 1.0f, 0.0f, 0.0f };
+    camera.projection = CAMERA_ORTHOGRAPHIC;
+    camera.fovy = 8.0f;
+  }
 
   DisableCursor();
 
@@ -41,11 +44,9 @@ int main(void)
   walls.push_back((BoundingBox){{-3, 0, 3}, {3, 3, 3.01}});
   walls.push_back((BoundingBox){{-3, 0, -3.01}, {3, 3, -3}});
 
-  walls.push_back((BoundingBox){{-2, 0, 0}, {3, 3, 0.05}});
-
   float number_of_reflections = 10;
 
-  Vector3 BS_Position = {1.5, 1.5, 1.5};
+  Vector3 BS_Position = {0, 1.5, 0};
   int number_of_rays = 3600;
   std::vector<Ray> rays;
   rays.reserve(number_of_rays * number_of_reflections); // Optimization: prevent multiple reallocations
@@ -107,7 +108,10 @@ int main(void)
 
   bool show_full_path = false;
 
-  float q_speed = 0.01;
+  Color ray_color = {255, 0, 0, 100};
+  float ray_end_size = 0.02;
+
+  float q_speed = 0.02;
   float n = 10;
   float t = 2;
   // Main game loop
@@ -115,8 +119,9 @@ int main(void)
   {
     //UpdateCamera(&camera, CAMERA_FREE);
     t += 0.005;
-    camera.position = {Camera_Radius*cosf(t), Camera_Height, Camera_Radius*sinf(t)};
-
+    if(!top_down_view){
+      camera.position = {Camera_Radius*cosf(t), Camera_Height, Camera_Radius*sinf(t)};
+    }
     BeginDrawing();
 
     ClearBackground(BLACK);
@@ -169,10 +174,12 @@ int main(void)
           else{
             if(i < number_of_rays){
               if(q[i] < Length){
-                DrawLine3D(Interpolated_Start_Pos, Interpolated_End_Pos, {255, 0, 0, 200});
+                DrawLine3D(Interpolated_Start_Pos, Interpolated_End_Pos, ray_color);
+                DrawSphereEx(Interpolated_End_Pos, ray_end_size, 3, 3, ray_color);
               }
               else if(q[i] < Segment_Length + Length){
-                DrawLine3D(Interpolated_Start_Pos, Hit_Position, {255, 0, 0, 200});
+                DrawLine3D(Interpolated_Start_Pos, Hit_Position, ray_color);
+                DrawSphereEx(Hit_Position, ray_end_size, 3, 3, color);
               }
               else {
                 done[i] = true;
@@ -183,10 +190,12 @@ int main(void)
             else{
               if(done[i - number_of_rays]){
                 if(q[i] < Length){
-                  DrawLine3D(Interpolated_Start_Pos, Interpolated_End_Pos, {255, 0, 0, 200});
+                  DrawLine3D(Interpolated_Start_Pos, Interpolated_End_Pos, ray_color);
+                  DrawSphereEx(Interpolated_End_Pos, ray_end_size, 3, 3, ray_color);
                 }
                 else if(q[i] < Segment_Length + Length){
-                  DrawLine3D(Interpolated_Start_Pos, Hit_Position, {255, 0, 0, 200});
+                  DrawLine3D(Interpolated_Start_Pos, Hit_Position, ray_color);
+                  DrawSphereEx(Hit_Position, ray_end_size, 3, 3, color);
                 }
                 else {
                   done[i] = true;
@@ -200,7 +209,7 @@ int main(void)
           }
         }
         else{
-          DrawRay(rays[i], {0, 0, 255, 10});
+          //DrawRay(rays[i], {0, 0, 255, 10});
         }
       }
     }
