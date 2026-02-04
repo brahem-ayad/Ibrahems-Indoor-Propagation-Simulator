@@ -6,6 +6,10 @@
 #include<cmath>
 #include<iostream>
 
+
+int frameCount = 0;
+bool recording = false;
+
 int main(void)
 {
   const int screenWidth = 1600;
@@ -226,6 +230,17 @@ int main(void)
     }
 
     EndDrawing();
+
+    if(recording){
+      char filename[128];
+      sprintf(filename, "output/frame%05d.png", frameCount);
+
+      Image img = LoadImageFromScreen();
+      ExportImage(img, filename);
+      UnloadImage(img);
+
+      frameCount++;
+    }
   }
 
   CloseWindow();
