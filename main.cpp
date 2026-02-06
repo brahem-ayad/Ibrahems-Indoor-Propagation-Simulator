@@ -6,6 +6,14 @@
 #include<cmath>
 #include<iostream>
 
+#define RLIGHTS_IMPLEMENTATION
+#include "rlights.h"
+
+#if defined(PLATFORM_DESKTOP)
+    #define GLSL_VERSION            330
+#else   // PLATFORM_ANDROID, PLATFORM_WEB
+    #define GLSL_VERSION            100
+#endif
 
 int frameCount = 0;
 bool recording = false;
@@ -50,6 +58,15 @@ int main(void)
 
   SetTargetFPS(60);
 
+  Shader shader = LoadShader(TextFormat("resources/shaders/glsl%i/lighting.vs", GLSL_VERSION), TextFormat("resources/shaders/glsl%i/lighting.fs", GLSL_VERSION));
+  shader.locs[SHADER_LOC_VECTOR_VIEW] = GetShaderLocation(shader, "viewPos");
+  int ambientLoc = GetShaderLocation(shader, "ambient");
+  SetShaderValue(shader, ambientLoc, (float[4]){ 0.1f, 0.1f, 0.1f, 1.0f }, SHADER_UNIFORM_VEC4);
+
+  // Create lights
+  Light lights[MAX_LIGHTS] = { 0 };
+  lights[0] = CreateLight(LIGHT_POINT, (Vector3){ 0, 3, 0 }, Vector3Zero(), WHITE, shader);
+
   std::vector<BoundingBox> walls;
   walls.push_back((BoundingBox){{-5, -0.01, -10}, {5, 0, 10}});
   walls.push_back((BoundingBox){{-5, 3, -10}, {5, 3.01, 10}});
@@ -64,8 +81,10 @@ int main(void)
 
   float number_of_reflections = 30;
 
+  bool Pause = true;
+
   Vector3 BS_Position = {1.5, 2, 4};
-  int number_of_rays = 3600;
+  int number_of_rays = 1000;
   std::vector<Ray> rays;
   rays.reserve(number_of_rays * number_of_reflections); // Optimization: prevent multiple reallocations
 
@@ -129,7 +148,7 @@ int main(void)
   Color ray_color = {255, 0, 0, 150};
   float ray_end_size = 0.02;
 
-  float q_speed = 0.01;
+  float q_speed = 0.025;
   float n = 10;
   float t = 2;
   // Main game loop
@@ -143,15 +162,31 @@ int main(void)
       camera.position = {Camera_Radius*cosf(t), Camera_Height, Camera_Radius*sinf(t)};
     }
 
+    // Update the shader with the camera view vector (points towards { 0.0f, 0.0f, 0.0f })
+    float cameraPos[3] = { camera.position.x, camera.position.y, camera.position.z };
+    SetShaderValue(shader, shader.locs[SHADER_LOC_VECTOR_VIEW], cameraPos, SHADER_UNIFORM_VEC3);
+
+    // Check key inputs to enable/disable lights
+    if (IsKeyPressed(KEY_Y)) { lights[0].enabled = !lights[0].enabled; }
+    if (IsKeyPressed(KEY_R)) { lights[1].enabled = !lights[1].enabled; }
+    if (IsKeyPressed(KEY_G)) { lights[2].enabled = !lights[2].enabled; }
+    if (IsKeyPressed(KEY_B)) { lights[3].enabled = !lights[3].enabled; }
+
+    // Update light values (actually, only enable/disable them)
+    for (int i = 0; i < MAX_LIGHTS; i++) UpdateLightValues(shader, lights[i]);
+
     BeginDrawing();
 
     ClearBackground(BLACK);
 
     BeginMode3D(camera);
 
+    BeginShaderMode(shader);
     for(int j = 0; j < walls.size(); j++){
-      DrawBoundingBox(walls[j], {255, 255, 255, 50});
+      //DrawBoundingBox(walls[j], {255, 255, 255, 50});
+      DrawCubeV((Vector3){ (walls[j].min.x + walls[j].max.x) / 2.0f, (walls[j].min.y + walls[j].max.y) / 2.0f, (walls[j].min.z + walls[j].max.z) / 2.0f }, Vector3Subtract(walls[j].max, walls[j].min), RAYWHITE);
     }
+    EndShaderMode();
 
     for(int i = 0; i < number_of_rays*n; i++){
       if(done[i] == false && start[i] == true or show_full_path){
@@ -172,7 +207,7 @@ int main(void)
             Normal = col.normal;
           }
         }
-        if(start[i]){
+        if(start[i] and !Pause){
           q[i] += q_speed;
         }
 
@@ -245,6 +280,13 @@ int main(void)
 
     EndDrawing();
 
+    if(IsKeyPressed(KEY_P) and Pause == true){
+      Pause = false;
+    }
+    else if(IsKeyPressed(KEY_P) and Pause == false){
+      Pause = true;
+    }
+
     if(recording){
       char filename[128];
       sprintf(filename, "output/frame%05d.png", frameCount);
@@ -256,6 +298,9 @@ int main(void)
       frameCount++;
     }
   }
+
+  UnloadShader(shader);
+
 
   CloseWindow();
 
