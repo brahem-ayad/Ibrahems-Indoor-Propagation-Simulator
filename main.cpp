@@ -1,306 +1,252 @@
-#include "raylib.h"
-#include "raymath.h"
-
 #include<vector>
-#include<math.h>
-#include<cmath>
-#include<iostream>
 
-#define RLIGHTS_IMPLEMENTATION
-#include "rlights.h"
+#include<raylib.h>
+#include<raymath.h>
+#include<imgui.h>
 
-#if defined(PLATFORM_DESKTOP)
-    #define GLSL_VERSION            330
-#else   // PLATFORM_ANDROID, PLATFORM_WEB
-    #define GLSL_VERSION            100
-#endif
+#include "include/config.hpp"
 
-int frameCount = 0;
-bool recording = false;
+#include"./include/external/rlImGui.h"
 
-int main(void)
-{
-  const int screenWidth = 1600;
-  const int screenHeight = 900;
+void DrawImGui() {
+    rlImGuiBegin();
 
-  InitWindow(screenWidth, screenHeight, "Indoor Propagation Simulator");
+    if (ImGui::BeginMainMenuBar())
+    {
+        if (ImGui::BeginMenu("File"))
+        {
+            if (ImGui::MenuItem("Create New Empty File", "Ctrl+N")) {}
+            ImGui::EndMenu();
+        }
+        if (ImGui::BeginMenu("Edit"))
+        {
+            if (ImGui::MenuItem("Undo", "Ctrl+Z")) {}
+            if (ImGui::MenuItem("Redo", "Ctrl+Y", false, false)) {} // Disabled item
+            ImGui::Separator();
+            if (ImGui::MenuItem("Cut", "Ctrl+X")) {}
+            if (ImGui::MenuItem("Copy", "Ctrl+C")) {}
+            if (ImGui::MenuItem("Paste", "Ctrl+V")) {}
+            ImGui::EndMenu();
+        }
+        ImGui::EndMainMenuBar();
+    }
+
+    rlImGuiEnd();
+}
+
+class Cube{
+  public:
+    Vector3 Position;
+    Vector3 Size;
+};
+
+void Draw_Grid(int slices, float spacing, float size_multiplier, bool isMode2D) {
+  Color grid_lines_color;
+  Color main_lines_color;
+
+  if(conf::IsDarkMode){
+    grid_lines_color = {50, 50, 50, 255};
+    main_lines_color = {100, 100, 100, 255};
+  }
+  else{
+    grid_lines_color = {150, 150, 150, 255};
+    main_lines_color = {100, 100, 100, 255};
+  }
+
+  if(isMode2D){
+    for(int i = -slices/2; i <= slices/2; i++){
+      DrawLine(i*size_multiplier*spacing, -(float)slices/2*size_multiplier*spacing, i*size_multiplier*spacing, (float)slices/2*size_multiplier*spacing, grid_lines_color);
+      DrawLine(-(float)slices/2*size_multiplier*spacing, i*size_multiplier*spacing, (float)slices/2*size_multiplier*spacing, i*size_multiplier*spacing, grid_lines_color);
+    }
+    DrawLine(0, -(float)slices/2*size_multiplier*spacing, 0, (float)slices/2*size_multiplier*spacing, main_lines_color);
+    DrawLine(-(float)slices/2*size_multiplier*spacing, 0, (float)slices/2*size_multiplier*spacing, 0, main_lines_color);
+  }
+  else{
+    for(int i = -slices/2; i <= slices/2; i++){
+      DrawLine3D({i*spacing, -(float)slices/2*spacing, 0}, {i*spacing, (float)slices/2*spacing, 0}, grid_lines_color);
+      DrawLine3D({-(float)slices/2*spacing, i*spacing, 0}, {(float)slices/2*spacing, i*spacing, 0}, grid_lines_color);
+    }
+    DrawLine3D({0, -(float)slices/2*spacing, 0}, {0, (float)slices/2*spacing, 0}, main_lines_color);
+    DrawLine3D({-(float)slices/2*spacing, 0, 0}, {(float)slices/2*spacing, 0, 0}, main_lines_color);
+  }
+}
+
+void InitCameras(Camera3D &camera_3d, Camera2D &camera_2d){
+  camera_3d.position = {10, 10, 10};
+  camera_3d.up = {0, 0, 1};
+  camera_3d.fovy = 45.0f;
+  camera_3d.target = {0, 0, 0};
+  camera_3d.projection = CAMERA_PERSPECTIVE;
+
+  camera_2d.target = {0, 0};
+  camera_2d.rotation = 0.0f;
+  camera_2d.zoom = 1.0f;
+  camera_2d.offset = {(float)GetScreenWidth()/2, (float)GetScreenHeight()/2};
+}
+
+int main() {
+
+  InitWindow(1600, 900, "An Indoor EM Waves Propagation Simulator");
   ToggleFullscreen();
-
-  float Camera_Height = 20.0f;
-  float Camera_Radius = 40.0f;
-
-  Camera3D camera = { 0 };
-  camera.target = (Vector3){ 0.0f, 1.0f, 0.0f };
-  camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };
-  camera.fovy = 20.0f;
-  camera.projection = CAMERA_PERSPECTIVE;
-
-  bool top_down_view = false;
-  bool camera_free = true;
-
-  if(top_down_view){
-    camera.position = {0, 30, 0};
-    camera.up = (Vector3){ 1.0f, 0.0f, 0.0f };
-    camera.projection = CAMERA_ORTHOGRAPHIC;
-    camera.fovy = 12.0f;
-  }
-
-  if(camera_free){
-    camera.position = {0, 3, -10};
-    camera.up = { 0.0f, 1.0f, 0.0f };
-    camera.target = {0, 0, 0};
-    camera.projection = CAMERA_PERSPECTIVE;
-    camera.fovy = 45.0f;
-  }
-
-  DisableCursor();
-  SetMousePosition(0, 0);
-
   SetTargetFPS(60);
 
-  Shader shader = LoadShader(TextFormat("resources/shaders/glsl%i/lighting.vs", GLSL_VERSION), TextFormat("resources/shaders/glsl%i/lighting.fs", GLSL_VERSION));
-  shader.locs[SHADER_LOC_VECTOR_VIEW] = GetShaderLocation(shader, "viewPos");
-  int ambientLoc = GetShaderLocation(shader, "ambient");
-  SetShaderValue(shader, ambientLoc, (float[4]){ 0.1f, 0.1f, 0.1f, 1.0f }, SHADER_UNIFORM_VEC4);
+  rlImGuiSetup(conf::IsDarkMode);
 
-  // Create lights
-  Light lights[MAX_LIGHTS] = { 0 };
-  lights[0] = CreateLight(LIGHT_POINT, (Vector3){ 0, 3, 0 }, Vector3Zero(), WHITE, shader);
+  Camera3D camera_3d;
+  Camera2D camera_2d;
+  InitCameras(camera_3d, camera_2d);
 
-  std::vector<BoundingBox> walls;
-  walls.push_back((BoundingBox){{-5, -0.01, -10}, {5, 0, 10}});
-  walls.push_back((BoundingBox){{-5, 3, -10}, {5, 3.01, 10}});
-  walls.push_back((BoundingBox){{-5.01, 0, -10}, {-5, 3, 10}});
-  walls.push_back((BoundingBox){{5, 0, -10}, {5.01, 3, 10}});
-  walls.push_back((BoundingBox){{-5, 0, -10.01}, {5, 3, -10}});
-  walls.push_back((BoundingBox){{-5, 0, 10}, {5, 3, 10.01}});
-  walls.push_back((BoundingBox){{0, 0, 5}, {5, 3, 5.01}});
-  walls.push_back((BoundingBox){{-0.01, 0, 5}, {0, 3, 6}});
-  walls.push_back((BoundingBox){{-0.01, 2, 6}, {0, 3, 7}});
-  walls.push_back((BoundingBox){{-0.01, 0, 7}, {0, 3, 10}});
+  std::vector<Cube> walls;
 
-  float number_of_reflections = 30;
+  bool isMode2D = true;
 
-  bool Pause = true;
+  float size_multiplier = 50;
 
-  Vector3 BS_Position = {1.5, 2, 4};
-  int number_of_rays = 1000;
-  std::vector<Ray> rays;
-  rays.reserve(number_of_rays * number_of_reflections); // Optimization: prevent multiple reallocations
+  bool temp_is_drawing = false;
+  Vector2 temp_start_pos;
+  Vector2 temp_end_pos;
+  bool is_end_pos_available = false;
+  bool allow_end_pos_placement = false;
+  bool allow_end_pos_movement = false;
+  bool allow_start_pos_movement = false;
 
-  std::vector<bool> done;
-  done.assign(number_of_rays * number_of_reflections, false);
-
-  std::vector<bool> start;
-  start.assign(number_of_rays * number_of_reflections, false);
-
-  std::vector<float> q;
-  q.assign(number_of_rays * number_of_reflections, 0.0f);
-
-  const float phi = 1.61803398875f; // Golden Ratio
- 
-  for (int i = 0; i < number_of_rays; i++) {
-    // Uniformly distribute Z from 1 to -1
-    float z = 1.0f - (i / (float)(number_of_rays - 1)) * 2.0f; 
-    float radius = sqrtf(1.0f - z * z);
- 
-    // Use the golden ratio to increment the angle
-    float theta = 2.0f * PI * i / phi; 
- 
-    Vector3 dir = {
-        radius * cosf(theta),
-        radius * sinf(theta),
-        z
-    };
- 
-    // No need to normalize 'dir' if radius and z are calculated this way
-    rays.push_back({ BS_Position, dir });
-    start[i] = true;
-  }
-
-  for(int k = 0; k < number_of_reflections; k++){
-  for(int i = number_of_rays*k; i < number_of_rays*(k+1); i++){
-    RayCollision col;
-
-    Vector3 Hit_Position;
-    bool Hit_Trueness = false;
-    float length = 100;
-    Vector3 Normal = {0, 0, 0};
-
-    for(int j = 0; j < walls.size(); j++){
-      col = GetRayCollisionBox(rays[i], walls[j]);
-      float distance = Vector3Distance(rays[i].position, col.point);
-      if(col.hit == true and distance < length ){
-        length = distance;
-        Hit_Position = col.point;
-        Hit_Trueness = true;
-        Normal = col.normal;
-      }
-    }
-
-    Vector3 Reflection_Direction = Vector3Normalize(Vector3Reflect(Vector3Normalize(rays[i].direction), Vector3Normalize(Normal))) ;
-    rays.push_back( { Vector3Add(Hit_Position, Vector3Scale(Reflection_Direction, 0.01)), Reflection_Direction } );
-  }
-  }
-
-  bool show_full_path = false;
-
-  Color ray_color = {255, 0, 0, 150};
-  float ray_end_size = 0.02;
-
-  float q_speed = 0.025;
-  float n = 10;
-  float t = 2;
-  // Main game loop
-  while (!WindowShouldClose())        // Detect window close button or ESC key
-  {
-    if(camera_free){
-      UpdateCamera(&camera, CAMERA_FREE);
-    }
-    t += 0.005;
-    if(!top_down_view and !camera_free){
-      camera.position = {Camera_Radius*cosf(t), Camera_Height, Camera_Radius*sinf(t)};
-    }
-
-    // Update the shader with the camera view vector (points towards { 0.0f, 0.0f, 0.0f })
-    float cameraPos[3] = { camera.position.x, camera.position.y, camera.position.z };
-    SetShaderValue(shader, shader.locs[SHADER_LOC_VECTOR_VIEW], cameraPos, SHADER_UNIFORM_VEC3);
-
-    // Check key inputs to enable/disable lights
-    if (IsKeyPressed(KEY_Y)) { lights[0].enabled = !lights[0].enabled; }
-    if (IsKeyPressed(KEY_R)) { lights[1].enabled = !lights[1].enabled; }
-    if (IsKeyPressed(KEY_G)) { lights[2].enabled = !lights[2].enabled; }
-    if (IsKeyPressed(KEY_B)) { lights[3].enabled = !lights[3].enabled; }
-
-    // Update light values (actually, only enable/disable them)
-    for (int i = 0; i < MAX_LIGHTS; i++) UpdateLightValues(shader, lights[i]);
-
+  while(!WindowShouldClose()){
     BeginDrawing();
 
-    ClearBackground(BLACK);
+    // Backggound Color
+    if(conf::IsDarkMode) ClearBackground(BLACK);
+    else ClearBackground(RAYWHITE);
 
-    BeginMode3D(camera);
+    if(isMode2D){
+      BeginMode2D(camera_2d);
 
-    BeginShaderMode(shader);
-    for(int j = 0; j < walls.size(); j++){
-      //DrawBoundingBox(walls[j], {255, 255, 255, 50});
-      DrawCubeV((Vector3){ (walls[j].min.x + walls[j].max.x) / 2.0f, (walls[j].min.y + walls[j].max.y) / 2.0f, (walls[j].min.z + walls[j].max.z) / 2.0f }, Vector3Subtract(walls[j].max, walls[j].min), RAYWHITE);
-    }
-    EndShaderMode();
+      Draw_Grid(10, 1, size_multiplier, isMode2D);
 
-    for(int i = 0; i < number_of_rays*n; i++){
-      if(done[i] == false && start[i] == true or show_full_path){
-        RayCollision col;
+      for(int i = 0; i < walls.size(); i++){
+        DrawRectangle(size_multiplier*(walls[i].Position.x - walls[i].Size.x/2), size_multiplier*(walls[i].Position.y - walls[i].Size.y/2), size_multiplier*walls[i].Size.x, size_multiplier*walls[i].Size.y, RED);
+      }
 
-        Vector3 Hit_Position;
-        bool Hit_Trueness = false;
-        float length = 100;
-        Vector3 Normal = {0, 0, 0};
+      if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON) and temp_is_drawing == false){
+        temp_start_pos = GetMousePosition();
+        temp_is_drawing = true;
+      }
+      if(temp_is_drawing){
 
-        for(int j = 0; j < walls.size(); j++){
-          col = GetRayCollisionBox(rays[i], walls[j]);
-          float distance = Vector3Distance(rays[i].position, col.point);
-          if(col.hit == true and distance < length ){
-            length = distance;
-            Hit_Position = col.point;
-            Hit_Trueness = true;
-            Normal = col.normal;
+        Vector2 size;
+        Vector2 starting_pos;
+
+        if(!is_end_pos_available){
+          if(GetMousePosition().x > temp_start_pos.x and GetMousePosition().y > temp_start_pos.y){
+            size = {GetMousePosition().x - temp_start_pos.x, GetMousePosition().y - temp_start_pos.y};
+            DrawRectangleV(GetScreenToWorld2D(temp_start_pos, camera_2d), size, BLUE);
           }
+          else if (GetMousePosition().x > temp_start_pos.x and GetMousePosition().y < temp_start_pos.y){
+            size = {GetMousePosition().x - temp_start_pos.x, temp_start_pos.y - GetMousePosition().y};
+            starting_pos = {temp_start_pos.x, GetMousePosition().y};
+            DrawRectangleV(GetScreenToWorld2D(starting_pos, camera_2d), size, BLUE);
+          }
+          else if (GetMousePosition().x < temp_start_pos.x and GetMousePosition().y > temp_start_pos.y){
+            size = {temp_start_pos.x - GetMousePosition().x, GetMousePosition().y - temp_start_pos.y};
+            starting_pos = {GetMousePosition().x, temp_start_pos.y};
+            DrawRectangleV(GetScreenToWorld2D(starting_pos, camera_2d), size, BLUE);
+          }
+          else if (GetMousePosition().x < temp_start_pos.x and GetMousePosition().y < temp_start_pos.y){
+            size = {temp_start_pos.x - GetMousePosition().x, temp_start_pos.y - GetMousePosition().y};
+            DrawRectangleV(GetScreenToWorld2D(GetMousePosition(), camera_2d), size, BLUE);
+          }
+
+          if(IsMouseButtonReleased(MOUSE_LEFT_BUTTON)){
+            allow_end_pos_placement = true;
+          }
+
+          if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON) and allow_end_pos_placement){
+          temp_end_pos = GetMousePosition();
+          is_end_pos_available = true;
+          }
+          DrawCircleV(GetScreenToWorld2D(temp_start_pos, camera_2d), 5, BLACK);
+          DrawCircleV(GetScreenToWorld2D(GetMousePosition(), camera_2d), 5, BLACK);
         }
-        if(start[i] and !Pause){
-          q[i] += q_speed;
-        }
+        else if(is_end_pos_available == true){
+          if(temp_end_pos.x > temp_start_pos.x and temp_end_pos.y > temp_start_pos.y){
+            size = {temp_end_pos.x - temp_start_pos.x, temp_end_pos.y - temp_start_pos.y};
+            DrawRectangleV(GetScreenToWorld2D(temp_start_pos, camera_2d), size, BLUE);
+          }
+          else if (temp_end_pos.x > temp_start_pos.x and temp_end_pos.y < temp_start_pos.y){
+            size = {temp_end_pos.x - temp_start_pos.x, temp_start_pos.y - temp_end_pos.y};
+            starting_pos = {temp_start_pos.x, temp_end_pos.y};
+            DrawRectangleV(GetScreenToWorld2D(starting_pos, camera_2d), size, BLUE);
+          }
+          else if (temp_end_pos.x < temp_start_pos.x and temp_end_pos.y > temp_start_pos.y){
+            size = {temp_start_pos.x - temp_end_pos.x, temp_end_pos.y - temp_start_pos.y};
+            starting_pos = {temp_end_pos.x, temp_start_pos.y};
+            DrawRectangleV(GetScreenToWorld2D(starting_pos, camera_2d), size, BLUE);
+          }
+          else if (temp_end_pos.x < temp_start_pos.x and temp_end_pos.y < temp_start_pos.y){
+            size = {temp_start_pos.x - temp_end_pos.x, temp_start_pos.y - temp_end_pos.y};
+            DrawRectangleV(GetScreenToWorld2D(temp_end_pos, camera_2d), size, BLUE);
+          }
+          DrawCircleV(GetScreenToWorld2D(temp_start_pos, camera_2d), 5, BLACK);
+          DrawCircleV(GetScreenToWorld2D(temp_end_pos, camera_2d), 5, BLACK);
 
-        if(Hit_Trueness){
-          Color color = {(unsigned char)(255*(std::abs(Normal.x)+std::abs(Normal.z))), 0, (unsigned char)(255*std::abs(Normal.y)), 150};
-          float Length = Vector3Length(Vector3Subtract(Hit_Position, rays[i].position));
-          Vector3 Interpolated_End_Pos = Vector3Add(rays[i].position, Vector3Scale( Vector3Normalize( Vector3Subtract(Hit_Position, rays[i].position) ) , q[i] ));
-          float Segment_Length = 0.2;
-          Vector3 Interpolated_Start_Pos = rays[i].position;
-          if (Segment_Length < q[i]){
-            Interpolated_Start_Pos = Vector3Add(rays[i].position, Vector3Scale( Vector3Normalize( Vector3Subtract(Hit_Position, rays[i].position) ) , q[i] - Segment_Length ));
-          }
-          if(show_full_path){
-            DrawLine3D(rays[i].position, Hit_Position, {255, 0, 0, 100} );
-            DrawSphereEx(Hit_Position, 0.015, 3, 3, color);
-          }
-          else{
-            if(i < number_of_rays){
-              if(q[i] < Length){
-                DrawLine3D(Interpolated_Start_Pos, Interpolated_End_Pos, ray_color);
-                DrawSphereEx(Interpolated_End_Pos, ray_end_size, 3, 3, ray_color);
-              }
-              else if(q[i] < Segment_Length + Length){
-                DrawLine3D(Interpolated_Start_Pos, Hit_Position, ray_color);
-                DrawSphereEx(Hit_Position, ray_end_size, 3, 3, color);
-                start[i + number_of_rays] = true;
-              }
-              else {
-                done[i] = true;
-                //DrawSphereEx(Hit_Position, 0.015, 3, 3, color);
-              }
-            }
-            else{
-              if(start[i]){
-                if(q[i] < Length){
-                  DrawLine3D(Interpolated_Start_Pos, Interpolated_End_Pos, ray_color);
-                  DrawSphereEx(Interpolated_End_Pos, ray_end_size, 3, 3, ray_color);
-                }
-                else if(q[i] < Segment_Length + Length){
-                  DrawLine3D(Interpolated_Start_Pos, Hit_Position, ray_color);
-                  DrawSphereEx(Hit_Position, ray_end_size, 3, 3, color);
-                  if(i < number_of_rays*(number_of_reflections-1) ){
-                    start[i + number_of_rays] = true;
-                  }
-                }
-                else {
-                  done[i] = true;
-                  //DrawSphereEx(Hit_Position, 0.015, 3, 3, color);
-                }
-              }
+          if(CheckCollisionPointCircle(GetMousePosition(), temp_end_pos, 5)){
+            DrawCircleV(GetScreenToWorld2D(temp_end_pos, camera_2d), 5, BLUE);
+            if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+              allow_end_pos_movement = true;
             }
           }
-        }
-        else{
-          //DrawRay(rays[i], {0, 0, 255, 10});
+          if(allow_end_pos_movement){
+            temp_end_pos = GetMousePosition();
+            if(IsMouseButtonReleased(MOUSE_LEFT_BUTTON)){
+              allow_end_pos_movement = false;
+            }
+          }
+
+          if(CheckCollisionPointCircle(GetMousePosition(), temp_start_pos, 5)){
+            DrawCircleV(GetScreenToWorld2D(temp_start_pos, camera_2d), 5, BLUE);
+            if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+              allow_start_pos_movement = true;
+            }
+          }
+          if(allow_start_pos_movement){
+            temp_start_pos = GetMousePosition();
+            if(IsMouseButtonReleased(MOUSE_LEFT_BUTTON)){
+              allow_start_pos_movement = false;
+            }
+          }
+
+          if(IsKeyPressed(KEY_ENTER)){
+            Cube wall;
+            wall.Size = {size.x/size_multiplier, size.y/size_multiplier, 5};
+            wall.Position = {temp_start_pos.x/size_multiplier - (float)GetScreenWidth()/2/size_multiplier + wall.Size.x/2, temp_start_pos.y/size_multiplier - (float)GetScreenHeight()/2/size_multiplier + wall.Size.y/2, wall.Size.z/2};
+            walls.push_back( wall );
+          }
         }
       }
+
+      EndMode2D();
+    }
+    else {
+      BeginMode3D(camera_3d);
+
+      Draw_Grid(10, 1, size_multiplier, isMode2D);
+
+      for(int i = 0; i < walls.size(); i++){
+        DrawCubeV(walls[i].Position, walls[i].Size, RED);
+        DrawCubeWiresV(walls[i].Position, walls[i].Size, MAROON);
+      }
+
+      EndMode3D();
     }
 
-    EndMode3D();
+    DrawImGui();
 
-    if (IsKeyPressed(KEY_UP))
-    {
-        if (n < number_of_reflections) n++;
-    }
-    if (IsKeyPressed(KEY_DOWN))
-    {
-        if (n > 0) n--;
-    }
+    if(IsKeyPressed(KEY_TWO)) isMode2D = true;
+    if(IsKeyPressed(KEY_THREE)) isMode2D = false;
 
     EndDrawing();
-
-    if(IsKeyPressed(KEY_P) and Pause == true){
-      Pause = false;
-    }
-    else if(IsKeyPressed(KEY_P) and Pause == false){
-      Pause = true;
-    }
-
-    if(recording){
-      char filename[128];
-      sprintf(filename, "output/frame%05d.png", frameCount);
-
-      Image img = LoadImageFromScreen();
-      ExportImage(img, filename);
-      UnloadImage(img);
-
-      frameCount++;
-    }
   }
 
-  UnloadShader(shader);
-
+  rlImGuiShutdown();
 
   CloseWindow();
 
