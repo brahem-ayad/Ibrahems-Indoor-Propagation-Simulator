@@ -13,3 +13,4 @@ Door:
 Triangle:
 	g++ triangle.cpp -lraylib
 	./a.out
+
