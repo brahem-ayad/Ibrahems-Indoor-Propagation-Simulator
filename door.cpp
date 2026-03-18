@@ -112,6 +112,8 @@ int main() {
     BeginDrawing();
     ClearBackground(WHITE);
 
+    UpdateCamera(&camera, CAMERA_ORBITAL);
+
     BeginMode3D(camera);
 
     DrawGrid3D(6, 0.5, GRAY);
@@ -119,7 +121,6 @@ int main() {
     if(Door_Mode){
       SplitWall(Walls, camera, 2, 1);
     }
-
 
     EndMode3D();
 

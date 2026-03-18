@@ -1,5 +1,5 @@
 main:
-	g++ main.cpp -lraylib
+	gcc main.c -lraylib
 	./a.out
 
 ImGui:
@@ -8,4 +8,8 @@ ImGui:
 
 Door:
 	g++ door.cpp -lraylib
+	./a.out
+
+Triangle:
+	g++ triangle.cpp -lraylib
 	./a.out
