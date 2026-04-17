@@ -5,10 +5,10 @@
 // ----- includes to libraries that are put in this library ----- //
 #include"include/Cameras.h"
 #include"include/Config.h"
-#include"include/Floor_Plan.h"
-#include"include/Splash_Screen.h"
+#include"include/UI/Splash_Screen.h"
 //#include"include/Load_Image.h"
-#include"include/Main_Menu_Bar.h"
+#include"include/UI/Main_Menu_Bar.h"
+#include"include/Floor_Planning/Draw_Floor_Planning_State.h"
 
 bool Should_Exit_App = false;
 bool Show_Exit_Pop_Up = false;
@@ -34,6 +34,7 @@ int main() {
 
   // Loading the font
   Font Montserrat_Font_32 = LoadFontEx("./resources/fonts/Montserrat-Bold.ttf", 32, 0, 0);
+  Font Montserrat_Font_26 = LoadFontEx("./resources/fonts/Montserrat-Bold.ttf", 26, 0, 0);
   Font Montserrat_Font_20 = LoadFontEx("./resources/fonts/Montserrat-Bold.ttf", 20, 0, 0);
 
   // Loading the Splash Screen Texture
@@ -47,8 +48,7 @@ int main() {
   Texture2D Floor_Plan_Texture;
   bool Is_Floor_Plan_Image_Loaded = false;
 
-  enum State state = Splash_Screen_State;
-  enum Selected_Tool selected_tool = None;
+  SetExitKey(KEY_NULL);
 
   while (!WindowShouldClose()) {
  
@@ -63,12 +63,12 @@ int main() {
     if(CONF::Theme == Light_Theme) ClearBackground(WHITE);
     else ClearBackground(BLACK);
 
-    if(state == Splash_Screen_State){
-      Draw_Floor_Planning_State(camera2, camera3, Montserrat_Font_32, Montserrat_Font_20, state, Floor_Plan_Texture, Is_Floor_Plan_Image_Loaded, selected_tool, shader, grid_shader);
-      Draw_Splash_Screen(Splash_Screen_Image_Light, Splash_Screen_Image_Dark, Unload_Splash_Screen_Image, state, Montserrat_Font_32, Sun_Icon, Moon_Icon);
+    if(CONF::state == Splash_Screen_State){
+      Draw_Floor_Planning_State(camera2, camera3, Montserrat_Font_32, Montserrat_Font_26, Montserrat_Font_20, Floor_Plan_Texture, Is_Floor_Plan_Image_Loaded, shader, grid_shader);
+      Draw_Splash_Screen(Splash_Screen_Image_Light, Splash_Screen_Image_Dark, Unload_Splash_Screen_Image, Montserrat_Font_32, Sun_Icon, Moon_Icon);
     }
-    else if(state == Floor_Planning_State){
-      Draw_Floor_Planning_State(camera2, camera3, Montserrat_Font_32, Montserrat_Font_20, state, Floor_Plan_Texture, Is_Floor_Plan_Image_Loaded, selected_tool, shader, grid_shader);
+    else if(CONF::state == Floor_Planning_State){
+      Draw_Floor_Planning_State(camera2, camera3, Montserrat_Font_32, Montserrat_Font_26, Montserrat_Font_20, Floor_Plan_Texture, Is_Floor_Plan_Image_Loaded, shader, grid_shader);
     }
 
     Draw_Main_Menu_Bar(Montserrat_Font_20);
@@ -94,6 +94,7 @@ int main() {
     UnloadTexture(Moon_Icon);
   }
   UnloadFont(Montserrat_Font_32);
+  UnloadFont(Montserrat_Font_26);
   UnloadFont(Montserrat_Font_20);
 
   CloseWindow();

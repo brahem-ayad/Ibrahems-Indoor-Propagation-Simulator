@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Cameras.h"
-#include "Config.h"
+#include "../Cameras.h"
+#include "../Config.h"
 #include<raylib.h>
 
 static void Draw_View_Gimbal(Font font, float font_size, Camera2D &camera2, Camera3D &camera3) {
   Vector2 Position;
-  if(CONF::tool_state == None) Position = {(float)GetScreenWidth() - 70, 150};
-  else Position = {(float)GetScreenWidth() - 70, 250};
+  if(CONF::tool_state == None) Position = {(float)GetScreenWidth() - 70, CONF::MMB_height + CONF::Tool_Bar_height + 15 + 50};
+  else Position = {(float)GetScreenWidth() - 70, CONF::MMB_height + CONF::Tool_Bar_height + CONF::Tool_Options_Bar_height + 15 + 50};
 
   Color Inner_Circle_Color;
   Color Outer_Circle_and_Triangles_Color;
@@ -36,7 +36,7 @@ static void Draw_View_Gimbal(Font font, float font_size, Camera2D &camera2, Came
   if(CheckCollisionPointCircle(GetMousePosition(), Position, 28)){
     DrawCircleV(Position, 28, Fade(WHITE, 0.2));
     if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
-      if(CONF::View == View_2D) CONF::View = View_3D;
+      if(CONF::View == View_2D) { CONF::View = View_3D; CONF::tool_state = None; }
       else CONF::View = View_2D;
     }
   }
@@ -105,7 +105,10 @@ static void Draw_View_Gimbal(Font font, float font_size, Camera2D &camera2, Came
   if(CheckCollisionPointCircle(GetMousePosition(), Zoom_Out_Key_Pos, 15)){
     DrawCircleV(Zoom_Out_Key_Pos, 15, Fade(WHITE, 0.2));
     if(IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
-      if(CONF::View == View_3D) Zoom_3D_Camera_Out(camera3);
+      if(CONF::View == View_3D) {
+        if(CONF::Camera_3D_Projection == Perspective) Zoom_3D_Camera_Out(camera3);
+        else CAMERA::Orthographic_fovy += CAMERA::zoom_speed * GetFrameTime();
+      }
       else camera2.zoom -= CAMERA::zoom_speed/10 * GetFrameTime();
     }
   }
@@ -118,11 +121,15 @@ static void Draw_View_Gimbal(Font font, float font_size, Camera2D &camera2, Came
   if(CheckCollisionPointCircle(GetMousePosition(), Zoom_In_Key_Pos, 15)){
     DrawCircleV(Zoom_In_Key_Pos, 15, Fade(WHITE, 0.2));
     if(IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
-      if(CONF::View == View_3D) Zoom_3D_Camera_In(camera3);
+      if(CONF::View == View_3D) {
+        if(CONF::Camera_3D_Projection == Perspective) Zoom_3D_Camera_In(camera3);
+        else CAMERA::Orthographic_fovy -= CAMERA::zoom_speed * GetFrameTime();
+      }
       else camera2.zoom += CAMERA::zoom_speed/10 * GetFrameTime();
     }
   }
 
+  // The Movement/Rotation Switcher
   if(CONF::View == View_3D){
     Vector2 Rotate_or_Move_with_Arrows_Switch = {Position.x + 35, Position.y + 35};
     DrawCircleV(Rotate_or_Move_with_Arrows_Switch, 15, Outer_Circle_and_Triangles_Color);
@@ -138,6 +145,26 @@ static void Draw_View_Gimbal(Font font, float font_size, Camera2D &camera2, Came
       if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
         if(CONF::Gimbal_Arrows_3D_Mode == Rotation) CONF::Gimbal_Arrows_3D_Mode = Movement;
         else CONF::Gimbal_Arrows_3D_Mode = Rotation;
+      }
+    }
+  }
+
+  // The Camera Projection Switcher
+  if(CONF::View == View_3D){
+    Vector2 Camera_Projection_Switch = {Position.x - 35, Position.y + 35};
+    DrawCircleV(Camera_Projection_Switch, 15, Outer_Circle_and_Triangles_Color);
+    DrawCircleV(Camera_Projection_Switch, 12, Inner_Circle_Color);
+    char* Camera_Projection_Switch_Text;
+    if(CONF::Camera_3D_Projection == Perspective) Camera_Projection_Switch_Text = (char*)"P";
+    else Camera_Projection_Switch_Text = (char*)"O";
+    Vector2 Camera_Projection_Switch_Text_Size = MeasureTextEx(font, Camera_Projection_Switch_Text, font_size, 0);
+    Vector2 Camera_Projection_Switch_Text_Pos = {Camera_Projection_Switch.x - Camera_Projection_Switch_Text_Size.x/2, Camera_Projection_Switch.y - Camera_Projection_Switch_Text_Size.y/2};
+    DrawTextEx(font, Camera_Projection_Switch_Text, Camera_Projection_Switch_Text_Pos, font_size, 0, Text_Color);
+    if(CheckCollisionPointCircle(GetMousePosition(), Camera_Projection_Switch, 15)){
+      DrawCircleV(Camera_Projection_Switch, 15, Fade(WHITE, 0.2));
+      if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+        if(CONF::Camera_3D_Projection == Perspective) CONF::Camera_3D_Projection = Orthographic;
+        else CONF::Camera_3D_Projection = Perspective;
       }
     }
   }

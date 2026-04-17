@@ -2,7 +2,6 @@
 
 #include<raylib.h>
 #include<raymath.h>
-
 #include"Config.h"
 
 static void Draw_2D_Grid(Camera2D camera) {
@@ -26,24 +25,46 @@ static void Draw_2D_Grid(Camera2D camera) {
       major_grid_lines_color = Fade(DARKGRAY, alpha);
     }
     else {
-      grid_lines_color = Fade({50, 50, 50, 255}, alpha);
-      major_grid_lines_color = Fade({80, 80, 80, 255}, alpha);
+      grid_lines_color = Fade({100, 100, 100, 255}, alpha);
+      major_grid_lines_color = Fade({120, 120, 120, 255}, alpha);
     }
 
     // Draw Vertical Lines
     for (float x = x_start; x <= bottomRight.x; x += spacing) {
-        DrawLineV({ x, topLeft.y }, { x, bottomRight.y }, grid_lines_color);
-        if(x == 0){
-          DrawLineV({ x, topLeft.y }, { x, bottomRight.y }, major_grid_lines_color);
+      DrawLineV({ x, topLeft.y }, { x, bottomRight.y }, grid_lines_color);
+      if(x == 0){
+        DrawLineV({ x, topLeft.y }, { x, bottomRight.y }, major_grid_lines_color);
+      }
+    }
+    // Vertical Lines - Smaller Step Size
+    if(camera.zoom > 0.8f){
+      for (float x = x_start; x <= bottomRight.x; x += spacing/2) {
+        DrawLineV({ x, topLeft.y }, { x, bottomRight.y }, Fade(grid_lines_color, 0.2));
+      }
+      if(camera.zoom > 1.5f){
+        for (float x = x_start; x <= bottomRight.x; x += spacing/10) {
+          DrawLineV({ x, topLeft.y }, { x, bottomRight.y }, Fade(grid_lines_color, 0.2));
         }
+      }
     }
 
     // Draw Horizontal Lines
     for (float y = y_start; y <= bottomRight.y; y += spacing) {
-        DrawLineV({ topLeft.x, y }, { bottomRight.x, y }, grid_lines_color);
-        if(y == 0){
-          DrawLineV({ topLeft.x, y }, { bottomRight.x, y }, major_grid_lines_color);
+      DrawLineV({ topLeft.x, y }, { bottomRight.x, y }, grid_lines_color);
+      if(y == 0){
+        DrawLineV({ topLeft.x, y }, { bottomRight.x, y }, major_grid_lines_color);
+      }
+    }
+    // Horizontal Lines - Smaller Step Size
+    if(camera.zoom > 0.8f){
+      for (float y = y_start; y <= bottomRight.y; y += spacing/2) {
+        DrawLineV({ topLeft.x, y }, { bottomRight.x, y }, Fade(grid_lines_color, 0.2));
+      }
+      if(camera.zoom > 1.5f){
+        for (float y = y_start; y <= bottomRight.y; y += spacing/10) {
+          DrawLineV({ topLeft.x, y }, { bottomRight.x, y }, Fade(grid_lines_color, 0.2));
         }
+      }
     }
 }
 
@@ -64,15 +85,15 @@ static void Draw_3D_Grid() {
     }
 
   for(int i = -n; i <= n; i++){
-    DrawLine3D({(float)i, -(float)n, 0}, {(float)i, (float)n, 0}, grid_lines_color);
+    DrawLine3D({(float)i, -(float)n, -0.02}, {(float)i, (float)n, -0.02}, grid_lines_color);
     if(i == 0){
-      DrawLine3D({(float)i, -(float)n, 0}, {(float)i, (float)n, 0}, major_grid_lines_color);
+      DrawLine3D({(float)i, -(float)n, -0.02}, {(float)i, (float)n, -0.02}, major_grid_lines_color);
     }
   }
   for(int i = -n; i <= n; i++){
-    DrawLine3D({-(float)n, (float)i, 0}, {(float)n, (float)i, 0}, grid_lines_color);
+    DrawLine3D({-(float)n, (float)i, -0.02}, {(float)n, (float)i, -0.02}, grid_lines_color);
     if(i == 0){
-      DrawLine3D({-(float)n, (float)i, 0}, {(float)n, (float)i, 0}, major_grid_lines_color);
+      DrawLine3D({-(float)n, (float)i, -0.02}, {(float)n, (float)i, -0.02}, major_grid_lines_color);
     }
   }
 }

@@ -13,10 +13,12 @@ namespace CAMERA {
   static float speed = 1.0f;
   static float base_speed = 1.0f;
   static float max_speed = 10.0f;
-  static float acceleration = 0.1f;
+  static float acceleration = 0.05f;
   static float rotation_speed = 1.0f;
   static float zoom_speed = 10.0f;
   static bool is_moving = false;
+  static float Perspective_fovy = 45.0f;
+  static float Orthographic_fovy = 20.0f;
 };
 
 static void Set_Cameras(Camera2D &camera2, Camera3D &camera3){
@@ -32,8 +34,8 @@ static void Set_Cameras(Camera2D &camera2, Camera3D &camera3){
   camera3.projection = CAMERA_PERSPECTIVE;
 }
 
-static void Update_2D_Camera(Camera2D &camera, State state){
-if(state == Floor_Planning_State){
+static void Update_2D_Camera(Camera2D &camera){
+if(CONF::state == Floor_Planning_State){
 
   float speed = 3;
 
@@ -66,11 +68,18 @@ if(state == Floor_Planning_State){
     camera.zoom = min_zoom;
   }
 
-  if(IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
+  if(IsMouseButtonDown(MOUSE_LEFT_BUTTON) and IsKeyDown(KEY_SPACE)){
+    SetMouseCursor(MOUSE_CURSOR_RESIZE_ALL);
+    CONF::Moving_2d = true;
     Vector2 delta = GetMouseDelta();
     delta = Vector2Scale(delta, -1.0f/camera.zoom);
     camera.target = Vector2Add(camera.target, delta);
   }
+  else{
+    SetMouseCursor(MOUSE_CURSOR_DEFAULT);
+    CONF::Moving_2d = false;
+  }
+
 
   if(IsKeyDown(KEY_LEFT)){
     camera.target.x -= speed;
@@ -198,6 +207,19 @@ static void Move_3D_Camera_RIGHT(Camera3D &camera3) {
 }
 
 static void Update_3D_Camera(Camera3D &camera3){
+
+  if(IsKeyDown(KEY_PAGE_UP)) CAMERA::Perspective_fovy += 0.1;
+  if(IsKeyDown(KEY_PAGE_DOWN)) CAMERA::Perspective_fovy -= 0.1;
+
+  if(CONF::Camera_3D_Projection == Perspective){
+    camera3.projection = CAMERA_PERSPECTIVE;
+    camera3.fovy = CAMERA::Perspective_fovy;
+  }
+  else{
+    camera3.projection = CAMERA_ORTHOGRAPHIC;
+    camera3.fovy = CAMERA::Orthographic_fovy;
+  }
+
   // lateral movement
   if(IsKeyDown(KEY_LEFT) and !IsKeyDown(KEY_UP) and !IsKeyDown(KEY_DOWN)) Move_3D_Camera_LEFT(camera3);
   if(IsKeyDown(KEY_RIGHT) and !IsKeyDown(KEY_UP) and !IsKeyDown(KEY_DOWN)) Move_3D_Camera_RIGHT(camera3);
@@ -276,7 +298,24 @@ static void Update_3D_Camera(Camera3D &camera3){
   if(IsKeyDown(KEY_S)) Rotate_3D_Camera_Around_Target_DOWN(camera3);
 
   // Zoom
-  if(IsKeyDown(KEY_Q)) Zoom_3D_Camera_Out(camera3);
-  if(IsKeyDown(KEY_E)) Zoom_3D_Camera_In(camera3);
+  if(IsKeyDown(KEY_Q)) {
+    if(CONF::Camera_3D_Projection == Perspective) Zoom_3D_Camera_Out(camera3);
+    else CAMERA::Orthographic_fovy += CAMERA::zoom_speed * GetFrameTime();
+  }
+  if(IsKeyDown(KEY_E)) {
+    if(CONF::Camera_3D_Projection == Perspective) Zoom_3D_Camera_In(camera3);
+    else CAMERA::Orthographic_fovy -= CAMERA::zoom_speed * GetFrameTime();
+  }
+
+
+  // Going Up and Down
+  if(IsKeyDown(KEY_SPACE)){
+    camera3.target.z += 1.0f * GetFrameTime();
+    camera3.position.z += 1.0f * GetFrameTime();
+  }
+  if(IsKeyDown(KEY_LEFT_CONTROL)){
+    camera3.target.z -= 1.0f * GetFrameTime();
+    camera3.position.z -= 1.0f * GetFrameTime();
+  }
 
 }

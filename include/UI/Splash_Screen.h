@@ -1,10 +1,10 @@
 #pragma once
 
 #include<raylib.h>
-#include"Config.h"
-#include"Utilities.h"
+#include"../Config.h"
+#include"../Utilities.h"
 
-static void Draw_Splash_Screen(Texture2D Splash_Screen_Image_Light, Texture2D Splash_Screen_Image_Dark, bool &Unload_Splash_Screen_Image, State &state, Font font_32, Texture2D Sun_Icon, Texture2D Moon_Icon) {
+static void Draw_Splash_Screen(Texture2D Splash_Screen_Image_Light, Texture2D Splash_Screen_Image_Dark, bool &Unload_Splash_Screen_Image, Font font_32, Texture2D Sun_Icon, Texture2D Moon_Icon) {
 
   // Drawing the Splash Screen Texture
   if(CONF::Theme == Light_Theme) DrawTexture(Splash_Screen_Image_Light, GetScreenWidth()/2 - Splash_Screen_Image_Light.width/2, GetScreenHeight()/2 - Splash_Screen_Image_Light.height/2, WHITE);
@@ -55,7 +55,7 @@ static void Draw_Splash_Screen(Texture2D Splash_Screen_Image_Light, Texture2D Sp
     DrawRectangleRounded(Text_Rec_1, 0.5, 10, Fade(WHITE, 0.2));
     DrawRectangleRoundedLinesEx(Text_Rec_1, 0.5, 10, 3, Fade(WHITE, 0.2));
     if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
-      state = Floor_Planning_State;
+      CONF::state = Floor_Planning_State;
       Unload_Splash_Screen_Image = true;
     }
   }
@@ -103,7 +103,7 @@ static void Draw_Splash_Screen(Texture2D Splash_Screen_Image_Light, Texture2D Sp
 
   if(CheckCollisionPointRec(GetMousePosition(), REC) == false){
     if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
-      state = Floor_Planning_State;
+      CONF::state = Floor_Planning_State;
       Unload_Splash_Screen_Image = true;
     }
   }
