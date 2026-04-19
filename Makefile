@@ -12,4 +12,5 @@ windows:
 	cp /usr/x86_64-w64-mingw32/bin/libssp-0.dll .
 
 print_nl:
-	ls main.cpp include/*.h | grep -v "portable-file-dialogs.h" | xargs wc -l
+	find main.cpp ./include -name "*.h" ! -name "portable-file-dialogs.h" | xargs wc -l
+

@@ -20,5 +20,11 @@ void main()
 
     float brightness = (weights.x * xBright + weights.y * yBright + weights.z * zBright);
 
-    finalColor = vec4(fragColor.rgb * brightness, fragColor.a);
+    float gradient = smoothstep(0.0, 3.0, fragWorldPos.z);
+    float gradient2 = smoothstep(-0.5, 0.5, fragWorldPos.z);
+
+    float test = mix(0.8, 1.0, gradient);
+    float test2 = mix(0.8, 1.0, gradient2);
+
+    finalColor = vec4(fragColor.rgb * brightness * test * test2 , fragColor.a);
 }

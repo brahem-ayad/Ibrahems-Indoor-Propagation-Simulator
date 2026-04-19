@@ -2,6 +2,7 @@
 
 #include<raylib.h>
 #include<string>
+#include<vector>
 
 enum State {
   Splash_Screen_State, Floor_Planning_State, Imported_Image_Settings_State
@@ -60,6 +61,15 @@ namespace CONF {
   static std::string ceiling_height_field_text = "3";
   static bool ceiling_height_field_active = false;
   static float Inputed_Ceiling_Height = 3.0f;
+
+  static std::string door_height_field_text = "2";
+  static bool door_height_field_active = false;
+  static float Inputed_Door_Height = 2.0f;
+  static std::string door_width_field_text = "1.5";
+  static bool door_width_field_active = false;
+  static float Inputed_Door_Width = 1.5f;
+  static bool Door_Snapping = true;
+  static std::vector<int> doors_on_walls_ids;
 
   // colors
   static Color Vibrant_Blue_Green = {20, 220, 180, 255};

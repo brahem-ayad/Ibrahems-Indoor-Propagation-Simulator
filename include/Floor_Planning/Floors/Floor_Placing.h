@@ -17,14 +17,14 @@ static void Draw_Floor_Placing(Camera2D camera2, Font font_20) {
   if(CheckCollisionPointCircle(GetMousePosition(), {(float)GetScreenWidth() - 70, CONF::MMB_height + CONF::Tool_Bar_height + CONF::Tool_Options_Bar_height + 15 + 50}, 70) == false){
 
     DrawCircleV(pos_s, 5, ORANGE);
-    if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+    if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON) and !CONF::Moving_2d){
       if(CONF::Floor_Start_Available == false){
         CONF::Floor_Start_Available = true;
-        CONF::Floor_Start_2D = pos_s;
+        CONF::Floor_Start_2D = pos_w;
       }
       else if(CONF::Floor_Start_Available == true){
 
-        RectanglePoints points = GetRectanglePoints(CONF::Floor_Start_2D, pos_s);
+        RectanglePoints points = GetRectanglePoints(GetWorldToScreen2D(CONF::Floor_Start_2D, camera2), pos_s);
 
 
         Vector2 P1 = GetScreenToWorld2D(points.P1, camera2);
@@ -37,6 +37,7 @@ static void Draw_Floor_Placing(Camera2D camera2, Font font_20) {
         FP::floors.push_back(floor);
 
         CONF::Floor_Start_2D = pos_s;
+        CONF::Floor_Start_Available = false;
       }
     }
   }}
@@ -45,7 +46,7 @@ static void Draw_Floor_Placing(Camera2D camera2, Font font_20) {
       FP::floors.pop_back();
   }
 
-  if(CONF::Floor_Start_Available) DrawRectanglePoints(CONF::Floor_Start_2D, pos_s, ORANGE, YELLOW, 0.3, true);
+  if(CONF::Floor_Start_Available) DrawRectanglePoints(GetWorldToScreen2D(CONF::Floor_Start_2D, camera2), pos_s, ORANGE, YELLOW, 0.3, true);
 
   if(IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)){
     CONF::Floor_Start_Available = false;

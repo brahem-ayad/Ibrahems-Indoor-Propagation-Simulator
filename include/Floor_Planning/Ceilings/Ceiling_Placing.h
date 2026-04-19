@@ -18,14 +18,14 @@ static void Draw_Ceiling_Placing(Camera2D camera2, Font font_20) {
   if(CheckCollisionPointCircle(GetMousePosition(), {(float)GetScreenWidth() - 70, CONF::MMB_height + CONF::Tool_Bar_height + CONF::Tool_Options_Bar_height + 15 + 50}, 70) == false){
 
     DrawCircleV(pos_s, 5, BLUE);
-    if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+    if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON) and !CONF::Moving_2d){
       if(CONF::Ceiling_Start_Available == false){
         CONF::Ceiling_Start_Available = true;
-        CONF::Ceiling_Start_2D = pos_s;
+        CONF::Ceiling_Start_2D = pos_w;
       }
       else if(CONF::Ceiling_Start_Available == true){
 
-        RectanglePoints points = GetRectanglePoints(CONF::Ceiling_Start_2D, pos_s);
+        RectanglePoints points = GetRectanglePoints(GetWorldToScreen2D(CONF::Ceiling_Start_2D, camera2), pos_s);
 
 
         Vector2 P1 = GetScreenToWorld2D(points.P1, camera2);
@@ -38,6 +38,7 @@ static void Draw_Ceiling_Placing(Camera2D camera2, Font font_20) {
         FP::ceilings.push_back(ceiling);
 
         CONF::Ceiling_Start_2D = pos_s;
+        CONF::Ceiling_Start_Available = false;
       }
     }
   }}
@@ -46,7 +47,7 @@ static void Draw_Ceiling_Placing(Camera2D camera2, Font font_20) {
       FP::ceilings.pop_back();
   }
 
-  if(CONF::Ceiling_Start_Available) DrawRectanglePoints(CONF::Ceiling_Start_2D, pos_s, BLUE, SKYBLUE, 0.3, true);
+  if(CONF::Ceiling_Start_Available) DrawRectanglePoints(GetWorldToScreen2D(CONF::Ceiling_Start_2D, camera2), pos_s, BLUE, SKYBLUE, 0.3, true);
 
   if(IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)){
     CONF::Ceiling_Start_Available = false;

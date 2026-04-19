@@ -58,3 +58,58 @@ class Tool_Bar_Button {
       return Rect.x + Rect.width;
     }
 };
+
+class Tool_Bar_Options_Switch {
+  private:
+    char* text;
+    Vector2 Position;
+    Rectangle Rect;
+    Color Rect_Color;
+    Font font;
+    float font_size;
+    Color text_color;
+    float offset;
+    bool &switchable_value;
+
+  public:
+    Tool_Bar_Options_Switch(char* text, Font font, float font_size, Vector2 Position, bool &switchable_value) : text(text), font(font),
+    font_size(font_size), Position(Position), switchable_value(switchable_value) {
+      Rect = {Position.x, 5 + Position.y, 100, CONF::Tool_Options_Bar_height - 10};
+      if(CONF::Theme == Light_Theme) {
+        Rect_Color = CONF::Ibo_Light_Gray;
+        text_color = BLACK;
+        if(switchable_value) Rect_Color = SKYBLUE;
+      }
+      else {
+        Rect_Color = CONF::Ibo_Darkest_Gray;
+        text_color = WHITE;
+        if(switchable_value) { Rect_Color = SKYBLUE; text_color = BLACK; }
+      }
+    }
+
+    void Draw(){
+      Vector2 text_size = MeasureTextEx(font, text, font_size, 0);
+      float padding = 10;
+      Rect.width = text_size.x + padding*2;
+      Vector2 text_pos = {Rect.x + Rect.width/2 - text_size.x/2, Rect.y + Rect.height/2 - text_size.y/2};
+      DrawRectangleRounded(Rect, 0.5, 10, Rect_Color);
+      DrawTextEx(font, text, text_pos, font_size, 0, text_color);
+
+      if(CheckCollisionPointRec(GetMousePosition(), Rect)){
+        DrawRectangleRounded(Rect, 0.5, 10, Fade(WHITE, 0.2));
+        if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+          if(!switchable_value) switchable_value = true;
+          else switchable_value = false;
+        }
+      }
+    }
+
+    float End(){ // returns the position of the right most point on the rectangle
+      Vector2 text_size = MeasureTextEx(font, text, font_size, 0);
+      float padding = 10;
+      Rect.width = text_size.x + padding*2;
+      Vector2 text_pos = {Rect.x + Rect.width/2 - text_size.x/2, Rect.y + Rect.height/2 - text_size.y/2};
+      return Rect.x + Rect.width;
+    }
+};
+

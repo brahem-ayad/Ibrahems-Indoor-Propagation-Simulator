@@ -98,4 +98,10 @@ class Text_Field {
         }
       }
     }
+
+    float End_Y_Pos() {
+      Vector2 text_size = MeasureTextEx(font, text, font_size, 0);
+
+      return (Position.x + text_size.x + 12 + Width);
+    }
 };
