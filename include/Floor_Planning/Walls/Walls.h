@@ -7,6 +7,7 @@
 #include"../../Config.h"
 #include"../../Utilities.h"
 #include"../Doors/Doors.h"
+#include"../Windows/Windows.h"
 
 class Wall{
   public:
@@ -14,6 +15,7 @@ class Wall{
     Vector2 End;
     float Height;
     std::vector<Door> doors;
+    std::vector<Window> windows;
     std::vector<Vector3> points;
 
   void Draw_2D(Camera2D camera2) {
@@ -31,10 +33,6 @@ class Wall{
       DrawCircleV(Start, 2, Line_Color);
     }
 
-    for(int i = 0; i < doors.size(); i++){
-      DrawCircleV(doors[i].Position, 5, RED);
-      DrawCircleV(doors[i].P1, 5, RED);
-    }
   }
 
   void Draw_3D(Camera3D camera3, Shader shader) {
@@ -51,6 +49,12 @@ class Wall{
     points.push_back(V1);
     points.push_back(V2);
 
+    // Use a sorting algorithm to sort the doors
+
+    // Note : these points should not be added base on the order at which doors are in the array
+    // but in terms of their positions
+    // or they should be reordered later. Or I think it will be easier to reorder the doors based on their positions and the
+    // end points of a wall. same for windows
     for(int i = 0; i < doors.size(); i++){ // number of base points should be equal to 1 + number of doors * 4
 
       Vector2 dir = Vector2Normalize(Vector2Subtract(End, Start));
@@ -79,9 +83,9 @@ class Wall{
     points.push_back(V3);
     points.push_back(V4);
 
-    //for(int i = 0; i < points.size(); i++){
-    //  DrawSphere(points[i], 0.1, RED);
-    //}
+    for(int i = 0; i < points.size(); i++){
+      DrawSphere(points[i], 0.1, RED);
+    }
 
     BeginShaderMode(shader);
 

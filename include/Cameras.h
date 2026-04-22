@@ -21,7 +21,7 @@ namespace CAMERA {
   static float Orthographic_fovy = 20.0f;
 };
 
-static void Set_Cameras(Camera2D &camera2, Camera3D &camera3){
+static void Set_Cameras(Camera2D &camera2, Camera3D &camera3, Camera3D &camerafps){
   camera2.target = {0, 0};
   camera2.offset = {(float)GetScreenWidth()/2, (float)GetScreenHeight()/2};
   camera2.rotation = 0;
@@ -32,6 +32,12 @@ static void Set_Cameras(Camera2D &camera2, Camera3D &camera3){
   camera3.position = {0, -10, 10};
   camera3.fovy = 45.0f;
   camera3.projection = CAMERA_PERSPECTIVE;
+
+  camerafps.target = {0, 0, 0};
+  camerafps.up = {0, 0, 1};
+  camerafps.position = {0, -10, 10};
+  camerafps.fovy = 45.0f;
+  camerafps.projection = CAMERA_PERSPECTIVE;
 }
 
 static void Update_2D_Camera(Camera2D &camera){
@@ -317,5 +323,10 @@ static void Update_3D_Camera(Camera3D &camera3){
     camera3.target.z -= 1.0f * GetFrameTime();
     camera3.position.z -= 1.0f * GetFrameTime();
   }
+
+}
+
+
+static void Update_FPS_Camera(Camera3D &camerafps){
 
 }

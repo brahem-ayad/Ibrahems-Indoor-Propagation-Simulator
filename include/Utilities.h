@@ -212,10 +212,10 @@ static void Draw_Rectangle_Around_Lines(Vector2 center, Vector2 normalized_line_
   Vector2 P3 = GetWorldToScreen2D(Vector2Subtract(Vector2Subtract(center, Vector2Scale(dir, length/2 * GRID::spacing)), Vector2Scale(perp, width)), camera2);
   Vector2 P4 = GetWorldToScreen2D(Vector2Subtract(Vector2Add(center, Vector2Scale(dir, length/2 * GRID::spacing)), Vector2Scale(perp, width)), camera2);
 
-  DrawLineEx(P1, P2, 2, color);
-  DrawLineEx(P2, P3, 2, color);
-  DrawLineEx(P3, P4, 2, color);
-  DrawLineEx(P4, P1, 2, color);
+  DrawLineEx(P1, P2, 1, color);
+  DrawLineEx(P2, P3, 1, color);
+  DrawLineEx(P3, P4, 1, color);
+  DrawLineEx(P4, P1, 1, color);
 }
 
 static RectanglePoints Get_Rectangle_Points_Around_Lines(Vector2 center, Vector2 normalized_line_parallel_vector, float length, float width, Camera2D camera2){

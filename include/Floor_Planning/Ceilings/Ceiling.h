@@ -25,7 +25,7 @@ class Ceiling {
   }
 
   void Draw_3D() {
-    DrawQuad(P13, P23, P43, P33, RAYWHITE);
+    DrawQuad(P13, P23, P43, P33, LIGHTGRAY);
     //DrawLine3D(P13, P23, BLACK);
     //DrawLine3D(P23, P43, BLACK);
     //DrawLine3D(P43, P33, BLACK);

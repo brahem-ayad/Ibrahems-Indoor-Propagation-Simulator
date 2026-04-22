@@ -1,6 +1,7 @@
 #pragma once
 
 #include<raylib.h>
+#include <raymath.h>
 #include<vector>
 
 #include"../UI/Button.h"
@@ -25,8 +26,11 @@
 #include"Doors/Doors_Tool_Options.h"
 #include"Doors/Door_Placing.h"
 #include"Doors/Draw_Doors.h"
+#include "Windows/Draw_Windows.h"
+#include"Windows/Windows_Tool_Options.h"
+#include"Windows/Window_Placing.h"
 
-static void Draw_Floor_Planning_State(Camera2D &camera2, Camera3D &camera3,Font font_32, Font font_26, Font font_20, Texture2D texture, bool imageLoaded, Shader shader, Shader grid_shader){
+static void Draw_Floor_Planning_State(Camera2D &camera2, Camera3D &camera3, Camera3D &camerafps, Font font_32, Font font_26, Font font_20, Texture2D texture, bool imageLoaded, Shader shader, Shader grid_shader){
 
   if(CONF::View == View_2D){
     Update_2D_Camera(camera2);
@@ -43,14 +47,25 @@ static void Draw_Floor_Planning_State(Camera2D &camera2, Camera3D &camera3,Font 
     Draw_Walls_2D(camera2);
     Draw_Doors_2D();
     Draw_Ceilings_2D();
+    Draw_Windows_2D();
 
     EndMode2D();
   }
   else if(CONF::View == View_3D){
 
-    Update_3D_Camera(camera3);
+    if(IsKeyPressed(KEY_P)){
+      if(CONF::FPS_View == true) CONF::FPS_View = false;
+      else CONF::FPS_View = true;
+    }
 
-    BeginMode3D(camera3);
+    if(CONF::FPS_View) {
+      Update_FPS_Camera(camerafps);
+      BeginMode3D(camerafps);
+    }
+    else {
+      Update_3D_Camera(camera3);
+      BeginMode3D(camera3);
+    }
 
     //DrawSphere(camera3.target, 0.1, RED);
 
@@ -75,10 +90,11 @@ static void Draw_Floor_Planning_State(Camera2D &camera2, Camera3D &camera3,Font 
   if(CONF::tool_state == Walls_Tool) Draw_Walls_Tool_Options(font_26, 26);
   if(CONF::tool_state == Ceiling_Tool) Draw_Ceilings_Tool_Options(font_26, 26);
   if(CONF::tool_state == Doors_Tool) Draw_Doors_Tool_Options(font_26, 26);
+  if(CONF::tool_state == Windows_Tool) Draw_Windows_Tool_Options(font_26, 26);
 
   if(CONF::tool_state == Walls_Tool) Draw_Wall_Placing(camera2, font_20);
   if(CONF::tool_state == Floor_Tool) Draw_Floor_Placing(camera2, font_20);
   if(CONF::tool_state == Ceiling_Tool) Draw_Ceiling_Placing(camera2, font_20);
   if(CONF::tool_state == Doors_Tool) Draw_Door_Placing(camera2, font_20);
-
+  if(CONF::tool_state == Windows_Tool) Draw_Window_Placing(camera2, font_20);
 }

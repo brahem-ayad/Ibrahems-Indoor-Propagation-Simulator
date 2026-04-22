@@ -23,7 +23,8 @@ int main() {
   // Setting up the Cameras
   Camera2D camera2;
   Camera3D camera3;
-  Set_Cameras(camera2, camera3);
+  Camera3D camerafps;
+  Set_Cameras(camera2, camera3, camerafps);
 
   // Loading the Shader :
   Shader shader = LoadShader("./resources/shaders/shader.vert", "./resources/shaders/shader.frag");
@@ -64,11 +65,11 @@ int main() {
     else ClearBackground(BLACK);
 
     if(CONF::state == Splash_Screen_State){
-      Draw_Floor_Planning_State(camera2, camera3, Montserrat_Font_32, Montserrat_Font_26, Montserrat_Font_20, Floor_Plan_Texture, Is_Floor_Plan_Image_Loaded, shader, grid_shader);
+      Draw_Floor_Planning_State(camera2, camera3, camerafps, Montserrat_Font_32, Montserrat_Font_26, Montserrat_Font_20, Floor_Plan_Texture, Is_Floor_Plan_Image_Loaded, shader, grid_shader);
       Draw_Splash_Screen(Splash_Screen_Image_Light, Splash_Screen_Image_Dark, Unload_Splash_Screen_Image, Montserrat_Font_32, Sun_Icon, Moon_Icon);
     }
     else if(CONF::state == Floor_Planning_State){
-      Draw_Floor_Planning_State(camera2, camera3, Montserrat_Font_32, Montserrat_Font_26, Montserrat_Font_20, Floor_Plan_Texture, Is_Floor_Plan_Image_Loaded, shader, grid_shader);
+      Draw_Floor_Planning_State(camera2, camera3, camerafps, Montserrat_Font_32, Montserrat_Font_26, Montserrat_Font_20, Floor_Plan_Texture, Is_Floor_Plan_Image_Loaded, shader, grid_shader);
     }
 
     Draw_Main_Menu_Bar(Montserrat_Font_20);
