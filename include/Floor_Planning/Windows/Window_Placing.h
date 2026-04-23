@@ -71,6 +71,7 @@ static void Draw_Window_Placing(Camera2D camera2, Font font_20) {
               W.P2 = RP.P2;
               W.P3 = RP.P3;
               W.P4 = RP.P4;
+              W.ID = i;
               FP::windows.push_back(W);
               FP::walls[i].windows.push_back(W);
               CONF::windows_on_walls_ids.push_back(i);

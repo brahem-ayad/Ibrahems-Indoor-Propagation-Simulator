@@ -9,6 +9,7 @@ class Window {
     float width;
     float base_height;
     float window_height;
+    int ID;
 
     Vector2 P1;
     Vector2 P2;

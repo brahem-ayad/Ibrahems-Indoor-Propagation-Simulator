@@ -70,6 +70,7 @@ static void Draw_Door_Placing(Camera2D camera2, Font font_20) {
               D.P2 = RP.P2;
               D.P3 = RP.P3;
               D.P4 = RP.P4;
+              D.ID = i;
               FP::doors.push_back(D);
               FP::walls[i].doors.push_back(D);
               CONF::doors_on_walls_ids.push_back(i);

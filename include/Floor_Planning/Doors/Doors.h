@@ -8,6 +8,7 @@ class Door {
     Vector2 Position; // center position
     float width;
     float height;
+    int ID;
 
     Vector2 P1;
     Vector2 P2;

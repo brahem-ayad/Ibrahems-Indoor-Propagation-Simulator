@@ -1,5 +1,6 @@
 #pragma once
 
+#include <algorithm>
 #include<raylib.h>
 #include"../../Config.h"
 #include"../../Utilities.h"
@@ -53,9 +54,48 @@ static void Draw_Wall_Placing(Camera2D camera2, Font font_20){
     }
   }}
 
-  // Note
-  // I feel like this would cause problems later when more tools are used, I want to also check which one was last used and undo based on that
   if(IsKeyDown(KEY_LEFT_CONTROL) and IsKeyPressed(KEY_Z) and FP::walls.size() > 0){
+    // remove any door on the wall
+    for(int i = 0; i < FP::walls[FP::walls.size() - 1].doors.size(); i++){
+      int id = FP::walls[FP::walls.size() - 1].doors[i].ID;
+
+      // remove the doors from the floor plan doors vector
+      FP::doors.erase(
+          std::remove_if(FP::doors.begin(), FP::doors.end(), [id](const Door& door) {
+              return door.ID == id;
+          }),
+          FP::doors.end()
+      );
+      // remove them from the CONF doors on walls ids vector
+      CONF::doors_on_walls_ids.erase(
+          std::remove_if(CONF::doors_on_walls_ids.begin(), CONF::doors_on_walls_ids.end(), [id](const int& ID) {
+          return ID == id;
+          }),
+          CONF::doors_on_walls_ids.end()
+      );
+    }
+    // remove any window on the wall
+    for(int i = 0; i < FP::walls[FP::walls.size() - 1].windows.size(); i++){
+      int id = FP::walls[FP::walls.size() - 1].windows[i].ID;
+
+      // remove the doors from the floor plan doors vector
+      FP::windows.erase(
+          std::remove_if(FP::windows.begin(), FP::windows.end(), [id](const Window& window) {
+              return window.ID == id;
+          }),
+          FP::windows.end()
+      );
+      // remove them from the CONF doors on walls ids vector
+      CONF::windows_on_walls_ids.erase(
+          std::remove_if(CONF::windows_on_walls_ids.begin(), CONF::windows_on_walls_ids.end(), [id](const int& ID) {
+          return ID == id;
+          }),
+          CONF::windows_on_walls_ids.end()
+      );
+    }
+
     FP::walls.pop_back();
+
+    FP::is_starting_pos_available = false;
   }
 }
