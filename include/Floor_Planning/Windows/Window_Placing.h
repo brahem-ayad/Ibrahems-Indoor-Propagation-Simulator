@@ -65,7 +65,7 @@ static void Draw_Window_Placing(Camera2D camera2, Font font_20) {
               W.Position = p_pos_w;
               W.base_height = CONF::Inputed_Window_Base_Height;
               W.window_height = CONF::Inputed_Window_Height;
-              W.width = CONF::Inputed_Door_Width;
+              W.width = CONF::Inputed_Window_Width;
               RectanglePoints RP = Get_Rectangle_Points_Around_Lines(p_pos_w, dir, CONF::Inputed_Window_Width, 5, camera2);
               W.P1 = RP.P1;
               W.P2 = RP.P2;
@@ -84,7 +84,7 @@ static void Draw_Window_Placing(Camera2D camera2, Font font_20) {
       DrawCircleV(pos_s, 5 * camera2.zoom, RED);
     }
     if(cant_place_window_on_wall){
-      DrawCircleV(p_pos_s, CONF::Inputed_Door_Width/2 * GRID::spacing * camera2.zoom, Fade(RED, 0.2));
+      DrawCircleV(p_pos_s, CONF::Inputed_Window_Width/2 * GRID::spacing * camera2.zoom, Fade(RED, 0.2));
     }
 
     if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){}

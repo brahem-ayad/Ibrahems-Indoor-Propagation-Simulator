@@ -229,3 +229,16 @@ static RectanglePoints Get_Rectangle_Points_Around_Lines(Vector2 center, Vector2
 
   return {P1, P2, P3, P4};
 }
+
+class Triangle {
+  public:
+    Vector3 P1;
+    Vector3 P2;
+    Vector3 P3;
+};
+
+
+
+
+
+

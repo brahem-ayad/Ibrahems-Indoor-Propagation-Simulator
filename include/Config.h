@@ -73,14 +73,14 @@ namespace CONF {
   static bool Door_Snapping = true;
   static std::vector<int> doors_on_walls_ids;
 
-  static std::string window_base_height_field_text = "1.5";
-  static float Inputed_Window_Base_Height = 1.5;
+  static std::string window_base_height_field_text = "1";
+  static float Inputed_Window_Base_Height = 1;
   static bool window_base_height_field_active = false;
-  static std::string window_height_field_text = "1.5";
-  static float Inputed_Window_Height = 1.5;
+  static std::string window_height_field_text = "1";
+  static float Inputed_Window_Height = 1;
   static bool window_height_field_active = false;
-  static std::string window_width_field_text = "1.5";
-  static float Inputed_Window_Width = 1.5;
+  static std::string window_width_field_text = "1";
+  static float Inputed_Window_Width = 1;
   static bool window_width_field_active = false;
   static bool Window_Snapping = true;
   static std::vector<int> windows_on_walls_ids;

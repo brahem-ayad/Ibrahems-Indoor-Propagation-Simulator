@@ -8,6 +8,32 @@
 #include"../../Utilities.h"
 #include"../Doors/Doors.h"
 #include"../Windows/Windows.h"
+#include<algorithm>
+
+class Object {
+  public:
+    Vector2 pos;
+    float width;
+};
+
+static void SortObjectsOnLine(std::vector<Object>& objects, Vector2 start) {
+    std::sort(objects.begin(), objects.end(), [&](const Object& a, const Object& b) {
+        // Helper lambda to get squared distance from start
+        auto getDistSq = [&](Vector2 pos) {
+            float dx = pos.x - start.x;
+            float dy = pos.y - start.y;
+            return (dx * dx) + (dy * dy);
+        };
+
+        return getDistSq(a.pos) < getDistSq(b.pos);
+    });
+}
+
+class Line {
+  public:
+    Vector3 start;
+    Vector3 end;
+};
 
 class Wall{
   public:
@@ -17,6 +43,9 @@ class Wall{
     std::vector<Door> doors;
     std::vector<Window> windows;
     std::vector<Vector3> points;
+    std::vector<Triangle> triangles;
+    std::vector<Object> objects;
+    std::vector<Line> lines;
 
   void Draw_2D(Camera2D camera2) {
 
@@ -42,7 +71,10 @@ class Wall{
     // the points are cleared and new ones are generated
     // then the points are used for drawing the walls
     // and also for simulation
-    points.clear();
+    if(points.size() > 0) points.clear();
+    if(triangles.size() > 0) triangles.clear();
+    if(objects.size() > 0) objects.clear();
+    if(lines.size() > 0) lines.clear();
 
     Vector3 V1 = {Start.x/spacing, -Start.y/spacing, 0};
     Vector3 V2 = {Start.x/spacing, -Start.y/spacing, Height};
@@ -75,33 +107,167 @@ class Wall{
       points.push_back(V_4);
       points.push_back(V_5);
       points.push_back(V_6);
+
+      Vector3 P1 = {V_s.x / spacing, -V_s.y / spacing, doors[i].height};
+      Vector3 P2 = {V_s.x / spacing, -V_s.y / spacing, Height};
+      Vector3 P3 = {V_e.x / spacing, -V_e.y / spacing, doors[i].height};
+      Vector3 P4 = {V_e.x / spacing, -V_e.y / spacing, Height};
+      triangles.push_back({P1, P2, P3});
+      triangles.push_back({P4, P2, P3});
+
+      Object O;
+      O.pos = doors[i].Position;
+      O.width = doors[i].width;
+      objects.push_back(O);
+
+      Line L;
+      L.start = V_1;
+      L.end = V_3;
+      lines.push_back(L);
+      L.start = V_3;
+      L.end = V_4;
+      lines.push_back(L);
+      L.start = V_4;
+      L.end = V_6;
+      lines.push_back(L);
     }
 
+    for(int i = 0; i < windows.size(); i++){
+
+      Vector2 dir = Vector2Normalize(Vector2Subtract(End, Start));
+      Vector2 V_s = Vector2Add(windows[i].Position, Vector2Scale(dir, -windows[i].width/2 * spacing));
+      Vector2 V_e = Vector2Add(windows[i].Position, Vector2Scale(dir, windows[i].width/2 * spacing));
+
+      Vector3 V_1 = {V_s.x / spacing, -V_s.y / spacing, 0}; // left side bottom
+      Vector3 V_2 = {V_s.x / spacing, -V_s.y / spacing, Height}; // left side top
+      Vector3 V_3 = {V_s.x / spacing, -V_s.y / spacing, windows[i].base_height}; // left side window base height
+      Vector3 V_4 = {V_s.x / spacing, -V_s.y / spacing, windows[i].base_height + windows[i].window_height}; // left side window height
+
+      Vector3 V_5 = {V_e.x / spacing, -V_e.y / spacing, windows[i].base_height + windows[i].window_height}; // right side window height
+      Vector3 V_6 = {V_e.x / spacing, -V_e.y / spacing, windows[i].base_height}; // right side window base height
+      Vector3 V_7 = {V_e.x / spacing, -V_e.y / spacing, Height}; // right side top
+      Vector3 V_8 = {V_e.x / spacing, -V_e.y / spacing, 0}; // right side bottom
+
+      points.push_back(V_1);
+      points.push_back(V_2);
+      points.push_back(V_3);
+      points.push_back(V_4);
+      points.push_back(V_5);
+      points.push_back(V_6);
+      points.push_back(V_7);
+      points.push_back(V_8);
+
+      Vector3 P1 = {V_s.x / spacing, -V_s.y / spacing, 0};
+      Vector3 P2 = {V_s.x / spacing, -V_s.y / spacing, windows[i].base_height};
+      Vector3 P3 = {V_e.x / spacing, -V_e.y / spacing, 0};
+      Vector3 P4 = {V_e.x / spacing, -V_e.y / spacing, windows[i].base_height};
+      triangles.push_back({P1, P2, P3});
+      triangles.push_back({P4, P2, P3});
+      Vector3 P5 = {V_s.x / spacing, -V_s.y / spacing, windows[i].base_height + windows[i].window_height};
+      Vector3 P6 = {V_s.x / spacing, -V_s.y / spacing, Height};
+      Vector3 P7 = {V_e.x / spacing, -V_e.y / spacing, windows[i].base_height + windows[i].window_height};
+      Vector3 P8 = {V_e.x / spacing, -V_e.y / spacing, Height};
+      triangles.push_back({P5, P6, P7});
+      triangles.push_back({P8, P6, P7});
+
+      Object O;
+      O.pos = windows[i].Position;
+      O.width = windows[i].width;
+      objects.push_back(O);
+
+      Line L;
+      L.start = V_3;
+      L.end = V_4;
+      lines.push_back(L);
+      L.start = V_4;
+      L.end = V_5;
+      lines.push_back(L);
+      L.start = V_5;
+      L.end = V_6;
+      lines.push_back(L);
+      L.start = V_6;
+      L.end = V_3;
+      lines.push_back(L);
+    }
+
+    // or maybe it would be easier to put the window points as well then sort from line start to finish and from height of 0 to wall height
+    // but the problem is, when drawing, how to know where to put the triangles ?
+    // I think I need to store wether the object after the start of the line is a door or a window into an array
+    // and in a loop use that array. if a[1] == door, add points like that, else if a[1] == window, add points like that instead
+
+    // I just thought of a better idea
+    // why not draw the two rectangles at each side
+    // and then for each door just draw a rectangle above it
+    // and for each window draw two rectangles above and below it
 
     Vector3 V3 = {End.x/spacing, -End.y/spacing, 0};
     Vector3 V4 = {End.x/spacing, -End.y/spacing, Height};
     points.push_back(V3);
     points.push_back(V4);
 
-    for(int i = 0; i < points.size(); i++){
-      DrawSphere(points[i], 0.1, RED);
+    //for(int i = 0; i < points.size(); i++){
+    //  DrawSphere(points[i], 0.1, RED);
+    //}
+
+    if(objects.size() > 0){
+      SortObjectsOnLine(objects, Start);
+
+      Vector2 dir = Vector2Normalize(Vector2Subtract(End, Start));
+      Vector2 V_s = Start;
+      Vector2 V_e = Vector2Add(objects[0].pos, Vector2Scale(dir, -objects[0].width/2 * spacing));
+      Vector3 P1 = {V_s.x / spacing, -V_s.y / spacing, 0};
+      Vector3 P2 = {V_s.x / spacing, -V_s.y / spacing, Height};
+      Vector3 P3 = {V_e.x / spacing, -V_e.y / spacing, 0};
+      Vector3 P4 = {V_e.x / spacing, -V_e.y / spacing, Height};
+      triangles.push_back({P1, P2, P3});
+      triangles.push_back({P4, P2, P3});
+
+      dir = Vector2Normalize(Vector2Subtract(End, Start));
+      V_s = Vector2Add(objects[objects.size()-1].pos, Vector2Scale(dir, objects[objects.size()-1].width/2 * spacing));
+      V_e = End;
+      P1 = {V_s.x / spacing, -V_s.y / spacing, 0};
+      P2 = {V_s.x / spacing, -V_s.y / spacing, Height};
+      P3 = {V_e.x / spacing, -V_e.y / spacing, 0};
+      P4 = {V_e.x / spacing, -V_e.y / spacing, Height};
+      triangles.push_back({P1, P2, P3});
+      triangles.push_back({P4, P2, P3});
+
+      for(int i = 0; i < objects.size()-1; i++){
+        Vector2 dir = Vector2Normalize(Vector2Subtract(End, Start));
+        Vector2 V_s = Vector2Add(objects[i].pos, Vector2Scale(dir, objects[i].width/2 * spacing));
+        Vector2 V_e = Vector2Add(objects[i+1].pos, Vector2Scale(dir, -objects[i+1].width/2 * spacing));
+        Vector3 P1 = {V_s.x / spacing, -V_s.y / spacing, 0};
+        Vector3 P2 = {V_s.x / spacing, -V_s.y / spacing, Height};
+        Vector3 P3 = {V_e.x / spacing, -V_e.y / spacing, 0};
+        Vector3 P4 = {V_e.x / spacing, -V_e.y / spacing, Height};
+        triangles.push_back({P1, P2, P3});
+        triangles.push_back({P4, P2, P3});
+      }
+    }
+    else{
+      triangles.push_back({V1, V2, V3});
+      triangles.push_back({V4, V2, V3});
     }
 
     BeginShaderMode(shader);
 
-    if(CONF::Theme == Light_Theme){
-      for(int i = 0; i < points.size()-1; i += 3){
-        DrawQuad(points[i], points[i+2], points[i+3], points[i+1], WHITE);
-      }
+    //if(CONF::Theme == Light_Theme){
+    //  for(int i = 0; i < points.size()-1; i += 3){
+    //    DrawQuad(points[i], points[i+2], points[i+3], points[i+1], WHITE);
+    //  }
 
-      //DrawQuad(V1, V3, V4, V2, WHITE);
-    }
-    else{
-      for(int i = 0; i < points.size()-1; i += 3){
-        DrawQuad(points[i], points[i+2], points[i+3], points[i+1], RAYWHITE);
-      }
+    //  //DrawQuad(V1, V3, V4, V2, WHITE);
+    //}
+    //else{
+    //  for(int i = 0; i < points.size()-1; i += 3){
+    //    DrawQuad(points[i], points[i+2], points[i+3], points[i+1], RAYWHITE);
+    //  }
 
-      //DrawQuad(V1, V3, V4, V2, RAYWHITE);
+    //  //DrawQuad(V1, V3, V4, V2, RAYWHITE);
+    //}
+
+    for(int i = 0; i < triangles.size(); i++){
+      DrawTriangle3D(triangles[i].P1, triangles[i].P2, triangles[i].P3, WHITE);
     }
 
     EndShaderMode();
@@ -119,15 +285,20 @@ class Wall{
       DrawLine3D(V4, V2, WHITE);
     }
 
-    // Real Smart guy wrote that by the way :)
-    for(int i = 2; i < points.size()-4;){
-      DrawLine3D(points[i], points[i+2], BLACK);
-      i += 2;
-      DrawLine3D(points[i], points[i+1], BLACK);
-      i += 1;
-      DrawLine3D(points[i], points[i+2], BLACK);
-      i += 3;
+    for(int i = 0; i < lines.size(); i++){
+      DrawLine3D(lines[i].start, lines[i].end, BLACK);
     }
+
+    // Real Smart guy wrote that by the way :)
+    // It's for the lines around door frames
+    //for(int i = 2; i < points.size()-4;){
+    //  DrawLine3D(points[i], points[i+2], BLACK);
+    //  i += 2;
+    //  DrawLine3D(points[i], points[i+1], BLACK);
+    //  i += 1;
+    //  DrawLine3D(points[i], points[i+2], BLACK);
+    //  i += 3;
+    //}
 
   }
 
