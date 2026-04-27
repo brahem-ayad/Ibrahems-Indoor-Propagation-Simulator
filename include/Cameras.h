@@ -214,8 +214,8 @@ static void Move_3D_Camera_RIGHT(Camera3D &camera3) {
 
 static void Update_3D_Camera(Camera3D &camera3){
 
-  if(IsKeyDown(KEY_PAGE_UP)) CAMERA::Perspective_fovy += 0.1;
-  if(IsKeyDown(KEY_PAGE_DOWN)) CAMERA::Perspective_fovy -= 0.1;
+  if(IsKeyDown(KEY_PAGE_UP)) CAMERA::Perspective_fovy += 0.5;
+  if(IsKeyDown(KEY_PAGE_DOWN)) CAMERA::Perspective_fovy -= 0.5;
 
   if(CONF::Camera_3D_Projection == Perspective){
     camera3.projection = CAMERA_PERSPECTIVE;

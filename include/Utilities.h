@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstdlib>
 #include<raylib.h>
 #include <raymath.h>
 #include"Grid.h"
@@ -15,6 +16,26 @@ static Vector2 Get_Snapped_Mouse_Position(Camera2D camera){
 
   position.x = roundf(position.x / spacing) * spacing;
   position.y = roundf(position.y / spacing) * spacing;
+
+  return position;
+}
+
+static Vector2 Get_Snapped_Mouse_Position_Axial(Camera2D camera, Vector2 s_pos){
+  Vector2 position = GetScreenToWorld2D(GetMousePosition(), camera);
+
+  float spacing;
+  if(camera.zoom < 0.8f) spacing = GRID::spacing;
+  else if(camera.zoom < 1.5f) spacing = GRID::spacing/2;
+  else spacing = GRID::spacing/10;
+
+  position.x = roundf(position.x / spacing) * spacing;
+  position.y = roundf(position.y / spacing) * spacing;
+
+  Vector2 v = Vector2Normalize(Vector2Subtract(position, s_pos));
+  float dot_product_x = Vector2DotProduct(v, {1, 0});
+
+  if(std::abs(dot_product_x) > 0.7071) position.y = s_pos.y;
+  else position.x = s_pos.x;
 
   return position;
 }
@@ -238,7 +259,38 @@ class Triangle {
 };
 
 
+static Vector3 Get_Centroid(Vector3 P1, Vector3 P2, Vector3 P3){
+  float x = (P1.x + P2.x + P3.x) / 3;
+  float y = (P1.y + P2.y + P3.y) / 3;
+  float z = (P1.z + P2.z + P3.z) / 3;
+
+  return {x, y, z};
+}
+
+static Triangle Get_Slightly_Bigger_Triangle(Vector3 P1, Vector3 P2, Vector3 P3){
+  Vector3 Centroid = Get_Centroid(P1, P2, P3);
+
+  Vector3 C_P1 = Vector3Normalize(Vector3Subtract(P1, Centroid));
+  Vector3 C_P2 = Vector3Normalize(Vector3Subtract(P2, Centroid));
+  Vector3 C_P3 = Vector3Normalize(Vector3Subtract(P3, Centroid));
+
+  Vector3 New_P1 = Vector3Add(P1, Vector3Scale(C_P1, 0.01));
+  Vector3 New_P2 = Vector3Add(P2, Vector3Scale(C_P2, 0.01));
+  Vector3 New_P3 = Vector3Add(P3, Vector3Scale(C_P3, 0.01));
+
+  return {New_P1, New_P2, New_P3};
+}
 
 
+static Vector3 Get_Closest_Point_to_Reference(std::vector<Vector3> points, Vector3 reference){
+  float d = Vector3Distance(points[0], reference);
+  Vector3 closest = points[0];
+  for(int i = 0; i < points.size(); i++){
+    if(Vector3Distance(points[i], reference) < d) {
+      d = Vector3Distance(points[i], reference);
+      closest = points[i];
+    }
+  }
 
-
+  return closest;
+}

@@ -5,7 +5,7 @@
 #include<vector>
 
 enum State {
-  Splash_Screen_State, Floor_Planning_State, Imported_Image_Settings_State
+  Splash_Screen_State, Floor_Planning_State, Imported_Image_Settings_State, Simulation_State
 };
 
 enum VIEW {
@@ -28,6 +28,10 @@ enum CAMERA_3D_PROJECTION {
   Orthographic, Perspective
 };
 
+enum WALL_DRAWING_SHAPE {
+  LINE, RECT
+};
+
 namespace CONF {
 
   static enum State state = Splash_Screen_State;
@@ -38,6 +42,8 @@ namespace CONF {
   static enum CAMERA_3D_PROJECTION Camera_3D_Projection = Perspective;
 
   static bool FPS_View = false;
+
+  static enum WALL_DRAWING_SHAPE Wall_Drawing_Shape = LINE;
 
   static bool Moving_2d = false;
 
@@ -94,6 +100,12 @@ namespace CONF {
   static Color Ibo_Dark_Gray = {124, 124, 124, 255};
   static Color Ibo_Darker_Gray = {72, 72, 72, 255};
   static Color Ibo_Darkest_Gray = {13, 13, 13, 255};
+
+
+  static std::vector<Ray> rays;
+  static std::vector<Vector3> visibility_polygon;
+  static Vector3 BS_POS = {0, 0, 1.5};
+
 };
 
 namespace GRID {

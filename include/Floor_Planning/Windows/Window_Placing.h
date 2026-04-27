@@ -9,6 +9,13 @@
 #include"../../Utilities.h"
 #include"Windows.h"
 
+// I want to add the following
+// If the windows height is more than the walls height don't add it
+// or if its vertical positions is outside the wall or so on
+
+// now if two windows are in the same 2D position you can't place them
+// but I think there should be a check for height so that you can place two windows on a wall one on top of the other
+
 static void Draw_Window_Placing(Camera2D camera2, Font font_20) {
 
   Vector2 pos_w;

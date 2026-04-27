@@ -9,6 +9,7 @@
 //#include"include/Load_Image.h"
 #include"include/UI/Main_Menu_Bar.h"
 #include"include/Floor_Planning/Draw_Floor_Planning_State.h"
+#include"include/Simulation/Draw_Simulation_State.h"
 
 bool Should_Exit_App = false;
 bool Show_Exit_Pop_Up = false;
@@ -33,6 +34,9 @@ int main() {
   int grid_shader_uniform_camera_target = GetShaderLocation(grid_shader, "Camera_Target");
   int grid_shader_uniform_camera_position = GetShaderLocation(grid_shader, "Camera_Position");
 
+  Shader ITU_Shader = LoadShader("./resources/shaders/shader.vert", "./resources/shaders/ITU_Shader.frag");
+  int ITU_Shader_Uniform_BS_Pos_ID = GetShaderLocation(ITU_Shader, "BS_Pos");
+
   // Loading the font
   Font Montserrat_Font_32 = LoadFontEx("./resources/fonts/Montserrat-Bold.ttf", 32, 0, 0);
   Font Montserrat_Font_26 = LoadFontEx("./resources/fonts/Montserrat-Bold.ttf", 26, 0, 0);
@@ -55,6 +59,7 @@ int main() {
  
     SetShaderValue(grid_shader, grid_shader_uniform_camera_target, &camera3.target, SHADER_UNIFORM_VEC3);
     SetShaderValue(grid_shader, grid_shader_uniform_camera_position, &camera3.position, SHADER_UNIFORM_VEC3);
+    SetShaderValue(ITU_Shader, ITU_Shader_Uniform_BS_Pos_ID, &CONF::BS_POS, SHADER_UNIFORM_VEC3);
 
     if(IsWindowResized()){
       camera2.offset = {(float)GetScreenWidth()/2, (float)GetScreenHeight()/2};
@@ -64,12 +69,15 @@ int main() {
     if(CONF::Theme == Light_Theme) ClearBackground(WHITE);
     else ClearBackground(BLACK);
 
-    if(CONF::state == Splash_Screen_State){
+    if(CONF::state == Floor_Planning_State or CONF::state == Splash_Screen_State){
       Draw_Floor_Planning_State(camera2, camera3, camerafps, Montserrat_Font_32, Montserrat_Font_26, Montserrat_Font_20, Floor_Plan_Texture, Is_Floor_Plan_Image_Loaded, shader, grid_shader);
-      Draw_Splash_Screen(Splash_Screen_Image_Light, Splash_Screen_Image_Dark, Unload_Splash_Screen_Image, Montserrat_Font_32, Sun_Icon, Moon_Icon);
     }
-    else if(CONF::state == Floor_Planning_State){
-      Draw_Floor_Planning_State(camera2, camera3, camerafps, Montserrat_Font_32, Montserrat_Font_26, Montserrat_Font_20, Floor_Plan_Texture, Is_Floor_Plan_Image_Loaded, shader, grid_shader);
+    else if(CONF::state == Simulation_State){
+      Draw_Simulation_State(camera2, camera3, Montserrat_Font_32, shader, grid_shader, ITU_Shader);
+    }
+
+    if(CONF::state == Splash_Screen_State){
+      Draw_Splash_Screen(Splash_Screen_Image_Light, Splash_Screen_Image_Dark, Unload_Splash_Screen_Image, Montserrat_Font_32, Sun_Icon, Moon_Icon);
     }
 
     Draw_Main_Menu_Bar(Montserrat_Font_20);

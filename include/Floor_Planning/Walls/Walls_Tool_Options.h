@@ -3,6 +3,7 @@
 #include<raylib.h>
 #include"../../Config.h"
 #include"../../UI/Text_Field.h"
+#include"../../UI/Button.h"
 
 static void Draw_Walls_Tool_Options(Font font, float font_size) {
   Vector2 Pos = {0, CONF::MMB_height + CONF::Tool_Bar_height};
@@ -11,4 +12,6 @@ static void Draw_Walls_Tool_Options(Font font, float font_size) {
 
   Wall_Height_Text_Field.Draw();
 
+  Draw_Walls_Line_Mode_Button({Wall_Height_Text_Field.End_Y_Pos(), Pos.y});
+  Draw_Walls_Rect_Mode_Button({Wall_Height_Text_Field.End_Y_Pos(), Pos.y});
 }

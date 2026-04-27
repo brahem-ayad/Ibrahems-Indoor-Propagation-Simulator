@@ -20,7 +20,7 @@ static void Draw_Door_Placing(Camera2D camera2, Font font_20) {
   bool door_on_window = false;
   bool door_on_door = false;
 
-  if(CheckCollisionPointRec(GetMousePosition(), {0, 0, (float)GetScreenWidth(), CONF::MMB_height + CONF::Tool_Bar_height + CONF::Tool_Options_Bar_height}) == false){
+  if(CheckCollisionPointRec(GetWorldToScreen2D(Get_Snapped_Mouse_Position(camera2), camera2), {0, 0, (float)GetScreenWidth(), CONF::MMB_height + CONF::Tool_Bar_height + CONF::Tool_Options_Bar_height}) == false){
   if(CheckCollisionPointCircle(GetMousePosition(), {(float)GetScreenWidth() - 70, CONF::MMB_height + CONF::Tool_Bar_height + CONF::Tool_Options_Bar_height + 15 + 50}, 70) == false){
 
     Vector2 p_pos_w = pos_w;
@@ -28,6 +28,9 @@ static void Draw_Door_Placing(Camera2D camera2, Font font_20) {
 
     // check if a door is near a wall
     for(int i = 0; i < FP::walls.size(); i++){
+
+      door_on_window = false;
+      door_on_door = false;
 
       // check if a door is not on top of a window (that's on the same wall)
       for(int j = 0; j < FP::walls[i].windows.size(); j++){

@@ -4,6 +4,7 @@
 
 #include"../Config.h"
 #include"Main_Menu_Bar.h"
+#include"../Floor_Planning/Floor_Plan.h"
 
 class Tool_Bar_Button {
   private:
@@ -44,8 +45,18 @@ class Tool_Bar_Button {
       if(CheckCollisionPointRec(GetMousePosition(), Rect)){
         DrawRectangleRounded(Rect, 0.5, 10, Fade(WHITE, 0.2));
         if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
-          if(CONF::tool_state != tool_name) CONF::tool_state = tool_name;
-          else CONF::tool_state = None;
+          if(CONF::tool_state != tool_name) {
+            CONF::tool_state = tool_name;
+            FP::is_starting_pos_available = false;
+            CONF::Floor_Start_Available = false;
+            CONF::Ceiling_Start_Available = false;
+          }
+          else {
+            CONF::tool_state = None;
+            FP::is_starting_pos_available = false;
+            CONF::Floor_Start_Available = false;
+            CONF::Ceiling_Start_Available = false;
+          }
         }
       }
     }
@@ -113,3 +124,50 @@ class Tool_Bar_Options_Switch {
     }
 };
 
+static void Draw_Walls_Line_Mode_Button(Vector2 Pos) {
+  Rectangle Rect = {Pos.x + 20, 8 + Pos.y, 34, 34};
+
+  Color Rect_Color;
+  Color Icon_Color;
+  if(CONF::Wall_Drawing_Shape == LINE) { Rect_Color = SKYBLUE; Icon_Color = CONF::Ibo_Darkest_Gray; }
+  else if(CONF::Theme == Light_Theme) { Rect_Color = CONF::Ibo_Light_Gray; Icon_Color = CONF::Ibo_Darkest_Gray; }
+  else { Rect_Color = CONF::Ibo_Darkest_Gray; Icon_Color = WHITE; }
+
+  DrawRectangleRounded(Rect, 0.5, 15, Rect_Color);
+  float padding = 10;
+  Vector2 l_start = {Rect.x + padding, Rect.y + Rect.height - padding};
+  Vector2 l_end = {Rect.x + Rect.width - padding, Rect.y + padding};
+  DrawLineEx(l_start, l_end, 5, Icon_Color);
+  DrawCircleV(l_start, 2.5, Icon_Color);
+  DrawCircleV(l_end, 2.5, Icon_Color);
+
+  if(CheckCollisionPointRec(GetMousePosition(), Rect)){
+    DrawRectangleRounded(Rect, 0.5, 15, Fade(WHITE, 0.2));
+    if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+      CONF::Wall_Drawing_Shape = LINE;
+      FP::is_starting_pos_available = false;
+    }
+  }
+}
+
+static void Draw_Walls_Rect_Mode_Button(Vector2 Pos) {
+  Rectangle Rect = {Pos.x + 20 + 34 + 20, 8 + Pos.y, 34, 34};
+
+  Color Rect_Color;
+  Color Icon_Color;
+  if(CONF::Wall_Drawing_Shape == RECT) { Rect_Color = SKYBLUE; Icon_Color = CONF::Ibo_Darkest_Gray; }
+  else if(CONF::Theme == Light_Theme) { Rect_Color = CONF::Ibo_Light_Gray; Icon_Color = CONF::Ibo_Darkest_Gray; }
+  else { Rect_Color = CONF::Ibo_Darkest_Gray; Icon_Color = WHITE; }
+
+  DrawRectangleRounded(Rect, 0.5, 15, Rect_Color);
+  float padding = 5;
+  DrawRectangleLinesEx({Rect.x + padding, Rect.y + padding, Rect.width - padding*2, Rect.height - padding*2}, 5, Icon_Color);
+
+  if(CheckCollisionPointRec(GetMousePosition(), Rect)){
+    DrawRectangleRounded(Rect, 0.5, 15, Fade(WHITE, 0.2));
+    if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+      CONF::Wall_Drawing_Shape = RECT;
+      FP::is_starting_pos_available = false;}
+
+  }
+}

@@ -12,7 +12,7 @@
 static void Draw_Wall_Placing(Camera2D camera2, Font font_20){
 
   // check that the mouse position is not at the top bar.
-  if(CheckCollisionPointRec(GetMousePosition(), {0, 0, (float)GetScreenWidth(), CONF::MMB_height + CONF::Tool_Bar_height + CONF::Tool_Options_Bar_height}) == false){
+  if(CheckCollisionPointRec(GetWorldToScreen2D(Get_Snapped_Mouse_Position(camera2), camera2), {0, 0, (float)GetScreenWidth(), CONF::MMB_height + CONF::Tool_Bar_height + CONF::Tool_Options_Bar_height}) == false){
   Vector2 Position;
   if(CONF::tool_state == None) Position = {(float)GetScreenWidth() - 70, CONF::MMB_height + CONF::Tool_Bar_height + 15 + 50};
   else Position = {(float)GetScreenWidth() - 70, CONF::MMB_height + CONF::Tool_Bar_height + CONF::Tool_Options_Bar_height + 15 + 50};
@@ -20,22 +20,49 @@ static void Draw_Wall_Placing(Camera2D camera2, Font font_20){
 
     // Getting the snapped mouse position and Drawing a Blue circle at its place.
     Vector2 pos = Get_Snapped_Mouse_Position(camera2);
-    DrawCircleV(GetWorldToScreen2D(pos, camera2), 5, BLUE);
+    if(!FP::is_starting_pos_available) DrawCircleV(GetWorldToScreen2D(pos, camera2), 5, BLUE);
 
     // If the start of the line has been specified. Draw a blue line between the start and the current mouse position.
     if(FP::is_starting_pos_available == true){
 
-      DrawLineEx(GetWorldToScreen2D(FP::starting_pos, camera2), GetWorldToScreen2D(pos, camera2), 3, BLUE);
-      Draw_Wall_Length_Tooltip(pos, camera2, font_20);
+      Vector2 pos_2;
+      if(IsKeyDown(KEY_LEFT_SHIFT)) pos_2 = Get_Snapped_Mouse_Position_Axial(camera2, FP::starting_pos);
+      else pos_2 = pos;
+
+      DrawCircleV(GetWorldToScreen2D(pos_2, camera2), 5, BLUE);
+
+      if(CONF::Wall_Drawing_Shape == LINE){
+        DrawLineEx(GetWorldToScreen2D(FP::starting_pos, camera2), GetWorldToScreen2D(pos_2, camera2), 3, BLUE);
+        Draw_Wall_Length_Tooltip(pos_2, camera2, font_20);
+      }
+      else{
+        DrawLineEx(GetWorldToScreen2D(FP::starting_pos, camera2), GetWorldToScreen2D({pos.x, FP::starting_pos.y}, camera2), 3, BLUE);
+        DrawLineEx(GetWorldToScreen2D(FP::starting_pos, camera2), GetWorldToScreen2D({FP::starting_pos.x, pos.y}, camera2), 3, BLUE);
+        DrawLineEx(GetWorldToScreen2D({pos.x, FP::starting_pos.y}, camera2), GetWorldToScreen2D(pos, camera2), 3, BLUE);
+        DrawLineEx(GetWorldToScreen2D({FP::starting_pos.x, pos.y}, camera2), GetWorldToScreen2D(pos, camera2), 3, BLUE);
+
+        DrawCircleV(GetWorldToScreen2D(FP::starting_pos, camera2), 5, BLUE);
+        Draw_Area_Tooltip(pos, FP::starting_pos, camera2, font_20);
+      }
  
       if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON) and !CONF::Moving_2d){
-        Wall Wall;
-        Wall.Start = FP::starting_pos;
-        Wall.End = pos;
-        Wall.Height = CONF::Inputed_Wall_Height;
-        FP::walls.push_back(Wall);
+        if(CONF::Wall_Drawing_Shape == LINE or FP::starting_pos.x == pos.x or FP::starting_pos.y == pos.y){
+          Wall Wall { FP::starting_pos, pos_2, CONF::Inputed_Wall_Height };
+          FP::walls.push_back(Wall);
+        }
+        else{
+          Wall W1 = {FP::starting_pos, {pos.x, FP::starting_pos.y}, CONF::Inputed_Wall_Height};
+          Wall W2 = {FP::starting_pos, {FP::starting_pos.x, pos.y}, CONF::Inputed_Wall_Height};
+          Wall W3 = {{pos.x, FP::starting_pos.y}, pos, CONF::Inputed_Wall_Height};
+          Wall W4 = {{FP::starting_pos.x, pos.y}, pos, CONF::Inputed_Wall_Height};
+          FP::walls.push_back(W1);
+          FP::walls.push_back(W2);
+          FP::walls.push_back(W3);
+          FP::walls.push_back(W4);
+          FP::is_starting_pos_available = false;
+        }
 
-        FP::starting_pos = pos;
+        FP::starting_pos = pos_2;
       }
 
     }

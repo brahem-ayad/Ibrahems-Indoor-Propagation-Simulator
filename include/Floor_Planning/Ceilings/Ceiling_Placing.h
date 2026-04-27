@@ -8,13 +8,14 @@
 #include<vector>
 #include"../../Utilities.h"
 #include"Ceiling.h"
+#include"../Walls/Wall_Tool_Tip.h"
 
 static void Draw_Ceiling_Placing(Camera2D camera2, Font font_20) {
 
   Vector2 pos_w = Get_Snapped_Mouse_Position(camera2);
   Vector2 pos_s = GetWorldToScreen2D(pos_w, camera2);
 
-  if(CheckCollisionPointRec(GetMousePosition(), {0, 0, (float)GetScreenWidth(), CONF::MMB_height + CONF::Tool_Bar_height + CONF::Tool_Options_Bar_height}) == false){
+  if(CheckCollisionPointRec(GetWorldToScreen2D(Get_Snapped_Mouse_Position(camera2), camera2), {0, 0, (float)GetScreenWidth(), CONF::MMB_height + CONF::Tool_Bar_height + CONF::Tool_Options_Bar_height}) == false){
   if(CheckCollisionPointCircle(GetMousePosition(), {(float)GetScreenWidth() - 70, CONF::MMB_height + CONF::Tool_Bar_height + CONF::Tool_Options_Bar_height + 15 + 50}, 70) == false){
 
     DrawCircleV(pos_s, 5, BLUE);
@@ -41,13 +42,17 @@ static void Draw_Ceiling_Placing(Camera2D camera2, Font font_20) {
         CONF::Ceiling_Start_Available = false;
       }
     }
+
+    if(CONF::Ceiling_Start_Available) {
+      DrawRectanglePoints(GetWorldToScreen2D(CONF::Ceiling_Start_2D, camera2), pos_s, BLUE, SKYBLUE, 0.3, true);
+      Draw_Area_Tooltip(pos_w, CONF::Ceiling_Start_2D, camera2, font_20);
+    }
+
   }}
 
   if(IsKeyDown(KEY_LEFT_CONTROL) and IsKeyPressed(KEY_Z) and FP::ceilings.size() > 0){
       FP::ceilings.pop_back();
   }
-
-  if(CONF::Ceiling_Start_Available) DrawRectanglePoints(GetWorldToScreen2D(CONF::Ceiling_Start_2D, camera2), pos_s, BLUE, SKYBLUE, 0.3, true);
 
   if(IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)){
     CONF::Ceiling_Start_Available = false;

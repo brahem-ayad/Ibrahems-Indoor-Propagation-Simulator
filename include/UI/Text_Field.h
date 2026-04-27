@@ -3,6 +3,7 @@
 #include<iostream>
 
 #include<raylib.h>
+#include <sstream>
 #include<string>
 #include"../Config.h"
 
@@ -67,13 +68,25 @@ class Text_Field {
       else{
         if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
           Active = false;
-          value_to_be_edited = std::stof(field_text);
+          if(field_text.size() > 0) value_to_be_edited = std::stof(field_text);
+          else {
+            std::stringstream ss;
+            ss.unsetf(std::ios::floatfield); // Removes trailing zeros
+            ss << value_to_be_edited;
+            field_text = ss.str();
+          }
         }
       }
 
       if(IsKeyPressed(KEY_ENTER)){
         Active = false;
-        value_to_be_edited = std::stof(field_text);
+        if(field_text.size() > 0) value_to_be_edited = std::stof(field_text);
+        else {
+          std::stringstream ss;
+          ss.unsetf(std::ios::floatfield); // Removes trailing zeros
+          ss << value_to_be_edited;
+          field_text = ss.str();
+        }
       }
 
       if(Active){
@@ -81,7 +94,8 @@ class Text_Field {
         DrawRectangleRounded(Field_Rect, 0.5, 10, Fade(WHITE, 0.2));
 
         if(int(GetTime()) % 2 == 0){
-          DrawRectangle(field_text_pos.x + field_text_size.x + 5, field_text_pos.y, 5, field_text_size.y, text_color);
+          if(field_text.size() > 0) DrawRectangle(field_text_pos.x + field_text_size.x + 5, field_text_pos.y, 5, field_text_size.y, text_color);
+          else DrawRectangle(Field_Rect.x + Field_Rect.width/2, Field_Rect.y + 5, 5, Field_Rect.height - 10, text_color);
         }
 
         if(IsKeyPressed(KEY_BACKSPACE) and !field_text.empty()){

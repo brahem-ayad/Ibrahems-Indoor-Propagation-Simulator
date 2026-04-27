@@ -1,12 +1,14 @@
 #pragma once
 
-#include "../Cameras.h"
-#include "../Config.h"
+#include"../Cameras.h"
+#include"../Config.h"
 #include<raylib.h>
+#include"../Floor_Planning/Floor_Plan.h"
+#include"../Floor_Planning/Walls/Walls.h"
 
 static void Draw_View_Gimbal(Font font, float font_size, Camera2D &camera2, Camera3D &camera3) {
   Vector2 Position;
-  if(CONF::tool_state == None) Position = {(float)GetScreenWidth() - 70, CONF::MMB_height + CONF::Tool_Bar_height + 15 + 50};
+  if(CONF::tool_state == None or CONF::tool_state == Floor_Tool) Position = {(float)GetScreenWidth() - 70, CONF::MMB_height + CONF::Tool_Bar_height + 15 + 50};
   else Position = {(float)GetScreenWidth() - 70, CONF::MMB_height + CONF::Tool_Bar_height + CONF::Tool_Options_Bar_height + 15 + 50};
 
   Color Inner_Circle_Color;
@@ -36,8 +38,17 @@ static void Draw_View_Gimbal(Font font, float font_size, Camera2D &camera2, Came
   if(CheckCollisionPointCircle(GetMousePosition(), Position, 28)){
     DrawCircleV(Position, 28, Fade(WHITE, 0.2));
     if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
-      if(CONF::View == View_2D) { CONF::View = View_3D; CONF::tool_state = None; }
-      else CONF::View = View_2D;
+      if(CONF::View == View_2D) {
+        CONF::state = Simulation_State;
+        CONF::View = View_3D;
+        CONF::tool_state = None;
+        FP::is_starting_pos_available = false;
+        for(int i = 0; i < FP::walls.size(); i++){
+          FP::walls[i].Update();
+        }
+
+      }
+      else { CONF::View = View_2D; CONF::state = Floor_Planning_State; }
     }
   }
 
