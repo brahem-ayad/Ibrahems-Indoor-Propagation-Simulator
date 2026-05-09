@@ -4,8 +4,8 @@
 #include"../Floor_Plan.h"
 #include"Windows.h"
 
-static void Draw_Windows_2D(){
+static void Draw_Windows_2D(Camera2D camera2){
   for(int i = 0; i < FP::windows.size(); i++){
-    FP::windows[i].Draw();
+    FP::windows[i].Draw(camera2);
   }
 }

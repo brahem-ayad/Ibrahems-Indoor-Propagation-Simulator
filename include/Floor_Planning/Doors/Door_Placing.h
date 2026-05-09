@@ -99,4 +99,8 @@ static void Draw_Door_Placing(Camera2D camera2, Font font_20) {
       CONF::doors_on_walls_ids.pop_back();
   }
 
+  if(IsKeyPressed(KEY_ESCAPE)){
+    CONF::tool_state = None;
+  }
+
 }

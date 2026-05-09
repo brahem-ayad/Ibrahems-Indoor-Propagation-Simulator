@@ -32,6 +32,14 @@ enum WALL_DRAWING_SHAPE {
   LINE, RECT
 };
 
+enum CEILING_DRAWING_SHAPE {
+  CEILING_RECT, CEILING_POLYGON
+};
+
+enum SIMULATION_MODEL {
+  SM_None, SM_ITU
+};
+
 namespace CONF {
 
   static enum State state = Splash_Screen_State;
@@ -44,6 +52,7 @@ namespace CONF {
   static bool FPS_View = false;
 
   static enum WALL_DRAWING_SHAPE Wall_Drawing_Shape = LINE;
+  static enum CEILING_DRAWING_SHAPE Ceiling_Drawing_Shape = CEILING_RECT;
 
   static bool Moving_2d = false;
 
@@ -85,8 +94,8 @@ namespace CONF {
   static std::string window_height_field_text = "1";
   static float Inputed_Window_Height = 1;
   static bool window_height_field_active = false;
-  static std::string window_width_field_text = "1";
-  static float Inputed_Window_Width = 1;
+  static std::string window_width_field_text = "2";
+  static float Inputed_Window_Width = 2;
   static bool window_width_field_active = false;
   static bool Window_Snapping = true;
   static std::vector<int> windows_on_walls_ids;
@@ -97,15 +106,24 @@ namespace CONF {
   static Color Spicy_Pastel_Pink = {255, 201, 201, 255};
 
   static Color Ibo_Light_Gray = {200, 200, 200, 255};
+  static Color Ibo_Lightly_Dark_Gray = {190, 190, 190, 255};
   static Color Ibo_Dark_Gray = {124, 124, 124, 255};
   static Color Ibo_Darker_Gray = {72, 72, 72, 255};
+  static Color Ibo_Darkly_Light_Gray = {28, 28, 28, 255};
   static Color Ibo_Darkest_Gray = {13, 13, 13, 255};
 
 
   static std::vector<Ray> rays;
   static std::vector<Vector3> visibility_polygon;
   static Vector3 BS_POS = {0, 0, 1.5};
+  static std::vector<Vector3> invisibility_polygon;
 
+  static int LOS = 1;
+
+  static enum SIMULATION_MODEL Simulation_Model = SM_None;
+
+  static bool SM_Mode_DDM_Active = false;
+  static Rectangle SM_Mode_DDM_Rect;
 };
 
 namespace GRID {

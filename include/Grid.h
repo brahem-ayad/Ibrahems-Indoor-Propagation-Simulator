@@ -17,55 +17,76 @@ static void Draw_2D_Grid(Camera2D camera) {
     float y_start = floorf(topLeft.y / spacing) * spacing;
 
     // Opacity scaling based on zoom
-    float alpha = Remap(camera.zoom, 0.3f, 2.0f, 0.2f, 0.9f);
-    Color grid_lines_color;
+    float alpha = Remap(camera.zoom, 0.1f, 1.0f, 0.0f, 1.0f);
+    Color smallest_grid_lines_color;
+    Color smaller_grid_lines_color;
     Color major_grid_lines_color;
+    float smaller_lines_fade;
+    float smallest_lines_fade;
     if(CONF::Theme == Light_Theme) {
-      grid_lines_color = Fade(GRAY, alpha);
-      major_grid_lines_color = Fade(DARKGRAY, alpha);
+      smallest_grid_lines_color = {210, 210, 210, 255};
+      smaller_grid_lines_color = {170, 170, 170, 255};
+      major_grid_lines_color = {120, 120, 120, 255};
+      smaller_lines_fade = 0.2;
+      smaller_lines_fade = Remap(camera.zoom, 0.8, 1.2, 0.0, 0.6);
+      smallest_lines_fade = Remap(camera.zoom, 1.5, 2.0, 0.0, 0.6);
     }
     else {
-      grid_lines_color = Fade({100, 100, 100, 255}, alpha);
-      major_grid_lines_color = Fade({120, 120, 120, 255}, alpha);
+      smaller_grid_lines_color = {40, 40, 40, 255};
+      smallest_grid_lines_color = {20, 20, 20, 255};
+      major_grid_lines_color = {60, 60, 60, 255};
+      smaller_lines_fade = Remap(camera.zoom, 0.8, 1.2, 0.0, 0.6);
+      smallest_lines_fade = Remap(camera.zoom, 1.5, 2.0, 0.0, 0.6);
+    }
+
+
+    // Vertical Lines - Smaller Step Size
+    if(camera.zoom > 0.8f){
+
+      if(camera.zoom > 1.5f){
+        for (float x = x_start; x <= bottomRight.x; x += spacing/10) {
+          DrawLineV({ x, topLeft.y }, { x, bottomRight.y }, Fade(smallest_grid_lines_color, smallest_lines_fade));
+        }
+      }
+
+      for (float x = x_start; x <= bottomRight.x; x += spacing/2) {
+        DrawLineV({ x, topLeft.y }, { x, bottomRight.y }, Fade(smaller_grid_lines_color, smaller_lines_fade));
+      }
+
+    }
+
+    // Horizontal Lines - Smaller Step Size
+    if(camera.zoom > 0.8f){
+
+      if(camera.zoom > 1.5f){
+        for (float y = y_start; y <= bottomRight.y; y += spacing/10) {
+          DrawLineV({ topLeft.x, y }, { bottomRight.x, y }, Fade(smallest_grid_lines_color, smallest_lines_fade));
+        }
+      }
+
+      for (float y = y_start; y <= bottomRight.y; y += spacing/2) {
+        DrawLineV({ topLeft.x, y }, { bottomRight.x, y }, Fade(smaller_grid_lines_color, smaller_lines_fade));
+      }
+
     }
 
     // Draw Vertical Lines
     for (float x = x_start; x <= bottomRight.x; x += spacing) {
-      DrawLineV({ x, topLeft.y }, { x, bottomRight.y }, grid_lines_color);
-      if(x == 0){
-        DrawLineV({ x, topLeft.y }, { x, bottomRight.y }, major_grid_lines_color);
-      }
-    }
-    // Vertical Lines - Smaller Step Size
-    if(camera.zoom > 0.8f){
-      for (float x = x_start; x <= bottomRight.x; x += spacing/2) {
-        DrawLineV({ x, topLeft.y }, { x, bottomRight.y }, Fade(grid_lines_color, 0.2));
-      }
-      if(camera.zoom > 1.5f){
-        for (float x = x_start; x <= bottomRight.x; x += spacing/10) {
-          DrawLineV({ x, topLeft.y }, { x, bottomRight.y }, Fade(grid_lines_color, 0.2));
-        }
-      }
+      DrawLineV({ x, topLeft.y }, { x, bottomRight.y }, Fade(smaller_grid_lines_color, alpha));
     }
 
     // Draw Horizontal Lines
+
     for (float y = y_start; y <= bottomRight.y; y += spacing) {
-      DrawLineV({ topLeft.x, y }, { bottomRight.x, y }, grid_lines_color);
-      if(y == 0){
-        DrawLineV({ topLeft.x, y }, { bottomRight.x, y }, major_grid_lines_color);
-      }
+      DrawLineV({ topLeft.x, y }, { bottomRight.x, y }, Fade(smaller_grid_lines_color, alpha));
     }
-    // Horizontal Lines - Smaller Step Size
-    if(camera.zoom > 0.8f){
-      for (float y = y_start; y <= bottomRight.y; y += spacing/2) {
-        DrawLineV({ topLeft.x, y }, { bottomRight.x, y }, Fade(grid_lines_color, 0.2));
-      }
-      if(camera.zoom > 1.5f){
-        for (float y = y_start; y <= bottomRight.y; y += spacing/10) {
-          DrawLineV({ topLeft.x, y }, { bottomRight.x, y }, Fade(grid_lines_color, 0.2));
-        }
-      }
-    }
+
+    // major vertical line
+    DrawLineV({ 0, topLeft.y }, { 0, bottomRight.y }, Fade(major_grid_lines_color, alpha));
+
+    // major horizontal line
+    DrawLineV({ topLeft.x, 0 }, { bottomRight.x, 0 }, Fade(major_grid_lines_color, alpha));
+
 }
 
 static void Draw_3D_Grid() {

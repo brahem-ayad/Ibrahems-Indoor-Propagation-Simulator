@@ -8,16 +8,19 @@
 #include"./Generating_Corner_Rays.h"
 #include"./Generate_Polygon_Visibility_Points.h"
 
-static void Draw_ITU_Rays(Shader ITU_Shader, Camera3D camera3) {
+static void Draw_ITU_Rays(Shader ITU_Shader, Camera3D camera3, int ITU_Shader_Uniform_LoS_ID) {
   // since the polygon is generated in real time, we need to clear these vectors each frame
   CONF::rays.clear();
   CONF::visibility_polygon.clear();
+  CONF::invisibility_polygon.clear();
 
   // This part is to change the BS Position based on the mouse position
   Vector2 Gimbal_Position;
   if(CONF::tool_state == None) Gimbal_Position = {(float)GetScreenWidth() - 70, CONF::MMB_height + CONF::Tool_Bar_height + 15 + 50};
   else Gimbal_Position = {(float)GetScreenWidth() - 70, CONF::MMB_height + CONF::Tool_Bar_height + CONF::Tool_Options_Bar_height + 15 + 50};
   if(CheckCollisionPointCircle(GetMousePosition(), Gimbal_Position, 70) == false){
+  if(CheckCollisionPointRec(GetMousePosition(), {0, 0, (float)GetScreenWidth(), CONF::MMB_height + CONF::Tool_Bar_height}) == false){
+  if(CheckCollisionPointRec(GetMousePosition(), CONF::SM_Mode_DDM_Rect) == false){
 
     if(IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
       Ray Camera_Mouse_Ray = GetScreenToWorldRay(GetMousePosition(), camera3);
@@ -32,7 +35,7 @@ static void Draw_ITU_Rays(Shader ITU_Shader, Camera3D camera3) {
       CONF::BS_POS.y = New_BS_Pos.y;
     }
 
-  }
+  }}}
 
 
   // Then we generate rays that go from the BS position to the edges of walls, doors, and windows
@@ -99,7 +102,7 @@ static void Draw_ITU_Rays(Shader ITU_Shader, Camera3D camera3) {
       Ray ER;
       ER.position = CONF::BS_POS;
       ER.direction = {std::cosf(i), std::sinf(i), 0};
-      CONF::rays.push_back(ER);
+      extra_rays.push_back(ER);
     }
   }
   // if there are corner rays. then simple generate extra rays between them
@@ -146,6 +149,25 @@ static void Draw_ITU_Rays(Shader ITU_Shader, Camera3D camera3) {
         float angleB = std::atan2(b.y - CONF::BS_POS.y, b.x - CONF::BS_POS.x);
         return angleA < angleB;
     });
+
+  // the invisibility_polygon
+  Generate_Polygon_Invisibility_Points(extra_rays);
+
+  CONF::LOS = 0;
+  SetShaderValue(ITU_Shader, ITU_Shader_Uniform_LoS_ID, &CONF::LOS, SHADER_UNIFORM_INT);
+  BeginShaderMode(ITU_Shader);
+
+  for(int i = 0; i < CONF::invisibility_polygon.size(); i++){
+
+    if(i < CONF::invisibility_polygon.size() - 1) DrawTriangle3D( {CONF::BS_POS.x, CONF::BS_POS.y, CONF::BS_POS.z - 0.1f} , CONF::invisibility_polygon[i], CONF::invisibility_polygon[i+1], RED);
+    else DrawTriangle3D({CONF::BS_POS.x, CONF::BS_POS.y, CONF::BS_POS.z - 0.1f}, CONF::invisibility_polygon[i], CONF::invisibility_polygon[0], RED);
+  }
+
+  EndShaderMode();
+
+  // the visibility_polygon
+  CONF::LOS = 1;
+  SetShaderValue(ITU_Shader, ITU_Shader_Uniform_LoS_ID, &CONF::LOS, SHADER_UNIFORM_INT);
 
   // Draw the visibility polygon
   BeginShaderMode(ITU_Shader);

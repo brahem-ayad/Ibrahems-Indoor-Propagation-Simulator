@@ -10,7 +10,7 @@ static Vector2 Get_Snapped_Mouse_Position(Camera2D camera){
   Vector2 position = GetScreenToWorld2D(GetMousePosition(), camera);
 
   float spacing;
-  if(camera.zoom < 0.8f) spacing = GRID::spacing;
+  if(camera.zoom < 0.9f) spacing = GRID::spacing;
   else if(camera.zoom < 1.5f) spacing = GRID::spacing/2;
   else spacing = GRID::spacing/10;
 
@@ -294,3 +294,15 @@ static Vector3 Get_Closest_Point_to_Reference(std::vector<Vector3> points, Vecto
 
   return closest;
 }
+
+static Rectangle Scale_Rec_Centered(Rectangle Rect, float x, float y){
+
+  Rectangle Scaled_Rect = Rect;
+  Scaled_Rect.x += x;
+  Scaled_Rect.y += y;
+  Scaled_Rect.width -= x*2;
+  Scaled_Rect.height -= y*2;
+
+  return Scaled_Rect;
+}
+

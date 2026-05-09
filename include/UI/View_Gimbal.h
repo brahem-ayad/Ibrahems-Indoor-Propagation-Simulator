@@ -8,7 +8,7 @@
 
 static void Draw_View_Gimbal(Font font, float font_size, Camera2D &camera2, Camera3D &camera3) {
   Vector2 Position;
-  if(CONF::tool_state == None or CONF::tool_state == Floor_Tool) Position = {(float)GetScreenWidth() - 70, CONF::MMB_height + CONF::Tool_Bar_height + 15 + 50};
+  if(CONF::tool_state == None) Position = {(float)GetScreenWidth() - 70, CONF::MMB_height + CONF::Tool_Bar_height + 15 + 50};
   else Position = {(float)GetScreenWidth() - 70, CONF::MMB_height + CONF::Tool_Bar_height + CONF::Tool_Options_Bar_height + 15 + 50};
 
   Color Inner_Circle_Color;

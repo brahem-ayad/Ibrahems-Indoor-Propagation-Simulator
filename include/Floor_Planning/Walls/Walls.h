@@ -61,13 +61,19 @@ class Wall{
       if(CONF::Theme == Light_Theme) Line_Color = BLACK;
       else Line_Color = WHITE;
 
+      float line_thickness;
+      if(camera2.zoom < 1.0) line_thickness = Remap(Clamp(camera2.zoom, 0.1, 0.4), 0.1, 0.4, 10, 1.5);
+      else line_thickness = Remap(camera2.zoom, 1.0, 7.0, 1.5, 0.2);
+
       if(CheckCollisionCircleLine(GetScreenToWorld2D(GetMousePosition(), camera2), 5, Start, End)){
-        DrawLineEx(Start, End, 1.5f, BLUE);
-        DrawCircleV(Start, 2, Line_Color);
+        DrawCircleV(Start, line_thickness/2, BLUE);
+        DrawLineEx(Start, End, line_thickness, BLUE);
+        DrawCircleV(End, line_thickness/2, BLUE);
       }
       else {
-        DrawLineEx(Start, End, 1.5f, Line_Color);
-        DrawCircleV(Start, 2, Line_Color);
+        DrawCircleV(Start, line_thickness/2, Line_Color);
+        DrawLineEx(Start, End, line_thickness, Line_Color);
+        DrawCircleV(End, line_thickness/2, Line_Color);
       }
 
     }

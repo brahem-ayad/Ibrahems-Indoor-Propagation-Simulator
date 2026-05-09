@@ -44,9 +44,9 @@ static void Draw_Floor_Planning_State(Camera2D &camera2, Camera3D &camera3, Came
 
   Draw_Floors_2D();
   Draw_Walls_2D(camera2);
-  Draw_Doors_2D();
+  Draw_Doors_2D(camera2);
   Draw_Ceilings_2D();
-  Draw_Windows_2D();
+  Draw_Windows_2D(camera2);
 
   EndMode2D();
 

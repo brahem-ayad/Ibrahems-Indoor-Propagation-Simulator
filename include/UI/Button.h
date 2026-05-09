@@ -171,3 +171,26 @@ static void Draw_Walls_Rect_Mode_Button(Vector2 Pos) {
 
   }
 }
+
+static void Draw_Ceilingss_Rect_Mode_Button(Vector2 Pos) {
+  Rectangle Rect = {Pos.x + 20, 8 + Pos.y, 34, 34};
+
+  Color Rect_Color;
+  Color Icon_Color;
+  if(CONF::Ceiling_Drawing_Shape == CEILING_RECT) { Rect_Color = SKYBLUE; Icon_Color = CONF::Ibo_Darkest_Gray; }
+  else if(CONF::Theme == Light_Theme) { Rect_Color = CONF::Ibo_Light_Gray; Icon_Color = CONF::Ibo_Darkest_Gray; }
+  else { Rect_Color = CONF::Ibo_Darkest_Gray; Icon_Color = WHITE; }
+
+  DrawRectangleRounded(Rect, 0.5, 15, Rect_Color);
+  float padding = 5;
+  DrawRectangleLinesEx({Rect.x + padding, Rect.y + padding, Rect.width - padding*2, Rect.height - padding*2}, 5, Icon_Color);
+
+  if(CheckCollisionPointRec(GetMousePosition(), Rect)){
+    DrawRectangleRounded(Rect, 0.5, 15, Fade(WHITE, 0.2));
+    if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+      CONF::Ceiling_Drawing_Shape = CEILING_RECT;
+    }
+
+  }
+}
+

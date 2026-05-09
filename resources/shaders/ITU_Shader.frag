@@ -6,6 +6,8 @@ out vec4 finalColor;
 
 uniform vec3 BS_Pos;
 
+uniform int LoS;
+
 vec3 jet(float t) {
     return vec3(
         clamp(1.5 - abs(4.0 * t - 3.0), 0.0, 1.0), // Red
@@ -44,19 +46,32 @@ void main() {
     float R_Gain = 1.0;
 
     // Office LoS
-    float alpha = 1.47;
-    float beta = 34.17;
-    float gamma = 2.08;
+
+    float alpha;
+    float beta;
+    float gamma;
+
+    float max_distance;
+
+    if(LoS == 1){
+      alpha = 1.47;
+      beta = 34.17;
+      gamma = 2.08;
+      max_distance = 27;
+    }
 
     // Office NLoS
-    //float alpha = 2.39;
-    //float beta = 30.13;
-    //float gamma = 2.40;
+    else {
+      alpha = 2.39;
+      beta = 30.13;
+      gamma = 2.40;
+      max_distance = 30.0;
+    }
 
-    float sigma = 4.0; 
+    float sigma = 4.0;
     float noise = getGaussianNoise(fragWorldPos.xy, sigma);
 
-    float d = max(distance(fragWorldPos, BS_Pos), 0.001); 
+    float d = max(distance(fragWorldPos, BS_Pos), 0.001);
 
     float log10d = log(d) / log(10.0);
     float log10f = log(frequency) / log(10.0);
@@ -71,5 +86,16 @@ void main() {
 
     float normalized = clamp((R_Power - minDBM) / range, 0.0, 1.0);
 
-    finalColor = vec4(jet(normalized), 1.0);
+    float opacity;
+    if(d < max_distance - 1) {
+      opacity = 1.0;
+    }
+    else if(d < max_distance + 1){
+      opacity = smoothstep(max_distance + 1, max_distance - 1, d);
+    }
+    else {
+      opacity = 0.0;
+    }
+
+    finalColor = vec4(jet(normalized), opacity);
 }

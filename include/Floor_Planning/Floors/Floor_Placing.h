@@ -14,7 +14,7 @@ static void Draw_Floor_Placing(Camera2D camera2, Font font_20) {
   Vector2 pos_w = Get_Snapped_Mouse_Position(camera2);
   Vector2 pos_s = GetWorldToScreen2D(pos_w, camera2);
 
-  if(CheckCollisionPointRec(GetWorldToScreen2D(Get_Snapped_Mouse_Position(camera2), camera2), {0, 0, (float)GetScreenWidth(), CONF::MMB_height + CONF::Tool_Bar_height}) == false){
+  if(CheckCollisionPointRec(GetWorldToScreen2D(Get_Snapped_Mouse_Position(camera2), camera2), {0, 0, (float)GetScreenWidth(), CONF::MMB_height + CONF::Tool_Bar_height + CONF::Tool_Options_Bar_height}) == false){
   if(CheckCollisionPointCircle(GetWorldToScreen2D(Get_Snapped_Mouse_Position(camera2), camera2), {(float)GetScreenWidth() - 70, CONF::MMB_height + CONF::Tool_Bar_height + CONF::Tool_Options_Bar_height + 15 + 50}, 70) == false){
 
     DrawCircleV(pos_s, 5, ORANGE);

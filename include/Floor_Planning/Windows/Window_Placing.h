@@ -98,11 +98,14 @@ static void Draw_Window_Placing(Camera2D camera2, Font font_20) {
     if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){}
   }}
 
-  // Note : the code must be updated so that the walls and doors that are on that wall must be deleted as well
   if(IsKeyDown(KEY_LEFT_CONTROL) and IsKeyPressed(KEY_Z) and FP::windows.size() > 0){
       FP::windows.pop_back();
       FP::walls[CONF::windows_on_walls_ids.back()].windows.pop_back();
       CONF::windows_on_walls_ids.pop_back();
+  }
+
+  if(IsKeyPressed(KEY_ESCAPE)){
+    CONF::tool_state = None;
   }
 
 }

@@ -45,7 +45,7 @@ static void Draw_Wall_Placing(Camera2D camera2, Font font_20){
         Draw_Area_Tooltip(pos, FP::starting_pos, camera2, font_20);
       }
  
-      if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON) and !CONF::Moving_2d){
+      if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON) and !CONF::Moving_2d and (FP::starting_pos != pos_2) ){
         if(CONF::Wall_Drawing_Shape == LINE or FP::starting_pos.x == pos.x or FP::starting_pos.y == pos.y){
           Wall Wall { FP::starting_pos, pos_2, CONF::Inputed_Wall_Height };
           FP::walls.push_back(Wall);

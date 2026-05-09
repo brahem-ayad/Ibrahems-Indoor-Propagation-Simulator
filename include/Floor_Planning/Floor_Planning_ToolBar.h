@@ -12,7 +12,7 @@ static void Draw_Floor_Planning_Tool_Bar(Font font_32, Font font_26, Font font_2
   DrawRectangle(0, CONF::MMB_height, GetScreenWidth(), CONF::Tool_Bar_height, Background_Color);
   DrawRectangle(0, CONF::MMB_height + CONF::Tool_Bar_height, GetScreenWidth(), 2, Fade(GRAY, 0.5));
 
-  if(CONF::tool_state != None and CONF::tool_state != Floor_Tool){
+  if(CONF::tool_state != None){
     DrawRectangle(0, CONF::MMB_height + CONF::Tool_Bar_height + 2, GetScreenWidth(), CONF::Tool_Options_Bar_height, Background_Color);
     DrawRectangle(0, CONF::MMB_height + CONF::Tool_Bar_height + 2 + CONF::Tool_Options_Bar_height, GetScreenWidth(), 2, Fade(GRAY, 0.5));
   }

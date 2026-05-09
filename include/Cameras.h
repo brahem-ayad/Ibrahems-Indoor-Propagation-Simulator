@@ -45,8 +45,12 @@ if(CONF::state == Floor_Planning_State){
 
   float speed = 3;
 
-  float max_zoom = 0.3f;
-  float min_zoom = 6.0f;
+  float max_zoom = 0.1f;
+  float min_zoom = 7.0f;
+
+  float zoom_amount = Remap(camera.zoom, 0.1, 7.0, 0.005, 0.05);
+  if(IsKeyDown(KEY_Q)) camera.zoom += zoom_amount;
+  if(IsKeyDown(KEY_E)) camera.zoom -= zoom_amount;
 
   // Zoom based on mouse wheel
   float wheel = GetMouseWheelMove();

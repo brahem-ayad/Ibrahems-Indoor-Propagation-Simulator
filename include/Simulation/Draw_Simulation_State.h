@@ -12,9 +12,14 @@
 #include"./Simulation_Tool_Bar.h"
 #include"./Draw_ITU_Model.h"
 
-static void Draw_Simulation_State(Camera2D camera2, Camera3D &camera3, Font font_32, Shader shader, Shader grid_shader, Shader ITU_Shader){
+static void Draw_Simulation_State(Camera2D camera2, Camera3D &camera3, Font font_32, Shader shader, Shader grid_shader, Shader ITU_Shader, int ITU_Shader_Uniform_LoS_ID){
 
   //DrawSphere(camera3.target, 0.1, RED);
+
+  if(IsKeyPressed(KEY_O)){
+    if(CONF::Simulation_Model == SM_None) CONF::Simulation_Model = SM_ITU;
+    else CONF::Simulation_Model = SM_None;
+  }
 
   Update_3D_Camera(camera3);
   BeginMode3D(camera3);
@@ -29,11 +34,11 @@ static void Draw_Simulation_State(Camera2D camera2, Camera3D &camera3, Font font
 
   Draw_Ceilings_3D();
 
-  Draw_ITU_Rays(ITU_Shader, camera3);
+  if(CONF::Simulation_Model == SM_ITU) Draw_ITU_Rays(ITU_Shader, camera3, ITU_Shader_Uniform_LoS_ID);
 
   EndMode3D();
 
-  Draw_Simulation_Tool_Bar();
+  Draw_Simulation_Tool_Bar(font_32);
 
   Draw_View_Gimbal(font_32, 32, camera2, camera3);
 }

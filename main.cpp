@@ -36,6 +36,7 @@ int main() {
 
   Shader ITU_Shader = LoadShader("./resources/shaders/shader.vert", "./resources/shaders/ITU_Shader.frag");
   int ITU_Shader_Uniform_BS_Pos_ID = GetShaderLocation(ITU_Shader, "BS_Pos");
+  int ITU_Shader_Uniform_LoS_ID = GetShaderLocation(ITU_Shader, "LoS");
 
   // Loading the font
   Font Montserrat_Font_32 = LoadFontEx("./resources/fonts/Montserrat-Bold.ttf", 32, 0, 0);
@@ -65,15 +66,20 @@ int main() {
       camera2.offset = {(float)GetScreenWidth()/2, (float)GetScreenHeight()/2};
     }
 
+    if(IsKeyPressed(KEY_P)){
+      if(CONF::Theme == Light_Theme) CONF::Theme = Dark_Theme;
+      else CONF::Theme = Light_Theme;
+    }
+
     BeginDrawing();
-    if(CONF::Theme == Light_Theme) ClearBackground(WHITE);
-    else ClearBackground(BLACK);
+    if(CONF::Theme == Light_Theme) ClearBackground(RAYWHITE);
+    else ClearBackground({5, 5, 5, 255});
 
     if(CONF::state == Floor_Planning_State or CONF::state == Splash_Screen_State){
       Draw_Floor_Planning_State(camera2, camera3, camerafps, Montserrat_Font_32, Montserrat_Font_26, Montserrat_Font_20, Floor_Plan_Texture, Is_Floor_Plan_Image_Loaded, shader, grid_shader);
     }
     else if(CONF::state == Simulation_State){
-      Draw_Simulation_State(camera2, camera3, Montserrat_Font_32, shader, grid_shader, ITU_Shader);
+      Draw_Simulation_State(camera2, camera3, Montserrat_Font_32, shader, grid_shader, ITU_Shader, ITU_Shader_Uniform_LoS_ID);
     }
 
     if(CONF::state == Splash_Screen_State){
