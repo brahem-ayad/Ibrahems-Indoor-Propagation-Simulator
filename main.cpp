@@ -38,6 +38,9 @@ int main() {
   int ITU_Shader_Uniform_BS_Pos_ID = GetShaderLocation(ITU_Shader, "BS_Pos");
   int ITU_Shader_Uniform_LoS_ID = GetShaderLocation(ITU_Shader, "LoS");
 
+  Shader Points_Shader = LoadShader("./resources/shaders/shader.vert", "./resources/shaders/Temp_Point_Distribution_Shader.frag");
+  int Points_Shader_Uniform_Camera_Pos_ID = GetShaderLocation(Points_Shader, "cameraPos");
+
   // Loading the font
   Font Montserrat_Font_32 = LoadFontEx("./resources/fonts/Montserrat-Bold.ttf", 32, 0, 0);
   Font Montserrat_Font_26 = LoadFontEx("./resources/fonts/Montserrat-Bold.ttf", 26, 0, 0);
@@ -61,6 +64,7 @@ int main() {
     SetShaderValue(grid_shader, grid_shader_uniform_camera_target, &camera3.target, SHADER_UNIFORM_VEC3);
     SetShaderValue(grid_shader, grid_shader_uniform_camera_position, &camera3.position, SHADER_UNIFORM_VEC3);
     SetShaderValue(ITU_Shader, ITU_Shader_Uniform_BS_Pos_ID, &CONF::BS_POS, SHADER_UNIFORM_VEC3);
+    SetShaderValue(Points_Shader, Points_Shader_Uniform_Camera_Pos_ID, &camera3.position, SHADER_UNIFORM_VEC3);
 
     if(IsWindowResized()){
       camera2.offset = {(float)GetScreenWidth()/2, (float)GetScreenHeight()/2};
@@ -72,14 +76,14 @@ int main() {
     }
 
     BeginDrawing();
-    if(CONF::Theme == Light_Theme) ClearBackground(RAYWHITE);
+    if(CONF::Theme == Light_Theme) ClearBackground(WHITE);
     else ClearBackground({5, 5, 5, 255});
 
     if(CONF::state == Floor_Planning_State or CONF::state == Splash_Screen_State){
-      Draw_Floor_Planning_State(camera2, camera3, camerafps, Montserrat_Font_32, Montserrat_Font_26, Montserrat_Font_20, Floor_Plan_Texture, Is_Floor_Plan_Image_Loaded, shader, grid_shader);
+      Draw_Floor_Planning_State(camera2, camera3, Montserrat_Font_32, Montserrat_Font_26, Montserrat_Font_20, Floor_Plan_Texture, Is_Floor_Plan_Image_Loaded, shader, grid_shader);
     }
     else if(CONF::state == Simulation_State){
-      Draw_Simulation_State(camera2, camera3, Montserrat_Font_32, shader, grid_shader, ITU_Shader, ITU_Shader_Uniform_LoS_ID);
+      Draw_Simulation_State(camera2, camera3, camerafps, Montserrat_Font_32, shader, grid_shader, ITU_Shader, ITU_Shader_Uniform_LoS_ID, Points_Shader);
     }
 
     if(CONF::state == Splash_Screen_State){

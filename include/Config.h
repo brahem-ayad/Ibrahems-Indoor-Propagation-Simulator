@@ -37,7 +37,7 @@ enum CEILING_DRAWING_SHAPE {
 };
 
 enum SIMULATION_MODEL {
-  SM_None, SM_ITU
+  SM_None, SM_ITU, SM_RAY_LAUNCHING
 };
 
 namespace CONF {
@@ -50,6 +50,7 @@ namespace CONF {
   static enum CAMERA_3D_PROJECTION Camera_3D_Projection = Perspective;
 
   static bool FPS_View = false;
+  static bool FPS_View_Started = false;
 
   static enum WALL_DRAWING_SHAPE Wall_Drawing_Shape = LINE;
   static enum CEILING_DRAWING_SHAPE Ceiling_Drawing_Shape = CEILING_RECT;
@@ -99,6 +100,8 @@ namespace CONF {
   static bool window_width_field_active = false;
   static bool Window_Snapping = true;
   static std::vector<int> windows_on_walls_ids;
+
+  static Vector2 Selection_Rect_Start;
 
   // colors
   static Color Vibrant_Blue_Green = {20, 220, 180, 255};

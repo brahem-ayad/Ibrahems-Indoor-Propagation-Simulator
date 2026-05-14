@@ -6,7 +6,7 @@
 
 static void Draw_Floors_2D() {
   for(int i = 0; i < FP::floors.size(); i++){
-    DrawRectanglePoints(FP::floors[i].P1, FP::floors[i].P4, ORANGE, YELLOW, 0.3, false);
+    DrawRectanglePoints(FP::floors[i].P1, FP::floors[i].P4, DARKGRAY, GRAY, 0.3, false);
   }
 }
 

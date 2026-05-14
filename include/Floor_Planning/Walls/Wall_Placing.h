@@ -125,4 +125,5 @@ static void Draw_Wall_Placing(Camera2D camera2, Font font_20){
 
     FP::is_starting_pos_available = false;
   }
+
 }

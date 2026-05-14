@@ -52,14 +52,29 @@ class Wall{
     std::vector<Triangle> triangles;
     std::vector<Object> objects;
     std::vector<Line> lines;
+    bool Selected = false;
 
     Wall(Vector2 Start, Vector2 End, float Height) : Start(Start), End(End), Height(Height) {}
 
     void Draw_2D(Camera2D camera2) {
 
       Color Line_Color;
-      if(CONF::Theme == Light_Theme) Line_Color = BLACK;
-      else Line_Color = WHITE;
+      if(Selected) Line_Color = BLUE;
+      else{
+        if(CONF::Theme == Light_Theme) Line_Color = BLACK;
+        else Line_Color = WHITE;
+      }
+
+      std::vector<Vector2> points_2d;
+      points_2d.push_back(Start);
+      Vector2 dir = Vector2Normalize(Vector2Subtract(End, Start));
+      for(int i = 0; i < doors.size(); i++){
+        Vector2 p1 = Vector2Subtract(doors[i].Position, Vector2Scale(dir, doors[i].width/2 * GRID::spacing));
+        Vector2 p2 = Vector2Add(doors[i].Position, Vector2Scale(dir, doors[i].width/2 * GRID::spacing));
+        points_2d.push_back(p1);
+        points_2d.push_back(p2);
+      }
+      points_2d.push_back(End);
 
       float line_thickness;
       if(camera2.zoom < 1.0) line_thickness = Remap(Clamp(camera2.zoom, 0.1, 0.4), 0.1, 0.4, 10, 1.5);
@@ -67,12 +82,20 @@ class Wall{
 
       if(CheckCollisionCircleLine(GetScreenToWorld2D(GetMousePosition(), camera2), 5, Start, End)){
         DrawCircleV(Start, line_thickness/2, BLUE);
-        DrawLineEx(Start, End, line_thickness, BLUE);
+        for(int i = 0; i < points_2d.size(); i++){
+          if(i % 2 == 0){
+            DrawLineEx(points_2d[i], points_2d[i+1], line_thickness, BLUE);
+          }
+        }
         DrawCircleV(End, line_thickness/2, BLUE);
       }
       else {
         DrawCircleV(Start, line_thickness/2, Line_Color);
-        DrawLineEx(Start, End, line_thickness, Line_Color);
+        for(int i = 0; i < points_2d.size(); i++){
+          if(i % 2 == 0){
+            DrawLineEx(points_2d[i], points_2d[i+1], line_thickness, Line_Color);
+          }
+        }
         DrawCircleV(End, line_thickness/2, Line_Color);
       }
 

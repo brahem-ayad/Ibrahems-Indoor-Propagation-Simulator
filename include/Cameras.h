@@ -19,6 +19,7 @@ namespace CAMERA {
   static bool is_moving = false;
   static float Perspective_fovy = 45.0f;
   static float Orthographic_fovy = 20.0f;
+  static float fps_fovy = 90.0f;
 };
 
 static void Set_Cameras(Camera2D &camera2, Camera3D &camera3, Camera3D &camerafps){
@@ -158,59 +159,59 @@ static void Rotate_3D_Camera_Around_Target_LEFT(Camera3D &camera3) {
   camera3.position.y = camera3.target.y + distance * std::sin(angle);
 }
 
-static void Zoom_3D_Camera_Out(Camera3D &camera3){
+static void Zoom_3D_Camera_Out(Camera3D &camera3, float speed){
   float radius = Vector3Distance(camera3.position, camera3.target);
   if(radius < 150){
     Vector3 direction = Vector3Normalize(Vector3Subtract(camera3.position, camera3.target));
-    camera3.position = Vector3Add(camera3.position, Vector3Scale(direction, CAMERA::zoom_speed * GetFrameTime()));
+    camera3.position = Vector3Add(camera3.position, Vector3Scale(direction, speed * GetFrameTime()));
   }
 }
 
-static void Zoom_3D_Camera_In(Camera3D &camera3){
+static void Zoom_3D_Camera_In(Camera3D &camera3, float speed){
   float radius = Vector3Distance(camera3.position, camera3.target);
   if(radius > 1){
     Vector3 direction = Vector3Normalize(Vector3Subtract(camera3.target, camera3.position));
-    camera3.position = Vector3Add(camera3.position, Vector3Scale(direction, CAMERA::zoom_speed * GetFrameTime()));
+    camera3.position = Vector3Add(camera3.position, Vector3Scale(direction, speed * GetFrameTime()));
   }
 }
 
-static void Move_3D_Camera_UP(Camera3D &camera3){
+static void Move_3D_Camera_UP(Camera3D &camera3, float speed){
   Vector2 camera_pos_2d = {camera3.position.x, camera3.position.y};
   Vector2 camera_targ_2d = {camera3.target.x, camera3.target.y};
   Vector2 camera_to_target = Vector2Subtract(camera_pos_2d, camera_targ_2d);
-  Vector3 direction_vector = Vector3Scale(Vector3Normalize({camera_to_target.x, camera_to_target.y, 0}), CAMERA::speed * GetFrameTime());
+  Vector3 direction_vector = Vector3Scale(Vector3Normalize({camera_to_target.x, camera_to_target.y, 0}), speed * GetFrameTime());
  
   camera3.target = Vector3Subtract(camera3.target, direction_vector);
   camera3.position = Vector3Subtract(camera3.position, direction_vector);
 }
 
-static void Move_3D_Camera_DOWN(Camera3D &camera3) {
+static void Move_3D_Camera_DOWN(Camera3D &camera3, float speed) {
   Vector2 camera_pos_2d = {camera3.position.x, camera3.position.y};
   Vector2 camera_targ_2d = {camera3.target.x, camera3.target.y};
   Vector2 camera_to_target = Vector2Subtract(camera_pos_2d, camera_targ_2d);
-  Vector3 direction_vector = Vector3Scale(Vector3Normalize({camera_to_target.x, camera_to_target.y, 0}), CAMERA::speed * GetFrameTime());
+  Vector3 direction_vector = Vector3Scale(Vector3Normalize({camera_to_target.x, camera_to_target.y, 0}), speed * GetFrameTime());
  
   camera3.target = Vector3Add(camera3.target, direction_vector);
   camera3.position = Vector3Add(camera3.position, direction_vector);
 }
 
-static void Move_3D_Camera_LEFT(Camera3D &camera3) {
+static void Move_3D_Camera_LEFT(Camera3D &camera3, float speed) {
   Vector2 camera_pos_2d = {camera3.position.x, camera3.position.y};
   Vector2 camera_targ_2d = {camera3.target.x, camera3.target.y};
   Vector2 camera_to_target = Vector2Subtract(camera_pos_2d, camera_targ_2d);
   Vector2 perp = {camera_to_target.y, -camera_to_target.x};
-  Vector3 direction_vector = Vector3Scale(Vector3Normalize({perp.x, perp.y, 0}), CAMERA::speed * GetFrameTime());
+  Vector3 direction_vector = Vector3Scale(Vector3Normalize({perp.x, perp.y, 0}), speed * GetFrameTime());
  
   camera3.target = Vector3Add(camera3.target, direction_vector);
   camera3.position = Vector3Add(camera3.position, direction_vector);
 }
 
-static void Move_3D_Camera_RIGHT(Camera3D &camera3) {
+static void Move_3D_Camera_RIGHT(Camera3D &camera3, float speed) {
   Vector2 camera_pos_2d = {camera3.position.x, camera3.position.y};
   Vector2 camera_targ_2d = {camera3.target.x, camera3.target.y};
   Vector2 camera_to_target = Vector2Subtract(camera_pos_2d, camera_targ_2d);
   Vector2 perp = {camera_to_target.y, -camera_to_target.x};
-  Vector3 direction_vector = Vector3Scale(Vector3Normalize({perp.x, perp.y, 0}), CAMERA::speed * GetFrameTime());
+  Vector3 direction_vector = Vector3Scale(Vector3Normalize({perp.x, perp.y, 0}), speed * GetFrameTime());
  
   camera3.target = Vector3Subtract(camera3.target, direction_vector);
   camera3.position = Vector3Subtract(camera3.position, direction_vector);
@@ -231,10 +232,10 @@ static void Update_3D_Camera(Camera3D &camera3){
   }
 
   // lateral movement
-  if(IsKeyDown(KEY_LEFT) and !IsKeyDown(KEY_UP) and !IsKeyDown(KEY_DOWN)) Move_3D_Camera_LEFT(camera3);
-  if(IsKeyDown(KEY_RIGHT) and !IsKeyDown(KEY_UP) and !IsKeyDown(KEY_DOWN)) Move_3D_Camera_RIGHT(camera3);
-  if(IsKeyDown(KEY_DOWN) and !IsKeyDown(KEY_LEFT) and !IsKeyDown(KEY_RIGHT)) Move_3D_Camera_DOWN(camera3);
-  if(IsKeyDown(KEY_UP) and !IsKeyDown(KEY_LEFT) and !IsKeyDown(KEY_RIGHT)) Move_3D_Camera_UP(camera3);
+  if(IsKeyDown(KEY_LEFT) and !IsKeyDown(KEY_UP) and !IsKeyDown(KEY_DOWN)) Move_3D_Camera_LEFT(camera3, CAMERA::speed);
+  if(IsKeyDown(KEY_RIGHT) and !IsKeyDown(KEY_UP) and !IsKeyDown(KEY_DOWN)) Move_3D_Camera_RIGHT(camera3, CAMERA::speed);
+  if(IsKeyDown(KEY_DOWN) and !IsKeyDown(KEY_LEFT) and !IsKeyDown(KEY_RIGHT)) Move_3D_Camera_DOWN(camera3, CAMERA::speed);
+  if(IsKeyDown(KEY_UP) and !IsKeyDown(KEY_LEFT) and !IsKeyDown(KEY_RIGHT)) Move_3D_Camera_UP(camera3, CAMERA::speed);
 
   // diagonal movement
   if(IsKeyDown(KEY_LEFT) and IsKeyDown(KEY_UP)){
@@ -309,11 +310,19 @@ static void Update_3D_Camera(Camera3D &camera3){
 
   // Zoom
   if(IsKeyDown(KEY_Q)) {
-    if(CONF::Camera_3D_Projection == Perspective) Zoom_3D_Camera_Out(camera3);
+    if(CONF::Camera_3D_Projection == Perspective) Zoom_3D_Camera_Out(camera3, CAMERA::zoom_speed);
     else CAMERA::Orthographic_fovy += CAMERA::zoom_speed * GetFrameTime();
   }
   if(IsKeyDown(KEY_E)) {
-    if(CONF::Camera_3D_Projection == Perspective) Zoom_3D_Camera_In(camera3);
+    if(CONF::Camera_3D_Projection == Perspective) Zoom_3D_Camera_In(camera3, CAMERA::zoom_speed);
+    else CAMERA::Orthographic_fovy -= CAMERA::zoom_speed * GetFrameTime();
+  }
+  if(GetMouseWheelMove() < 0) {
+    if(CONF::Camera_3D_Projection == Perspective) Zoom_3D_Camera_Out(camera3, CAMERA::zoom_speed * 10);
+    else CAMERA::Orthographic_fovy += CAMERA::zoom_speed * GetFrameTime();
+  }
+  if(GetMouseWheelMove() > 0) {
+    if(CONF::Camera_3D_Projection == Perspective) Zoom_3D_Camera_In(camera3, CAMERA::zoom_speed * 10);
     else CAMERA::Orthographic_fovy -= CAMERA::zoom_speed * GetFrameTime();
   }
 
@@ -331,6 +340,202 @@ static void Update_3D_Camera(Camera3D &camera3){
 }
 
 
-static void Update_FPS_Camera(Camera3D &camerafps){
+
+#define GRAVITY         32.0f
+#define MAX_SPEED        5.0f
+#define CROUCH_SPEED     3.0f
+#define JUMP_FORCE      10.0f
+#define MAX_ACCEL      100.0f
+#define FRICTION        0.86f
+#define AIR_DRAG        0.98f
+#define CONTROL         15.0f
+#define CROUCH_HEIGHT   0.85f
+#define STAND_HEIGHT     1.4f
+#define BOTTOM_HEIGHT    0.0f
+
+#define NORMALIZE_INPUT  1
+
+static Vector2 sensitivity = { 0.003f, 0.003f };
+
+typedef struct {
+    Vector3 position;
+    Vector3 velocity;
+    Vector3 dir;
+    bool isGrounded;
+} Body;
+
+static Body player = { 0 };
+static Vector2 lookRotation = { 0 };
+static float headTimer = 0.0f;
+static float walkLerp = 0.0f;
+static float headLerp = STAND_HEIGHT;
+static Vector2 lean = { 0 };
+
+static void UpdateBody(Body *body, float rot, char side, char forward, bool jumpPressed, bool crouchHold)
+{
+    Vector2 input = (Vector2){ (float)side, (float)forward }; // Forward is positive Y now
+
+#if defined(NORMALIZE_INPUT)
+    if ((side != 0) && (forward != 0)) input = Vector2Normalize(input);
+#endif
+
+    float delta = GetFrameTime();
+
+    // Gravity acts on Z
+    if (!body->isGrounded) body->velocity.z -= GRAVITY * delta;
+
+    if (body->isGrounded && jumpPressed)
+    {
+        body->velocity.z = JUMP_FORCE;
+        body->isGrounded = false;
+    }
+
+    // Direction vectors for Z-up (Rotation around Z axis)
+    // Front is Y+, Right is X+
+    Vector3 front = (Vector3){ -sin(rot), cos(rot), 0.f };
+    Vector3 right = (Vector3){ cos(rot), sin(rot), 0.f };
+
+    Vector3 desiredDir = (Vector3){ 
+        input.x * right.x + input.y * front.x, 
+        input.x * right.y + input.y * front.y, 
+        0.0f 
+    };
+ 
+    body->dir = Vector3Lerp(body->dir, desiredDir, CONTROL * delta);
+
+    float decel = (body->isGrounded ? FRICTION : AIR_DRAG);
+    // Horizontal velocity is X and Y
+    Vector3 hvel = (Vector3){ body->velocity.x * decel, body->velocity.y * decel, 0.0f };
+
+    float hvelLength = Vector3Length(hvel);
+    if (hvelLength < (MAX_SPEED * 0.01f)) hvel = (Vector3){ 0 };
+
+    float speed = Vector3DotProduct(hvel, body->dir);
+    float maxSpeed = (crouchHold ? CROUCH_SPEED : MAX_SPEED);
+    float accel = Clamp(maxSpeed - speed, 0.f, MAX_ACCEL * delta);
+ 
+    hvel.x += body->dir.x * accel;
+    hvel.y += body->dir.y * accel;
+
+    body->velocity.x = hvel.x;
+    body->velocity.y = hvel.y;
+
+    // Apply velocities
+    body->position.x += body->velocity.x * delta;
+    body->position.y += body->velocity.y * delta;
+    body->position.z += body->velocity.z * delta;
+
+    // Floor Collision
+    if (body->position.z <= 0.0f)
+    {
+        body->position.z = 0.0f;
+        body->velocity.z = 0.0f;
+        body->isGrounded = true;
+    }
+}
+
+static void Update_FPS_Camera(Camera3D &camerafps) {
+
+    // check that the mouse position is not at the top bar.
+  if(CheckCollisionPointRec(GetMousePosition(), {0, 0, (float)GetScreenWidth(), CONF::MMB_height + CONF::Tool_Bar_height}) == false){
+  Vector2 Position;
+  if(CONF::tool_state == None) Position = {(float)GetScreenWidth() - 70, CONF::MMB_height + CONF::Tool_Bar_height + 15 + 50};
+  else Position = {(float)GetScreenWidth() - 70, CONF::MMB_height + CONF::Tool_Bar_height + CONF::Tool_Options_Bar_height + 15 + 50};
+  if(CheckCollisionPointCircle(GetMousePosition(), Position, 70) == false){ // and not at the gimbal
+
+
+  if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+    if(CONF::FPS_View_Started == false){
+      DisableCursor();
+      CONF::FPS_View_Started = true;
+    }
+  }
+
+  if(CONF::FPS_View_Started){
+    Vector2 mouseDelta = GetMouseDelta();
+    lookRotation.x -= mouseDelta.x * sensitivity.x;
+    lookRotation.y += mouseDelta.y * sensitivity.y;
+
+    char sideway = (IsKeyDown(KEY_D) - IsKeyDown(KEY_A));
+    char forward = (IsKeyDown(KEY_W) - IsKeyDown(KEY_S));
+    bool crouching = IsKeyDown(KEY_LEFT_CONTROL);
+ 
+    UpdateBody(&player, lookRotation.x, sideway, forward, IsKeyPressed(KEY_SPACE), crouching);
+
+    float delta = GetFrameTime();
+    headLerp = Lerp(headLerp, (crouching ? CROUCH_HEIGHT : STAND_HEIGHT), 20.0f * delta);
+ 
+    // Position: Height is Z
+    camerafps.position = (Vector3){
+        player.position.x,
+        player.position.y,
+        player.position.z + (BOTTOM_HEIGHT + headLerp),
+    };
+
+  if(IsKeyDown(KEY_PAGE_UP)) CAMERA::fps_fovy += 0.5;
+  if(IsKeyDown(KEY_PAGE_DOWN)) CAMERA::fps_fovy -= 0.5;
+
+    if (player.isGrounded && ((forward != 0) || (sideway != 0))) {
+        headTimer += delta * 3.0f;
+        walkLerp = Lerp(walkLerp, 1.0f, 10.0f * delta);
+        camerafps.fovy = Lerp(camerafps.fovy, CAMERA::fps_fovy + 5.0f, 5.0f * delta);
+    } else {
+        walkLerp = Lerp(walkLerp, 0.0f, 10.0f * delta);
+        camerafps.fovy = Lerp(camerafps.fovy, CAMERA::fps_fovy, 5.0f * delta);
+    }
+
+    lean.x = Lerp(lean.x, sideway * 0.02f, 10.0f * delta);
+    lean.y = Lerp(lean.y, forward * 0.015f, 10.0f * delta);
+
+    // Z-UP World Setup
+    const Vector3 up = (Vector3){ 0.0f, 0.0f, 1.0f };
+    const Vector3 targetOffset = (Vector3){ 0.0f, 1.0f, 0.0f }; // Forward is Y+
+
+    // Yaw (Around Z)
+    Vector3 yaw = Vector3RotateByAxisAngle(targetOffset, up, lookRotation.x);
+
+    // Pitch axis (Right vector)
+    Vector3 right = Vector3Normalize(Vector3CrossProduct(yaw, up));
+
+    // Pitch rotation (Up and Down)
+    float pitchAngle = -lookRotation.y - lean.y;
+    pitchAngle = Clamp(pitchAngle, -PI/2 + 0.01f, PI/2 - 0.01f);
+    Vector3 pitch = Vector3RotateByAxisAngle(yaw, right, pitchAngle);
+
+    //// Update Camera Up (for camera tilting/rolling effects)
+    //float headSin = sin(headTimer * PI);
+    //float headCos = cos(headTimer * PI);
+    //const float stepRotation = 0.01f;
+    //camerafps.up = Vector3RotateByAxisAngle(up, pitch, headSin * stepRotation + lean.x);
+
+    //// Camera Bobbing logic for Z-up
+    //const float bobSide = 0.0f;
+    //const float bobUp = 0.0f;
+ 
+    //Vector3 bobbing = Vector3Scale(right, headSin * bobSide);
+    //// Vertical bobbing added to Z
+    //bobbing.z = fabsf(headCos * bobUp);
+
+    //camerafps.position = Vector3Add(camerafps.position, Vector3Scale(bobbing, walkLerp));
+
+    camerafps.up = (Vector3){ 0.0f, 0.0f, 1.0f };
+
+    camerafps.position = (Vector3){
+        player.position.x,
+        player.position.y,
+        player.position.z + (BOTTOM_HEIGHT + (crouching ? CROUCH_HEIGHT : STAND_HEIGHT)),
+    };
+
+    camerafps.target = Vector3Add(camerafps.position, pitch);
+
+  }
+
+  if(IsKeyPressed(KEY_ESCAPE)){
+    CONF::FPS_View_Started = false;
+    EnableCursor();
+  }
+
+  }
+  }
 
 }

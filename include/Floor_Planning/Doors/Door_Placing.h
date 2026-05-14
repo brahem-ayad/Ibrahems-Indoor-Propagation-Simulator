@@ -60,15 +60,15 @@ static void Draw_Door_Placing(Camera2D camera2, Font font_20) {
 
             Vector2 dir = Vector2Normalize(Vector2Subtract(FP::walls[i].Start, FP::walls[i].End));
 
-            if(CONF::Theme == Light_Theme) Draw_Rectangle_Around_Lines(p_pos_w, dir, CONF::Inputed_Door_Width, 5, BLUE, camera2);
-            else Draw_Rectangle_Around_Lines(p_pos_w, dir, CONF::Inputed_Door_Width, 5, BLUE, camera2);
+            if(CONF::Theme == Light_Theme) Draw_Rectangle_Around_Lines(p_pos_w, dir, CONF::Inputed_Door_Width, 2, BLUE, camera2);
+            else Draw_Rectangle_Around_Lines(p_pos_w, dir, CONF::Inputed_Door_Width, 2, BLUE, camera2);
 
             if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
               Door D;
               D.Position = p_pos_w;
               D.height = CONF::Inputed_Door_Height;
               D.width = CONF::Inputed_Door_Width;
-              RectanglePoints RP = Get_Rectangle_Points_Around_Lines(p_pos_w, dir, CONF::Inputed_Door_Width, 5, camera2);
+              RectanglePoints RP = Get_Rectangle_Points_Around_Lines(p_pos_w, dir, CONF::Inputed_Door_Width, 2, camera2);
               D.P1 = RP.P1;
               D.P2 = RP.P2;
               D.P3 = RP.P3;

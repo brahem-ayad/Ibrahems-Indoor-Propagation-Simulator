@@ -110,13 +110,17 @@ class RectanglePoints {
 
 static RectanglePoints GetRectanglePoints(Vector2 P1, Vector2 P2){
 
+  if(Vector2Equals(P1, P2)){
+    return {P1, P1, P1, P1};
+  }
+
   Vector2 UL; // Upper Left
   Vector2 LR; // Lower Right
   Vector2 UR; // Upper Right
   Vector2 LL; // Lower Left
 
-  if(P1.x < P2.x){
-    if(P1.y < P2.y){
+  if(P1.x <= P2.x){
+    if(P1.y <= P2.y){
       UL = P1;
       LR = P2;
       UR = {P2.x, P1.y};
@@ -129,8 +133,8 @@ static RectanglePoints GetRectanglePoints(Vector2 P1, Vector2 P2){
       LL = P1;
     }
   }
-  else if(P1.x > P2.x){
-    if(P1.y < P2.y){
+  else if(P1.x >= P2.x){
+    if(P1.y <= P2.y){
       UL = {P2.x, P1.y};
       LR = {P1.x, P2.y};
       UR = P1;
@@ -304,5 +308,20 @@ static Rectangle Scale_Rec_Centered(Rectangle Rect, float x, float y){
   Scaled_Rect.height -= y*2;
 
   return Scaled_Rect;
+}
+
+static bool CheckCollisionLineRec(Vector2 p1, Vector2 p2, RectanglePoints Rect) {
+  Rectangle R = {Rect.P1.x, Rect.P1.y, Rect.P4.x - Rect.P1.x, Rect.P4.y - Rect.P1.y};
+  if (CheckCollisionPointRec(p1, R) || CheckCollisionPointRec(p2, R)) {
+      return true;
+  }
+
+  Vector2 col_p;
+  if(CheckCollisionLines(p1, p2, Rect.P1, Rect.P2, &col_p)) return true;
+  if(CheckCollisionLines(p1, p2, Rect.P2, Rect.P4, &col_p)) return true;
+  if(CheckCollisionLines(p1, p2, Rect.P4, Rect.P3, &col_p)) return true;
+  if(CheckCollisionLines(p1, p2, Rect.P3, Rect.P1, &col_p)) return true;
+
+  return false;
 }
 

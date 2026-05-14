@@ -46,15 +46,17 @@ class Window {
       Vector2 P2_1_w = Vector2Subtract(P2, Vector2Scale(Vector2Normalize(Vector2Subtract(P2, P1)), w));
       Vector2 P3_4_w = Vector2Subtract(P3, Vector2Scale(Vector2Normalize(Vector2Subtract(P3, P4)), w));
 
-      // the white background
+      // the white/black background
       DrawTriangle(P3, P2, P1, bg_color);
       DrawTriangle(P1, P4, P3, bg_color);
 
       // the blue background overlay
-      DrawTriangle(P3, P2, P1, Fade(SKYBLUE, 0.5));
-      DrawTriangle(P1, P4, P3, Fade(SKYBLUE, 0.5));
+      if(CONF::Theme == Light_Theme){
+        DrawTriangle(P3, P2, P1, Fade(SKYBLUE, 0.5));
+        DrawTriangle(P1, P4, P3, Fade(SKYBLUE, 0.5));
+      }
 
-      // the black sides
+      // the black/white sides
       DrawTriangle(P4_3_w, P1_2_w, P1, line_color);
       DrawTriangle(P1, P4, P4_3_w, line_color);
       DrawTriangle(P3, P2, P2_1_w, line_color);

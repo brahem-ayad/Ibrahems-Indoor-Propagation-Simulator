@@ -6,7 +6,7 @@
 
 static void Draw_Ceilings_2D() {
   for(int i = 0; i < FP::ceilings.size(); i++){
-    DrawRectanglePoints(FP::ceilings[i].P1, FP::ceilings[i].P4, BLUE, SKYBLUE, 0.3, false);
+    DrawRectanglePoints(FP::ceilings[i].P1, FP::ceilings[i].P4, RED, {255, 0, 0, 255}, 0.1, false);
   }
 }
 

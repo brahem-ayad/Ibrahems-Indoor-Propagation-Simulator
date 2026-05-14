@@ -17,7 +17,7 @@ static void Draw_Floor_Placing(Camera2D camera2, Font font_20) {
   if(CheckCollisionPointRec(GetWorldToScreen2D(Get_Snapped_Mouse_Position(camera2), camera2), {0, 0, (float)GetScreenWidth(), CONF::MMB_height + CONF::Tool_Bar_height + CONF::Tool_Options_Bar_height}) == false){
   if(CheckCollisionPointCircle(GetWorldToScreen2D(Get_Snapped_Mouse_Position(camera2), camera2), {(float)GetScreenWidth() - 70, CONF::MMB_height + CONF::Tool_Bar_height + CONF::Tool_Options_Bar_height + 15 + 50}, 70) == false){
 
-    DrawCircleV(pos_s, 5, ORANGE);
+    DrawCircleV(pos_s, 5, DARKGRAY);
     if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON) and !CONF::Moving_2d){
       if(CONF::Floor_Start_Available == false){
         CONF::Floor_Start_Available = true;
@@ -35,7 +35,9 @@ static void Draw_Floor_Placing(Camera2D camera2, Font font_20) {
 
         Floor floor(P1, P2, P3, P4);
 
-        FP::floors.push_back(floor);
+        if(!Vector2Equals(P1, P4)){
+          FP::floors.push_back(floor);
+        }
 
         CONF::Floor_Start_2D = pos_s;
         CONF::Floor_Start_Available = false;
@@ -43,8 +45,8 @@ static void Draw_Floor_Placing(Camera2D camera2, Font font_20) {
     }
 
     if(CONF::Floor_Start_Available) {
-    DrawRectanglePoints(GetWorldToScreen2D(CONF::Floor_Start_2D, camera2), pos_s, ORANGE, YELLOW, 0.3, true);
-    Draw_Area_Tooltip(pos_w, CONF::Floor_Start_2D, camera2, font_20);
+      DrawRectanglePoints(GetWorldToScreen2D(CONF::Floor_Start_2D, camera2), pos_s, DARKGRAY, GRAY, 0.3, true);
+      Draw_Area_Tooltip(pos_w, CONF::Floor_Start_2D, camera2, font_20);
     }
 
   }}
@@ -55,6 +57,15 @@ static void Draw_Floor_Placing(Camera2D camera2, Font font_20) {
 
   if(IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)){
     CONF::Floor_Start_Available = false;
+  }
+
+  if(IsKeyPressed(KEY_ESCAPE)){
+    if(CONF::Floor_Start_Available){
+      CONF::Floor_Start_Available = false;
+    }
+    else{
+      CONF::tool_state = None;
+    }
   }
 
 }

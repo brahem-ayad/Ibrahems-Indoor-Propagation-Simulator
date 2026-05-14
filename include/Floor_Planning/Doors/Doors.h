@@ -33,8 +33,8 @@ class Door {
         bg_color = BLACK;
       }
 
-      DrawTriangle(P3, P2, P1, bg_color);
-      DrawTriangle(P1, P4, P3, bg_color);
+      //DrawTriangle(P3, P2, P1, bg_color);
+      //DrawTriangle(P1, P4, P3, bg_color);
 
       DrawLineEx(P1, P2, line_thickness, color);
       DrawLineEx(P2, P3, line_thickness, color);

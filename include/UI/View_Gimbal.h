@@ -63,7 +63,7 @@ static void Draw_View_Gimbal(Font font, float font_size, Camera2D &camera2, Came
     DrawTriangle(V1, V2, V3, Fade(WHITE, 0.2));
     if(IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
       if(CONF::View == View_3D and CONF::Gimbal_Arrows_3D_Mode == Rotation) Rotate_3D_Camera_Around_Target_UP(camera3);
-      else if(CONF::View == View_3D and CONF::Gimbal_Arrows_3D_Mode == Movement) { Move_3D_Camera_UP(camera3); CAMERA::is_moving = true; }
+      else if(CONF::View == View_3D and CONF::Gimbal_Arrows_3D_Mode == Movement) { Move_3D_Camera_UP(camera3, CAMERA::speed); CAMERA::is_moving = true; }
       else camera2.target.y -= CAMERA::speed * 5;
     }
   }
@@ -76,7 +76,7 @@ static void Draw_View_Gimbal(Font font, float font_size, Camera2D &camera2, Came
     DrawTriangle(V4, V5, V6, Fade(WHITE, 0.2));
     if(IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
       if(CONF::View == View_3D and CONF::Gimbal_Arrows_3D_Mode == Rotation) Rotate_3D_Camera_Around_Target_RIGHT(camera3);
-      else if(CONF::View == View_3D and CONF::Gimbal_Arrows_3D_Mode == Movement) { Move_3D_Camera_RIGHT(camera3); CAMERA::is_moving = true; }
+      else if(CONF::View == View_3D and CONF::Gimbal_Arrows_3D_Mode == Movement) { Move_3D_Camera_RIGHT(camera3, CAMERA::speed); CAMERA::is_moving = true; }
       else camera2.target.x += CAMERA::speed * 5;
     }
   }
@@ -89,7 +89,7 @@ static void Draw_View_Gimbal(Font font, float font_size, Camera2D &camera2, Came
     DrawTriangle(V7, V8, V9, Fade(WHITE, 0.2));
     if(IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
       if(CONF::View == View_3D and CONF::Gimbal_Arrows_3D_Mode == Rotation) Rotate_3D_Camera_Around_Target_LEFT(camera3);
-      else if(CONF::View == View_3D and CONF::Gimbal_Arrows_3D_Mode == Movement) { Move_3D_Camera_LEFT(camera3); CAMERA::is_moving = true; }
+      else if(CONF::View == View_3D and CONF::Gimbal_Arrows_3D_Mode == Movement) { Move_3D_Camera_LEFT(camera3, CAMERA::speed); CAMERA::is_moving = true; }
       else camera2.target.x -= CAMERA::speed * 5;
     }
   }
@@ -102,7 +102,7 @@ static void Draw_View_Gimbal(Font font, float font_size, Camera2D &camera2, Came
     DrawTriangle(V10, V11, V12, Fade(WHITE, 0.2));
     if(IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
       if(CONF::View == View_3D and CONF::Gimbal_Arrows_3D_Mode == Rotation) Rotate_3D_Camera_Around_Target_DOWN(camera3);
-      else if(CONF::View == View_3D and CONF::Gimbal_Arrows_3D_Mode == Movement) { Move_3D_Camera_DOWN(camera3); CAMERA::is_moving = true; }
+      else if(CONF::View == View_3D and CONF::Gimbal_Arrows_3D_Mode == Movement) { Move_3D_Camera_DOWN(camera3, CAMERA::speed); CAMERA::is_moving = true; }
       else camera2.target.y += CAMERA::speed * 5;
     }
   }
@@ -117,7 +117,7 @@ static void Draw_View_Gimbal(Font font, float font_size, Camera2D &camera2, Came
     DrawCircleV(Zoom_Out_Key_Pos, 15, Fade(WHITE, 0.2));
     if(IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
       if(CONF::View == View_3D) {
-        if(CONF::Camera_3D_Projection == Perspective) Zoom_3D_Camera_Out(camera3);
+        if(CONF::Camera_3D_Projection == Perspective) Zoom_3D_Camera_Out(camera3, CAMERA::zoom_speed);
         else CAMERA::Orthographic_fovy += CAMERA::zoom_speed * GetFrameTime();
       }
       else camera2.zoom -= CAMERA::zoom_speed/10 * GetFrameTime();
@@ -133,7 +133,7 @@ static void Draw_View_Gimbal(Font font, float font_size, Camera2D &camera2, Came
     DrawCircleV(Zoom_In_Key_Pos, 15, Fade(WHITE, 0.2));
     if(IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
       if(CONF::View == View_3D) {
-        if(CONF::Camera_3D_Projection == Perspective) Zoom_3D_Camera_In(camera3);
+        if(CONF::Camera_3D_Projection == Perspective) Zoom_3D_Camera_In(camera3, CAMERA::zoom_speed);
         else CAMERA::Orthographic_fovy -= CAMERA::zoom_speed * GetFrameTime();
       }
       else camera2.zoom += CAMERA::zoom_speed/10 * GetFrameTime();

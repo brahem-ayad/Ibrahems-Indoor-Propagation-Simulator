@@ -106,7 +106,9 @@ class Text_Field {
 
         while (key > 0) {
           if ( key >= 48 and key <= 57  or key == 46) {
-            field_text.push_back((char)key);
+            if(field_text.size() < 6){
+              field_text.push_back((char)key);
+            }
           }
           key = GetCharPressed();
         }
