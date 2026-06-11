@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/br4hem/Programming/Indoor_Propagation_Simulator/build/_deps/rlimgui-subbuild/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

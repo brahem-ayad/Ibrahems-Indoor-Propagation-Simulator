@@ -1,0 +1,5 @@
+/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles/imgui.dir
+/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles/rlimgui.dir
+/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles/Crimson.dir
+/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles/edit_cache.dir
+/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles/rebuild_cache.dir
