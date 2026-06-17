@@ -323,6 +323,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Crimson.dir/build.make CMakeFiles/Crimson.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/Calculate_World_Boundaries.o: src/Calculate_World_Boundaries.cpp.o
+.PHONY : src/Calculate_World_Boundaries.o
+
+# target to build an object file
+src/Calculate_World_Boundaries.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Crimson.dir/build.make CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.o
+.PHONY : src/Calculate_World_Boundaries.cpp.o
+
+src/Calculate_World_Boundaries.i: src/Calculate_World_Boundaries.cpp.i
+.PHONY : src/Calculate_World_Boundaries.i
+
+# target to preprocess a source file
+src/Calculate_World_Boundaries.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Crimson.dir/build.make CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.i
+.PHONY : src/Calculate_World_Boundaries.cpp.i
+
+src/Calculate_World_Boundaries.s: src/Calculate_World_Boundaries.cpp.s
+.PHONY : src/Calculate_World_Boundaries.s
+
+# target to generate assembly for a file
+src/Calculate_World_Boundaries.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Crimson.dir/build.make CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.s
+.PHONY : src/Calculate_World_Boundaries.cpp.s
+
 src/Cameras.o: src/Cameras.cpp.o
 .PHONY : src/Cameras.o
 
@@ -514,6 +538,30 @@ src/Draw_Main_Menu_Bar.s: src/Draw_Main_Menu_Bar.cpp.s
 src/Draw_Main_Menu_Bar.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Crimson.dir/build.make CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.s
 .PHONY : src/Draw_Main_Menu_Bar.cpp.s
+
+src/Draw_Simulation_Options_Bar.o: src/Draw_Simulation_Options_Bar.cpp.o
+.PHONY : src/Draw_Simulation_Options_Bar.o
+
+# target to build an object file
+src/Draw_Simulation_Options_Bar.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Crimson.dir/build.make CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.o
+.PHONY : src/Draw_Simulation_Options_Bar.cpp.o
+
+src/Draw_Simulation_Options_Bar.i: src/Draw_Simulation_Options_Bar.cpp.i
+.PHONY : src/Draw_Simulation_Options_Bar.i
+
+# target to preprocess a source file
+src/Draw_Simulation_Options_Bar.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Crimson.dir/build.make CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.i
+.PHONY : src/Draw_Simulation_Options_Bar.cpp.i
+
+src/Draw_Simulation_Options_Bar.s: src/Draw_Simulation_Options_Bar.cpp.s
+.PHONY : src/Draw_Simulation_Options_Bar.s
+
+# target to generate assembly for a file
+src/Draw_Simulation_Options_Bar.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Crimson.dir/build.make CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.s
+.PHONY : src/Draw_Simulation_Options_Bar.cpp.s
 
 src/Draw_The_Run_Simulation_Button.o: src/Draw_The_Run_Simulation_Button.cpp.o
 .PHONY : src/Draw_The_Run_Simulation_Button.o
@@ -1003,6 +1051,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/Calculate_World_Boundaries.o"
+	@echo "... src/Calculate_World_Boundaries.i"
+	@echo "... src/Calculate_World_Boundaries.s"
 	@echo "... src/Cameras.o"
 	@echo "... src/Cameras.i"
 	@echo "... src/Cameras.s"
@@ -1027,6 +1078,9 @@ help:
 	@echo "... src/Draw_Main_Menu_Bar.o"
 	@echo "... src/Draw_Main_Menu_Bar.i"
 	@echo "... src/Draw_Main_Menu_Bar.s"
+	@echo "... src/Draw_Simulation_Options_Bar.o"
+	@echo "... src/Draw_Simulation_Options_Bar.i"
+	@echo "... src/Draw_Simulation_Options_Bar.s"
 	@echo "... src/Draw_The_Run_Simulation_Button.o"
 	@echo "... src/Draw_The_Run_Simulation_Button.i"
 	@echo "... src/Draw_The_Run_Simulation_Button.s"

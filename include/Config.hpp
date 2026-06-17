@@ -1,7 +1,6 @@
 #pragma once
 
 #include<raylib.h>
-#include"./Generate_Wall_Collision_Quads.hpp"
 
 enum MODE { Drawing_Mode, Simulation_Mode };
 enum VIEW { View_2D, View_3D };
@@ -55,13 +54,10 @@ namespace CONF{
   inline Shader Wall_Shader_2D;
   inline Shader Wall_Shader_3D;
   inline Shader Ceiling_Shader_2D;
-  inline Shader ITU_NLOS_Shader_3D;
-  inline int ITU_NLOS_3D_Shader_Count_ID;
-  inline int ITU_NLOS_3D_Shader_Positions_ID;
-  inline Shader ITU_LOS_Shader_3D;
-  inline int ITU_LOS_Shader_3D_Master_Visibility_Polygon_ID;
-  inline int ITU_LOS_3D_Shader_Count_ID;
-  inline int ITU_LOS_3D_Shader_Positions_ID;
+  inline Shader ITU_Shader_3D;
+  inline int ITU_Shader_3D_Master_Visibility_Polygon_ID;
+  inline int ITU_Shader_3D_Count_ID;
+  inline int ITU_Shader_3D_Positions_ID;
 
   // Images
   inline Texture2D Walls_Tool_Icon;
@@ -103,10 +99,19 @@ namespace CONF{
 
   inline float Transmitter_Height = 1.5f;
 
-  inline std::vector<WallQuad3D> Wall_Quads_3D;
   inline bool View_Walls_Wireframe = false;
 
   inline bool ITU_Sim_Started = false;
+  inline bool Is_Simulation_Grid_Ready = false;
+  inline Vector3 World_Center;
+  inline float World_Width;
+  inline float World_Height;
+  inline float ITU_Simulation_Area_Padding = 2.0f;
+  inline int activeCount;
+  inline Vector3 shaderPositions[32];
+  inline Mesh boxMesh;
+  inline Model boxModel;
+  inline Camera3D Visibility_Polygon_Camera;
 };
 
 

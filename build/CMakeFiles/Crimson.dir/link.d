@@ -3,6 +3,7 @@ Crimson: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o \
   CMakeFiles/Crimson.dir/main.cpp.o \
+  CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.o \
   CMakeFiles/Crimson.dir/src/Cameras.cpp.o \
   CMakeFiles/Crimson.dir/src/Draw_Ceiling_Placing.cpp.o \
   CMakeFiles/Crimson.dir/src/Draw_Ceilings.cpp.o \
@@ -11,6 +12,7 @@ Crimson: \
   CMakeFiles/Crimson.dir/src/Draw_Floor_Placing.cpp.o \
   CMakeFiles/Crimson.dir/src/Draw_Floors.cpp.o \
   CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.o \
+  CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.o \
   CMakeFiles/Crimson.dir/src/Draw_The_Run_Simulation_Button.cpp.o \
   CMakeFiles/Crimson.dir/src/Draw_Tool_Bar.cpp.o \
   CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o \
@@ -81,6 +83,8 @@ Crimson: \
 
 CMakeFiles/Crimson.dir/main.cpp.o:
 
+CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.o:
+
 CMakeFiles/Crimson.dir/src/Cameras.cpp.o:
 
 CMakeFiles/Crimson.dir/src/Draw_Ceiling_Placing.cpp.o:
@@ -96,6 +100,8 @@ CMakeFiles/Crimson.dir/src/Draw_Floor_Placing.cpp.o:
 CMakeFiles/Crimson.dir/src/Draw_Floors.cpp.o:
 
 CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.o:
+
+CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.o:
 
 CMakeFiles/Crimson.dir/src/Draw_The_Run_Simulation_Button.cpp.o:
 

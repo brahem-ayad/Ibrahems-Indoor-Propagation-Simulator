@@ -1,16 +1,20 @@
-#include"../include/Generate_Wall_Collision_Quads.hpp"
+#include "../include/Generate_Wall_Collision_Quads.hpp"
 
-#include<vector>
-#include<algorithm>
-#include<cmath>
-#include"../include/Floor_Plan.hpp"
-#include"../include/Draw_Walls.hpp"
+#include <vector>
+#include <algorithm>
+#include <cmath>
+#include "../include/Floor_Plan.hpp"
+#include "../include/Draw_Walls.hpp"
 
 std::vector<WallQuad3D> Generate_Wall_Collision_Quads() {
     std::vector<WallQuad3D> collision_quads;
 
     for (size_t i = 0; i < FP::Walls_Vec.size(); i++) {
         auto& wall = FP::Walls_Vec[i];
+
+        // Capture attributes to assign to the child quads
+        WALL_MATERIAL wall_material = wall.Wall_Material; 
+        float wall_width            = wall.Wall_Width;
 
         // 1. Directional Math
         float dx = wall.Wall_End_3D.x - wall.Wall_Start_3D.x;
@@ -20,7 +24,7 @@ std::vector<WallQuad3D> Generate_Wall_Collision_Quads() {
 
         float nx = -dy / wall_len;
         float ny = dx / wall_len;
-        float r = wall.Wall_Width / 2.0f;
+        float r = wall_width / 2.0f;
         float offsetX = nx * r;
         float offsetY = ny * r;
 
@@ -86,7 +90,7 @@ std::vector<WallQuad3D> Generate_Wall_Collision_Quads() {
         }
 
         // =================================================================
-        // 3. GENERATE 4-POINT QUAD FACES
+        // 3. GENERATE 4-POINT QUAD FACES WITH MATERIAL AND WIDTH DATA
         // =================================================================
         for (const auto& seg : solid_segments) {
             if (seg.end_t - seg.start_t < 0.001f || seg.top_z - seg.bottom_z < 0.001f) continue;
@@ -108,26 +112,25 @@ std::vector<WallQuad3D> Generate_Wall_Collision_Quads() {
             Vector3 t_end_right   = { b_end_right.x,   b_end_right.y,   seg.top_z };
 
             // Left Long Face
-            collision_quads.push_back({ b_start_left, b_end_left, t_end_left, t_start_left });
+            collision_quads.push_back({ b_start_left, b_end_left, t_end_left, t_start_left, wall_material, wall_width });
 
             // Right Long Face
-            collision_quads.push_back({ b_end_right, b_start_right, t_start_right, t_end_right });
+            collision_quads.push_back({ b_end_right, b_start_right, t_start_right, t_end_right, wall_material, wall_width });
 
             // Top Face (Ceiling)
-            collision_quads.push_back({ t_start_left, t_end_left, t_end_right, t_start_right });
+            collision_quads.push_back({ t_start_left, t_end_left, t_end_right, t_start_right, wall_material, wall_width });
 
             // Bottom Face (Floor - only if raised above absolute zero)
             if (seg.bottom_z > 0.001f) {
-                collision_quads.push_back({ b_start_left, b_start_right, b_end_right, b_end_left });
+                collision_quads.push_back({ b_start_left, b_start_right, b_end_right, b_end_left, wall_material, wall_width });
             }
 
-            // Window/Door Inner Frame Caps (Absolute wall ends are sealed by your cylinders, 
-            // but we add quads here to make sure rays don't sneak into open window frames)
+            // Window/Door Inner Frame Caps
             if (seg.start_t >= 0.0f) {
-                collision_quads.push_back({ b_start_right, b_start_left, t_start_left, t_start_right });
+                collision_quads.push_back({ b_start_right, b_start_left, t_start_left, t_start_right, wall_material, wall_width });
             }
             if (seg.end_t <= 1.0f) {
-                collision_quads.push_back({ b_end_left, b_end_right, t_end_right, t_end_left });
+                collision_quads.push_back({ b_end_left, b_end_right, t_end_right, t_end_left, wall_material, wall_width });
             }
         }
     }

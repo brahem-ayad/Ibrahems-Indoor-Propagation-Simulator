@@ -15,13 +15,10 @@ void Load_Resources(){
   CONF::Wall_Shader_2D = LoadShader("../Resources/Shaders/Standard_Vertex_Shader.vert", "../Resources/Shaders/Wall_Shader_2D.frag");
   CONF::Wall_Shader_3D = LoadShader("../Resources/Shaders/Standard_Vertex_Shader.vert", "../Resources/Shaders/Wall_Shader_3D.frag");
   CONF::Ceiling_Shader_2D = LoadShader("../Resources/Shaders/Standard_Vertex_Shader.vert", "../Resources/Shaders/Ceiling_Shader_2D.frag");
-  CONF::ITU_NLOS_Shader_3D = LoadShader("../Resources/Shaders/Standard_Vertex_Shader.vert", "../Resources/Shaders/ITU_NLOS_Shader_3D.frag");
-  CONF::ITU_NLOS_3D_Shader_Count_ID = GetShaderLocation(CONF::ITU_NLOS_Shader_3D, "u_transmitterCount");
-  CONF::ITU_NLOS_3D_Shader_Positions_ID = GetShaderLocation(CONF::ITU_NLOS_Shader_3D, "u_BS_Positions[0]");
-  CONF::ITU_LOS_Shader_3D = LoadShader("../Resources/Shaders/Standard_Vertex_Shader.vert", "../Resources/Shaders/ITU_LOS_Shader.frag");
-  CONF::ITU_LOS_Shader_3D_Master_Visibility_Polygon_ID = GetShaderLocation(CONF::ITU_LOS_Shader_3D, "Master_Visibility_Polygon");
-  CONF::ITU_LOS_3D_Shader_Count_ID = GetShaderLocation(CONF::ITU_LOS_Shader_3D, "u_transmitterCount");
-  CONF::ITU_LOS_3D_Shader_Positions_ID = GetShaderLocation(CONF::ITU_LOS_Shader_3D, "u_BS_Positions[0]");
+  CONF::ITU_Shader_3D = LoadShader("../Resources/Shaders/Standard_Vertex_Shader.vert", "../Resources/Shaders/ITU_Shader.frag");
+  CONF::ITU_Shader_3D_Master_Visibility_Polygon_ID = GetShaderLocation(CONF::ITU_Shader_3D, "Master_Visibility_Polygon");
+  CONF::ITU_Shader_3D_Count_ID = GetShaderLocation(CONF::ITU_Shader_3D, "u_transmitterCount");
+  CONF::ITU_Shader_3D_Positions_ID = GetShaderLocation(CONF::ITU_Shader_3D, "u_BS_Positions[0]");
 
   // Images
   CONF::Walls_Tool_Icon = LoadTexture("../Resources/Images/Walls_Tool_Icon.png");

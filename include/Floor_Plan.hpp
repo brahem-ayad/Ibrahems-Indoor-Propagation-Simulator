@@ -20,4 +20,6 @@ namespace FP {
 
   inline std::vector<TRANSMITTER> Transmitters;
   inline std::vector<std::vector<Vector3>> Visibility_Polygons;
+
+  inline std::vector<WallQuad3D> Wall_Quads_3D;
 };

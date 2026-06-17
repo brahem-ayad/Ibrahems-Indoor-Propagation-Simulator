@@ -26,6 +26,12 @@ void Set_Cameras(){
   CONF::camerafps.position = {0, -10, 10};
   CONF::camerafps.fovy = 45.0f;
   CONF::camerafps.projection = CAMERA_PERSPECTIVE;
+
+  CONF::Visibility_Polygon_Camera.projection = CAMERA_ORTHOGRAPHIC;
+  CONF::Visibility_Polygon_Camera.target = {0, 0, 0};
+  CONF::Visibility_Polygon_Camera.position = {0, 0, 10};
+  CONF::Visibility_Polygon_Camera.up = {0, 1, 0};
+  CONF::Visibility_Polygon_Camera.fovy = 10;
 }
 
 void Update_2D_Camera(){

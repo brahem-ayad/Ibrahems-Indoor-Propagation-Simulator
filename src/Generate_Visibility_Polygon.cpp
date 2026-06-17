@@ -3,7 +3,6 @@
 #include<raylib.h>
 #include<cmath>
 #include"../include/Floor_Plan.hpp"
-#include"../include/Config.hpp"
 
 void Generate_Visibility_Polygon(){
 
@@ -19,8 +18,8 @@ void Generate_Visibility_Polygon(){
 
       bool does_hit = false;
       Vector3 hit_pos = {-9999.0f, -9999.0f, -9999.0f};
-      for(int k = 0; k < CONF::Wall_Quads_3D.size(); k++){
-        RayCollision col = GetRayCollisionQuad(R, CONF::Wall_Quads_3D[k].v1, CONF::Wall_Quads_3D[k].v2, CONF::Wall_Quads_3D[k].v3, CONF::Wall_Quads_3D[k].v4);
+      for(int k = 0; k < FP::Wall_Quads_3D.size(); k++){
+        RayCollision col = GetRayCollisionQuad(R, FP::Wall_Quads_3D[k].v1, FP::Wall_Quads_3D[k].v2, FP::Wall_Quads_3D[k].v3, FP::Wall_Quads_3D[k].v4);
         if(col.hit){
           does_hit = true;
           if(hit_pos.x == -9999.0f) hit_pos = col.point;

@@ -43,6 +43,12 @@
 },
 {
   "directory": "/home/br4hem/Programming/Indoor_Propagation_Simulator/build",
+  "command": "/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -DUSE_LIBTYPE_SHARED -I/home/br4hem/Programming/Indoor_Propagation_Simulator/include -I/home/br4hem/Programming/Indoor_Propagation_Simulator/build/_deps/rlimgui-src -I/home/br4hem/Programming/Indoor_Propagation_Simulator/build/_deps/imgui-src -I/home/br4hem/Programming/Indoor_Propagation_Simulator/build/_deps/cdt-src/include -std=gnu++17 -o CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Calculate_World_Boundaries.cpp",
+  "file": "/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Calculate_World_Boundaries.cpp",
+  "output": "CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.o"
+},
+{
+  "directory": "/home/br4hem/Programming/Indoor_Propagation_Simulator/build",
   "command": "/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -DUSE_LIBTYPE_SHARED -I/home/br4hem/Programming/Indoor_Propagation_Simulator/include -I/home/br4hem/Programming/Indoor_Propagation_Simulator/build/_deps/rlimgui-src -I/home/br4hem/Programming/Indoor_Propagation_Simulator/build/_deps/imgui-src -I/home/br4hem/Programming/Indoor_Propagation_Simulator/build/_deps/cdt-src/include -std=gnu++17 -o CMakeFiles/Crimson.dir/src/Cameras.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Cameras.cpp",
   "file": "/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Cameras.cpp",
   "output": "CMakeFiles/Crimson.dir/src/Cameras.cpp.o"
@@ -88,6 +94,12 @@
   "command": "/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -DUSE_LIBTYPE_SHARED -I/home/br4hem/Programming/Indoor_Propagation_Simulator/include -I/home/br4hem/Programming/Indoor_Propagation_Simulator/build/_deps/rlimgui-src -I/home/br4hem/Programming/Indoor_Propagation_Simulator/build/_deps/imgui-src -I/home/br4hem/Programming/Indoor_Propagation_Simulator/build/_deps/cdt-src/include -std=gnu++17 -o CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Main_Menu_Bar.cpp",
   "file": "/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Main_Menu_Bar.cpp",
   "output": "CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.o"
+},
+{
+  "directory": "/home/br4hem/Programming/Indoor_Propagation_Simulator/build",
+  "command": "/usr/bin/c++ -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -DUSE_LIBTYPE_SHARED -I/home/br4hem/Programming/Indoor_Propagation_Simulator/include -I/home/br4hem/Programming/Indoor_Propagation_Simulator/build/_deps/rlimgui-src -I/home/br4hem/Programming/Indoor_Propagation_Simulator/build/_deps/imgui-src -I/home/br4hem/Programming/Indoor_Propagation_Simulator/build/_deps/cdt-src/include -std=gnu++17 -o CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Simulation_Options_Bar.cpp",
+  "file": "/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Simulation_Options_Bar.cpp",
+  "output": "CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.o"
 },
 {
   "directory": "/home/br4hem/Programming/Indoor_Propagation_Simulator/build",

@@ -86,10 +86,24 @@ CMakeFiles/Crimson.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Crimson.dir/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/br4hem/Programming/Indoor_Propagation_Simulator/main.cpp -o CMakeFiles/Crimson.dir/main.cpp.s
 
+CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.o: CMakeFiles/Crimson.dir/flags.make
+CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Calculate_World_Boundaries.cpp
+CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.o -MF CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.o.d -o CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Calculate_World_Boundaries.cpp
+
+CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Calculate_World_Boundaries.cpp > CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.i
+
+CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Calculate_World_Boundaries.cpp -o CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.s
+
 CMakeFiles/Crimson.dir/src/Cameras.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Cameras.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Cameras.cpp
 CMakeFiles/Crimson.dir/src/Cameras.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Crimson.dir/src/Cameras.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Crimson.dir/src/Cameras.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Cameras.cpp.o -MF CMakeFiles/Crimson.dir/src/Cameras.cpp.o.d -o CMakeFiles/Crimson.dir/src/Cameras.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Cameras.cpp
 
 CMakeFiles/Crimson.dir/src/Cameras.cpp.i: cmake_force
@@ -103,7 +117,7 @@ CMakeFiles/Crimson.dir/src/Cameras.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Draw_Ceiling_Placing.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Draw_Ceiling_Placing.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Ceiling_Placing.cpp
 CMakeFiles/Crimson.dir/src/Draw_Ceiling_Placing.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Ceiling_Placing.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Ceiling_Placing.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Draw_Ceiling_Placing.cpp.o -MF CMakeFiles/Crimson.dir/src/Draw_Ceiling_Placing.cpp.o.d -o CMakeFiles/Crimson.dir/src/Draw_Ceiling_Placing.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Ceiling_Placing.cpp
 
 CMakeFiles/Crimson.dir/src/Draw_Ceiling_Placing.cpp.i: cmake_force
@@ -117,7 +131,7 @@ CMakeFiles/Crimson.dir/src/Draw_Ceiling_Placing.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Draw_Ceilings.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Draw_Ceilings.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Ceilings.cpp
 CMakeFiles/Crimson.dir/src/Draw_Ceilings.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Ceilings.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Ceilings.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Draw_Ceilings.cpp.o -MF CMakeFiles/Crimson.dir/src/Draw_Ceilings.cpp.o.d -o CMakeFiles/Crimson.dir/src/Draw_Ceilings.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Ceilings.cpp
 
 CMakeFiles/Crimson.dir/src/Draw_Ceilings.cpp.i: cmake_force
@@ -131,7 +145,7 @@ CMakeFiles/Crimson.dir/src/Draw_Ceilings.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Draw_Door_Placing.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Draw_Door_Placing.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Door_Placing.cpp
 CMakeFiles/Crimson.dir/src/Draw_Door_Placing.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Door_Placing.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Door_Placing.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Draw_Door_Placing.cpp.o -MF CMakeFiles/Crimson.dir/src/Draw_Door_Placing.cpp.o.d -o CMakeFiles/Crimson.dir/src/Draw_Door_Placing.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Door_Placing.cpp
 
 CMakeFiles/Crimson.dir/src/Draw_Door_Placing.cpp.i: cmake_force
@@ -145,7 +159,7 @@ CMakeFiles/Crimson.dir/src/Draw_Door_Placing.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Draw_Doors.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Draw_Doors.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Doors.cpp
 CMakeFiles/Crimson.dir/src/Draw_Doors.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Doors.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Doors.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Draw_Doors.cpp.o -MF CMakeFiles/Crimson.dir/src/Draw_Doors.cpp.o.d -o CMakeFiles/Crimson.dir/src/Draw_Doors.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Doors.cpp
 
 CMakeFiles/Crimson.dir/src/Draw_Doors.cpp.i: cmake_force
@@ -159,7 +173,7 @@ CMakeFiles/Crimson.dir/src/Draw_Doors.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Draw_Floor_Placing.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Draw_Floor_Placing.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Floor_Placing.cpp
 CMakeFiles/Crimson.dir/src/Draw_Floor_Placing.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Floor_Placing.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Floor_Placing.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Draw_Floor_Placing.cpp.o -MF CMakeFiles/Crimson.dir/src/Draw_Floor_Placing.cpp.o.d -o CMakeFiles/Crimson.dir/src/Draw_Floor_Placing.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Floor_Placing.cpp
 
 CMakeFiles/Crimson.dir/src/Draw_Floor_Placing.cpp.i: cmake_force
@@ -173,7 +187,7 @@ CMakeFiles/Crimson.dir/src/Draw_Floor_Placing.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Draw_Floors.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Draw_Floors.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Floors.cpp
 CMakeFiles/Crimson.dir/src/Draw_Floors.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Floors.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Floors.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Draw_Floors.cpp.o -MF CMakeFiles/Crimson.dir/src/Draw_Floors.cpp.o.d -o CMakeFiles/Crimson.dir/src/Draw_Floors.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Floors.cpp
 
 CMakeFiles/Crimson.dir/src/Draw_Floors.cpp.i: cmake_force
@@ -187,7 +201,7 @@ CMakeFiles/Crimson.dir/src/Draw_Floors.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Main_Menu_Bar.cpp
 CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.o -MF CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.o.d -o CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Main_Menu_Bar.cpp
 
 CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.i: cmake_force
@@ -198,10 +212,24 @@ CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Main_Menu_Bar.cpp -o CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.s
 
+CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.o: CMakeFiles/Crimson.dir/flags.make
+CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Simulation_Options_Bar.cpp
+CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.o -MF CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.o.d -o CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Simulation_Options_Bar.cpp
+
+CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Simulation_Options_Bar.cpp > CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.i
+
+CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Simulation_Options_Bar.cpp -o CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.s
+
 CMakeFiles/Crimson.dir/src/Draw_The_Run_Simulation_Button.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Draw_The_Run_Simulation_Button.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_The_Run_Simulation_Button.cpp
 CMakeFiles/Crimson.dir/src/Draw_The_Run_Simulation_Button.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_The_Run_Simulation_Button.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_The_Run_Simulation_Button.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Draw_The_Run_Simulation_Button.cpp.o -MF CMakeFiles/Crimson.dir/src/Draw_The_Run_Simulation_Button.cpp.o.d -o CMakeFiles/Crimson.dir/src/Draw_The_Run_Simulation_Button.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_The_Run_Simulation_Button.cpp
 
 CMakeFiles/Crimson.dir/src/Draw_The_Run_Simulation_Button.cpp.i: cmake_force
@@ -215,7 +243,7 @@ CMakeFiles/Crimson.dir/src/Draw_The_Run_Simulation_Button.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Draw_Tool_Bar.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Draw_Tool_Bar.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Tool_Bar.cpp
 CMakeFiles/Crimson.dir/src/Draw_Tool_Bar.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Tool_Bar.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Tool_Bar.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Draw_Tool_Bar.cpp.o -MF CMakeFiles/Crimson.dir/src/Draw_Tool_Bar.cpp.o.d -o CMakeFiles/Crimson.dir/src/Draw_Tool_Bar.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Tool_Bar.cpp
 
 CMakeFiles/Crimson.dir/src/Draw_Tool_Bar.cpp.i: cmake_force
@@ -229,7 +257,7 @@ CMakeFiles/Crimson.dir/src/Draw_Tool_Bar.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Tool_Options_Bar.cpp
 CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o -MF CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o.d -o CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Tool_Options_Bar.cpp
 
 CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.i: cmake_force
@@ -243,7 +271,7 @@ CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Draw_Transmitter.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Draw_Transmitter.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Transmitter.cpp
 CMakeFiles/Crimson.dir/src/Draw_Transmitter.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Transmitter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Transmitter.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Draw_Transmitter.cpp.o -MF CMakeFiles/Crimson.dir/src/Draw_Transmitter.cpp.o.d -o CMakeFiles/Crimson.dir/src/Draw_Transmitter.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Transmitter.cpp
 
 CMakeFiles/Crimson.dir/src/Draw_Transmitter.cpp.i: cmake_force
@@ -257,7 +285,7 @@ CMakeFiles/Crimson.dir/src/Draw_Transmitter.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Draw_Transmitter_Placing.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Draw_Transmitter_Placing.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Transmitter_Placing.cpp
 CMakeFiles/Crimson.dir/src/Draw_Transmitter_Placing.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Transmitter_Placing.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Transmitter_Placing.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Draw_Transmitter_Placing.cpp.o -MF CMakeFiles/Crimson.dir/src/Draw_Transmitter_Placing.cpp.o.d -o CMakeFiles/Crimson.dir/src/Draw_Transmitter_Placing.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Transmitter_Placing.cpp
 
 CMakeFiles/Crimson.dir/src/Draw_Transmitter_Placing.cpp.i: cmake_force
@@ -271,7 +299,7 @@ CMakeFiles/Crimson.dir/src/Draw_Transmitter_Placing.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Draw_Wall_Collision_Quads_Debug.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Draw_Wall_Collision_Quads_Debug.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Wall_Collision_Quads_Debug.cpp
 CMakeFiles/Crimson.dir/src/Draw_Wall_Collision_Quads_Debug.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Wall_Collision_Quads_Debug.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Wall_Collision_Quads_Debug.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Draw_Wall_Collision_Quads_Debug.cpp.o -MF CMakeFiles/Crimson.dir/src/Draw_Wall_Collision_Quads_Debug.cpp.o.d -o CMakeFiles/Crimson.dir/src/Draw_Wall_Collision_Quads_Debug.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Wall_Collision_Quads_Debug.cpp
 
 CMakeFiles/Crimson.dir/src/Draw_Wall_Collision_Quads_Debug.cpp.i: cmake_force
@@ -285,7 +313,7 @@ CMakeFiles/Crimson.dir/src/Draw_Wall_Collision_Quads_Debug.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Draw_Wall_Placing.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Draw_Wall_Placing.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Wall_Placing.cpp
 CMakeFiles/Crimson.dir/src/Draw_Wall_Placing.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Wall_Placing.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Wall_Placing.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Draw_Wall_Placing.cpp.o -MF CMakeFiles/Crimson.dir/src/Draw_Wall_Placing.cpp.o.d -o CMakeFiles/Crimson.dir/src/Draw_Wall_Placing.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Wall_Placing.cpp
 
 CMakeFiles/Crimson.dir/src/Draw_Wall_Placing.cpp.i: cmake_force
@@ -299,7 +327,7 @@ CMakeFiles/Crimson.dir/src/Draw_Wall_Placing.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Draw_Walls.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Draw_Walls.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Walls.cpp
 CMakeFiles/Crimson.dir/src/Draw_Walls.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Walls.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Walls.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Draw_Walls.cpp.o -MF CMakeFiles/Crimson.dir/src/Draw_Walls.cpp.o.d -o CMakeFiles/Crimson.dir/src/Draw_Walls.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Walls.cpp
 
 CMakeFiles/Crimson.dir/src/Draw_Walls.cpp.i: cmake_force
@@ -313,7 +341,7 @@ CMakeFiles/Crimson.dir/src/Draw_Walls.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Draw_Window_Placing.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Draw_Window_Placing.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Window_Placing.cpp
 CMakeFiles/Crimson.dir/src/Draw_Window_Placing.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Window_Placing.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Window_Placing.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Draw_Window_Placing.cpp.o -MF CMakeFiles/Crimson.dir/src/Draw_Window_Placing.cpp.o.d -o CMakeFiles/Crimson.dir/src/Draw_Window_Placing.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Window_Placing.cpp
 
 CMakeFiles/Crimson.dir/src/Draw_Window_Placing.cpp.i: cmake_force
@@ -327,7 +355,7 @@ CMakeFiles/Crimson.dir/src/Draw_Window_Placing.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Draw_Windows.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Draw_Windows.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Windows.cpp
 CMakeFiles/Crimson.dir/src/Draw_Windows.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Windows.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/Crimson.dir/src/Draw_Windows.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Draw_Windows.cpp.o -MF CMakeFiles/Crimson.dir/src/Draw_Windows.cpp.o.d -o CMakeFiles/Crimson.dir/src/Draw_Windows.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Windows.cpp
 
 CMakeFiles/Crimson.dir/src/Draw_Windows.cpp.i: cmake_force
@@ -341,7 +369,7 @@ CMakeFiles/Crimson.dir/src/Draw_Windows.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Generate_Visibility_Polygon.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Generate_Visibility_Polygon.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Generate_Visibility_Polygon.cpp
 CMakeFiles/Crimson.dir/src/Generate_Visibility_Polygon.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/Crimson.dir/src/Generate_Visibility_Polygon.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/Crimson.dir/src/Generate_Visibility_Polygon.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Generate_Visibility_Polygon.cpp.o -MF CMakeFiles/Crimson.dir/src/Generate_Visibility_Polygon.cpp.o.d -o CMakeFiles/Crimson.dir/src/Generate_Visibility_Polygon.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Generate_Visibility_Polygon.cpp
 
 CMakeFiles/Crimson.dir/src/Generate_Visibility_Polygon.cpp.i: cmake_force
@@ -355,7 +383,7 @@ CMakeFiles/Crimson.dir/src/Generate_Visibility_Polygon.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Generate_Wall_Collision_Quads.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Generate_Wall_Collision_Quads.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Generate_Wall_Collision_Quads.cpp
 CMakeFiles/Crimson.dir/src/Generate_Wall_Collision_Quads.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/Crimson.dir/src/Generate_Wall_Collision_Quads.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/Crimson.dir/src/Generate_Wall_Collision_Quads.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Generate_Wall_Collision_Quads.cpp.o -MF CMakeFiles/Crimson.dir/src/Generate_Wall_Collision_Quads.cpp.o.d -o CMakeFiles/Crimson.dir/src/Generate_Wall_Collision_Quads.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Generate_Wall_Collision_Quads.cpp
 
 CMakeFiles/Crimson.dir/src/Generate_Wall_Collision_Quads.cpp.i: cmake_force
@@ -369,7 +397,7 @@ CMakeFiles/Crimson.dir/src/Generate_Wall_Collision_Quads.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Grid.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Grid.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Grid.cpp
 CMakeFiles/Crimson.dir/src/Grid.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/Crimson.dir/src/Grid.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/Crimson.dir/src/Grid.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Grid.cpp.o -MF CMakeFiles/Crimson.dir/src/Grid.cpp.o.d -o CMakeFiles/Crimson.dir/src/Grid.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Grid.cpp
 
 CMakeFiles/Crimson.dir/src/Grid.cpp.i: cmake_force
@@ -383,7 +411,7 @@ CMakeFiles/Crimson.dir/src/Grid.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Load_Resources.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Load_Resources.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Load_Resources.cpp
 CMakeFiles/Crimson.dir/src/Load_Resources.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/Crimson.dir/src/Load_Resources.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/Crimson.dir/src/Load_Resources.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Load_Resources.cpp.o -MF CMakeFiles/Crimson.dir/src/Load_Resources.cpp.o.d -o CMakeFiles/Crimson.dir/src/Load_Resources.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Load_Resources.cpp
 
 CMakeFiles/Crimson.dir/src/Load_Resources.cpp.i: cmake_force
@@ -397,7 +425,7 @@ CMakeFiles/Crimson.dir/src/Load_Resources.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Run_Simulation.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Run_Simulation.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Run_Simulation.cpp
 CMakeFiles/Crimson.dir/src/Run_Simulation.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/Crimson.dir/src/Run_Simulation.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/Crimson.dir/src/Run_Simulation.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Run_Simulation.cpp.o -MF CMakeFiles/Crimson.dir/src/Run_Simulation.cpp.o.d -o CMakeFiles/Crimson.dir/src/Run_Simulation.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Run_Simulation.cpp
 
 CMakeFiles/Crimson.dir/src/Run_Simulation.cpp.i: cmake_force
@@ -411,7 +439,7 @@ CMakeFiles/Crimson.dir/src/Run_Simulation.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Unload_Resources.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Unload_Resources.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Unload_Resources.cpp
 CMakeFiles/Crimson.dir/src/Unload_Resources.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/Crimson.dir/src/Unload_Resources.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/Crimson.dir/src/Unload_Resources.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Unload_Resources.cpp.o -MF CMakeFiles/Crimson.dir/src/Unload_Resources.cpp.o.d -o CMakeFiles/Crimson.dir/src/Unload_Resources.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Unload_Resources.cpp
 
 CMakeFiles/Crimson.dir/src/Unload_Resources.cpp.i: cmake_force
@@ -425,7 +453,7 @@ CMakeFiles/Crimson.dir/src/Unload_Resources.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Utilities.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Utilities.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Utilities.cpp
 CMakeFiles/Crimson.dir/src/Utilities.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/Crimson.dir/src/Utilities.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/Crimson.dir/src/Utilities.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Utilities.cpp.o -MF CMakeFiles/Crimson.dir/src/Utilities.cpp.o.d -o CMakeFiles/Crimson.dir/src/Utilities.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Utilities.cpp
 
 CMakeFiles/Crimson.dir/src/Utilities.cpp.i: cmake_force
@@ -439,7 +467,7 @@ CMakeFiles/Crimson.dir/src/Utilities.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/View_or_Hide_With_Shortcuts.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/View_or_Hide_With_Shortcuts.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/View_or_Hide_With_Shortcuts.cpp
 CMakeFiles/Crimson.dir/src/View_or_Hide_With_Shortcuts.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/Crimson.dir/src/View_or_Hide_With_Shortcuts.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/Crimson.dir/src/View_or_Hide_With_Shortcuts.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/View_or_Hide_With_Shortcuts.cpp.o -MF CMakeFiles/Crimson.dir/src/View_or_Hide_With_Shortcuts.cpp.o.d -o CMakeFiles/Crimson.dir/src/View_or_Hide_With_Shortcuts.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/View_or_Hide_With_Shortcuts.cpp
 
 CMakeFiles/Crimson.dir/src/View_or_Hide_With_Shortcuts.cpp.i: cmake_force
@@ -453,7 +481,7 @@ CMakeFiles/Crimson.dir/src/View_or_Hide_With_Shortcuts.cpp.s: cmake_force
 CMakeFiles/Crimson.dir/src/Viewport_Gizmo.cpp.o: CMakeFiles/Crimson.dir/flags.make
 CMakeFiles/Crimson.dir/src/Viewport_Gizmo.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Viewport_Gizmo.cpp
 CMakeFiles/Crimson.dir/src/Viewport_Gizmo.cpp.o: CMakeFiles/Crimson.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/Crimson.dir/src/Viewport_Gizmo.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/Crimson.dir/src/Viewport_Gizmo.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Crimson.dir/src/Viewport_Gizmo.cpp.o -MF CMakeFiles/Crimson.dir/src/Viewport_Gizmo.cpp.o.d -o CMakeFiles/Crimson.dir/src/Viewport_Gizmo.cpp.o -c /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Viewport_Gizmo.cpp
 
 CMakeFiles/Crimson.dir/src/Viewport_Gizmo.cpp.i: cmake_force
@@ -467,6 +495,7 @@ CMakeFiles/Crimson.dir/src/Viewport_Gizmo.cpp.s: cmake_force
 # Object files for target Crimson
 Crimson_OBJECTS = \
 "CMakeFiles/Crimson.dir/main.cpp.o" \
+"CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.o" \
 "CMakeFiles/Crimson.dir/src/Cameras.cpp.o" \
 "CMakeFiles/Crimson.dir/src/Draw_Ceiling_Placing.cpp.o" \
 "CMakeFiles/Crimson.dir/src/Draw_Ceilings.cpp.o" \
@@ -475,6 +504,7 @@ Crimson_OBJECTS = \
 "CMakeFiles/Crimson.dir/src/Draw_Floor_Placing.cpp.o" \
 "CMakeFiles/Crimson.dir/src/Draw_Floors.cpp.o" \
 "CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.o" \
+"CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.o" \
 "CMakeFiles/Crimson.dir/src/Draw_The_Run_Simulation_Button.cpp.o" \
 "CMakeFiles/Crimson.dir/src/Draw_Tool_Bar.cpp.o" \
 "CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o" \
@@ -499,6 +529,7 @@ Crimson_OBJECTS = \
 Crimson_EXTERNAL_OBJECTS =
 
 Crimson: CMakeFiles/Crimson.dir/main.cpp.o
+Crimson: CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.o
 Crimson: CMakeFiles/Crimson.dir/src/Cameras.cpp.o
 Crimson: CMakeFiles/Crimson.dir/src/Draw_Ceiling_Placing.cpp.o
 Crimson: CMakeFiles/Crimson.dir/src/Draw_Ceilings.cpp.o
@@ -507,6 +538,7 @@ Crimson: CMakeFiles/Crimson.dir/src/Draw_Doors.cpp.o
 Crimson: CMakeFiles/Crimson.dir/src/Draw_Floor_Placing.cpp.o
 Crimson: CMakeFiles/Crimson.dir/src/Draw_Floors.cpp.o
 Crimson: CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.o
+Crimson: CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.o
 Crimson: CMakeFiles/Crimson.dir/src/Draw_The_Run_Simulation_Button.cpp.o
 Crimson: CMakeFiles/Crimson.dir/src/Draw_Tool_Bar.cpp.o
 Crimson: CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o
@@ -532,7 +564,7 @@ Crimson: librlimgui.a
 Crimson: /usr/lib/libraylib.so.6.0.0
 Crimson: libimgui.a
 Crimson: CMakeFiles/Crimson.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Linking CXX executable Crimson"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/br4hem/Programming/Indoor_Propagation_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Linking CXX executable Crimson"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Crimson.dir/link.txt --verbose=$(VERBOSE)
 	/usr/bin/cmake -E rm -rf /home/br4hem/Programming/Indoor_Propagation_Simulator/build/Resources
 	/usr/bin/cmake -E create_symlink /home/br4hem/Programming/Indoor_Propagation_Simulator/Resources /home/br4hem/Programming/Indoor_Propagation_Simulator/build/Resources

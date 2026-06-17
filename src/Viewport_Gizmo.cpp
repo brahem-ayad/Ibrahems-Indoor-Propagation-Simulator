@@ -34,6 +34,7 @@ void Draw_Viewport_Gizmo() {
     if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
       if(CONF::View == View_2D) {
         CONF::View = View_3D;
+        CONF::Mode = Simulation_Mode;
         //CONF::tool_state = None;
         //FP::is_starting_pos_available = false;
         //for(int i = 0; i < FP::walls.size(); i++){
@@ -43,6 +44,7 @@ void Draw_Viewport_Gizmo() {
       }
       else {
         CONF::View = View_2D;
+        CONF::Mode = Drawing_Mode;
       }
     }
   }

@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/br4hem/Programming/Indoor_Propagation_Simulator/main.cpp" "CMakeFiles/Crimson.dir/main.cpp.o" "gcc" "CMakeFiles/Crimson.dir/main.cpp.o.d"
+  "/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Calculate_World_Boundaries.cpp" "CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.o" "gcc" "CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.o.d"
   "/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Cameras.cpp" "CMakeFiles/Crimson.dir/src/Cameras.cpp.o" "gcc" "CMakeFiles/Crimson.dir/src/Cameras.cpp.o.d"
   "/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Ceiling_Placing.cpp" "CMakeFiles/Crimson.dir/src/Draw_Ceiling_Placing.cpp.o" "gcc" "CMakeFiles/Crimson.dir/src/Draw_Ceiling_Placing.cpp.o.d"
   "/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Ceilings.cpp" "CMakeFiles/Crimson.dir/src/Draw_Ceilings.cpp.o" "gcc" "CMakeFiles/Crimson.dir/src/Draw_Ceilings.cpp.o.d"
@@ -17,6 +18,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Floor_Placing.cpp" "CMakeFiles/Crimson.dir/src/Draw_Floor_Placing.cpp.o" "gcc" "CMakeFiles/Crimson.dir/src/Draw_Floor_Placing.cpp.o.d"
   "/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Floors.cpp" "CMakeFiles/Crimson.dir/src/Draw_Floors.cpp.o" "gcc" "CMakeFiles/Crimson.dir/src/Draw_Floors.cpp.o.d"
   "/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Main_Menu_Bar.cpp" "CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.o" "gcc" "CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.o.d"
+  "/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Simulation_Options_Bar.cpp" "CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.o" "gcc" "CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.o.d"
   "/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_The_Run_Simulation_Button.cpp" "CMakeFiles/Crimson.dir/src/Draw_The_Run_Simulation_Button.cpp.o" "gcc" "CMakeFiles/Crimson.dir/src/Draw_The_Run_Simulation_Button.cpp.o.d"
   "/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Tool_Bar.cpp" "CMakeFiles/Crimson.dir/src/Draw_Tool_Bar.cpp.o" "gcc" "CMakeFiles/Crimson.dir/src/Draw_Tool_Bar.cpp.o.d"
   "/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Tool_Options_Bar.cpp" "CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o" "gcc" "CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o.d"

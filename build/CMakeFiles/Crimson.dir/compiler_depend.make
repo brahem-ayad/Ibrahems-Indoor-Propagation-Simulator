@@ -7,22 +7,19 @@ CMakeFiles/Crimson.dir/main.cpp.o: /home/br4hem/Programming/Indoor_Propagation_S
   _deps/rlimgui-src/extras/IconsFontAwesome6.h \
   _deps/rlimgui-src/rlImGui.h \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Generate_Wall_Collision_Quads.hpp \
-  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Config.hpp \
-  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Doors.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Utilities.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Windows.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Ceilings.hpp \
+  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Doors.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Floors.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Transmitters.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Walls.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Cameras.hpp \
-  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Ceiling_Placing.hpp \
-  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Ceilings.hpp \
+  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Config.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Door_Placing.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Doors.hpp \
-  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Floor_Placing.hpp \
-  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Floors.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Main_Menu_Bar.hpp \
+  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Simulation_Options_Bar.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_The_Run_Simulation_Button.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Tool_Bar.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Tool_Options_Bar.hpp \
@@ -178,10 +175,18 @@ CMakeFiles/Crimson.dir/main.cpp.o: /home/br4hem/Programming/Indoor_Propagation_S
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stdarg.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stddef.h
 
-CMakeFiles/Crimson.dir/src/Cameras.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Cameras.cpp \
+CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Calculate_World_Boundaries.cpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Generate_Wall_Collision_Quads.hpp \
-  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Cameras.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Config.hpp \
+  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Doors.hpp \
+  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Utilities.hpp \
+  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Windows.hpp \
+  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Ceilings.hpp \
+  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Floors.hpp \
+  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Transmitters.hpp \
+  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Walls.hpp \
+  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Calculate_World_Boundaries.hpp \
+  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Floor_Plan.hpp \
   /usr/include/alloca.h \
   /usr/include/bits/atomic_wide_counter.h \
   /usr/include/bits/byteswap.h \
@@ -297,6 +302,116 @@ CMakeFiles/Crimson.dir/src/Cameras.cpp.o: /home/br4hem/Programming/Indoor_Propag
   /usr/include/c++/16.1.1/type_traits \
   /usr/include/c++/16.1.1/vector \
   /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++allocator.h \
+  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++config.h \
+  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/cpu_defines.h \
+  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/os_defines.h \
+  /usr/include/endian.h \
+  /usr/include/features-time64.h \
+  /usr/include/features.h \
+  /usr/include/gnu/stubs-64.h \
+  /usr/include/gnu/stubs.h \
+  /usr/include/math.h \
+  /usr/include/raylib.h \
+  /usr/include/raymath.h \
+  /usr/include/stdc-predef.h \
+  /usr/include/stdlib.h \
+  /usr/include/sys/cdefs.h \
+  /usr/include/sys/select.h \
+  /usr/include/sys/types.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stdarg.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stddef.h
+
+CMakeFiles/Crimson.dir/src/Cameras.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Cameras.cpp \
+  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Cameras.hpp \
+  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Config.hpp \
+  /usr/include/alloca.h \
+  /usr/include/bits/atomic_wide_counter.h \
+  /usr/include/bits/byteswap.h \
+  /usr/include/bits/endian.h \
+  /usr/include/bits/endianness.h \
+  /usr/include/bits/floatn-common.h \
+  /usr/include/bits/floatn.h \
+  /usr/include/bits/flt-eval-method.h \
+  /usr/include/bits/fp-fast.h \
+  /usr/include/bits/fp-logb.h \
+  /usr/include/bits/iscanonical.h \
+  /usr/include/bits/libc-header-start.h \
+  /usr/include/bits/libm-simd-decl-stubs.h \
+  /usr/include/bits/long-double.h \
+  /usr/include/bits/math-vector.h \
+  /usr/include/bits/mathcalls-helper-functions.h \
+  /usr/include/bits/mathcalls-macros.h \
+  /usr/include/bits/mathcalls-narrow.h \
+  /usr/include/bits/mathcalls.h \
+  /usr/include/bits/pthreadtypes-arch.h \
+  /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/select.h \
+  /usr/include/bits/stdint-intn.h \
+  /usr/include/bits/stdlib-float.h \
+  /usr/include/bits/struct_mutex.h \
+  /usr/include/bits/struct_rwlock.h \
+  /usr/include/bits/thread-shared-types.h \
+  /usr/include/bits/time64.h \
+  /usr/include/bits/timesize.h \
+  /usr/include/bits/types.h \
+  /usr/include/bits/types/__locale_t.h \
+  /usr/include/bits/types/__sigset_t.h \
+  /usr/include/bits/types/clock_t.h \
+  /usr/include/bits/types/clockid_t.h \
+  /usr/include/bits/types/locale_t.h \
+  /usr/include/bits/types/sigset_t.h \
+  /usr/include/bits/types/struct_timespec.h \
+  /usr/include/bits/types/struct_timeval.h \
+  /usr/include/bits/types/time_t.h \
+  /usr/include/bits/types/timer_t.h \
+  /usr/include/bits/typesizes.h \
+  /usr/include/bits/uintn-identity.h \
+  /usr/include/bits/waitflags.h \
+  /usr/include/bits/waitstatus.h \
+  /usr/include/bits/wordsize.h \
+  /usr/include/c++/16.1.1/backward/binders.h \
+  /usr/include/c++/16.1.1/bit \
+  /usr/include/c++/16.1.1/bits/concept_check.h \
+  /usr/include/c++/16.1.1/bits/cpp_type_traits.h \
+  /usr/include/c++/16.1.1/bits/exception_defines.h \
+  /usr/include/c++/16.1.1/bits/move.h \
+  /usr/include/c++/16.1.1/bits/predefined_ops.h \
+  /usr/include/c++/16.1.1/bits/ptr_traits.h \
+  /usr/include/c++/16.1.1/bits/requires_hosted.h \
+  /usr/include/c++/16.1.1/bits/specfun.h \
+  /usr/include/c++/16.1.1/bits/std_abs.h \
+  /usr/include/c++/16.1.1/bits/stdexcept_throw.h \
+  /usr/include/c++/16.1.1/bits/stdexcept_throwfwd.h \
+  /usr/include/c++/16.1.1/bits/stl_algobase.h \
+  /usr/include/c++/16.1.1/bits/stl_function.h \
+  /usr/include/c++/16.1.1/bits/stl_iterator.h \
+  /usr/include/c++/16.1.1/bits/stl_iterator_base_funcs.h \
+  /usr/include/c++/16.1.1/bits/stl_iterator_base_types.h \
+  /usr/include/c++/16.1.1/bits/stl_pair.h \
+  /usr/include/c++/16.1.1/bits/utility.h \
+  /usr/include/c++/16.1.1/bits/version.h \
+  /usr/include/c++/16.1.1/cmath \
+  /usr/include/c++/16.1.1/concepts \
+  /usr/include/c++/16.1.1/debug/assertions.h \
+  /usr/include/c++/16.1.1/debug/debug.h \
+  /usr/include/c++/16.1.1/ext/numeric_traits.h \
+  /usr/include/c++/16.1.1/ext/type_traits.h \
+  /usr/include/c++/16.1.1/limits \
+  /usr/include/c++/16.1.1/math.h \
+  /usr/include/c++/16.1.1/pstl/pstl_config.h \
+  /usr/include/c++/16.1.1/tr1/bessel_function.tcc \
+  /usr/include/c++/16.1.1/tr1/beta_function.tcc \
+  /usr/include/c++/16.1.1/tr1/ell_integral.tcc \
+  /usr/include/c++/16.1.1/tr1/exp_integral.tcc \
+  /usr/include/c++/16.1.1/tr1/gamma.tcc \
+  /usr/include/c++/16.1.1/tr1/hypergeometric.tcc \
+  /usr/include/c++/16.1.1/tr1/legendre_function.tcc \
+  /usr/include/c++/16.1.1/tr1/modified_bessel_func.tcc \
+  /usr/include/c++/16.1.1/tr1/poly_hermite.tcc \
+  /usr/include/c++/16.1.1/tr1/poly_laguerre.tcc \
+  /usr/include/c++/16.1.1/tr1/riemann_zeta.tcc \
+  /usr/include/c++/16.1.1/tr1/special_function_util.h \
+  /usr/include/c++/16.1.1/type_traits \
   /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++config.h \
   /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/cpu_defines.h \
   /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/os_defines.h \
@@ -1196,7 +1311,6 @@ CMakeFiles/Crimson.dir/src/Draw_Floors.cpp.o: /home/br4hem/Programming/Indoor_Pr
 CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Main_Menu_Bar.cpp \
   _deps/imgui-src/imconfig.h \
   _deps/imgui-src/imgui.h \
-  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Generate_Wall_Collision_Quads.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Config.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Main_Menu_Bar.hpp \
   /usr/include/assert.h \
@@ -1206,62 +1320,6 @@ CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.o: /home/br4hem/Programming/In
   /usr/include/bits/types/__locale_t.h \
   /usr/include/bits/types/locale_t.h \
   /usr/include/bits/wordsize.h \
-  /usr/include/c++/16.1.1/backward/binders.h \
-  /usr/include/c++/16.1.1/bit \
-  /usr/include/c++/16.1.1/bits/alloc_traits.h \
-  /usr/include/c++/16.1.1/bits/allocator.h \
-  /usr/include/c++/16.1.1/bits/concept_check.h \
-  /usr/include/c++/16.1.1/bits/cpp_type_traits.h \
-  /usr/include/c++/16.1.1/bits/erase_if.h \
-  /usr/include/c++/16.1.1/bits/exception.h \
-  /usr/include/c++/16.1.1/bits/exception_defines.h \
-  /usr/include/c++/16.1.1/bits/functional_hash.h \
-  /usr/include/c++/16.1.1/bits/hash_bytes.h \
-  /usr/include/c++/16.1.1/bits/invoke.h \
-  /usr/include/c++/16.1.1/bits/memory_resource.h \
-  /usr/include/c++/16.1.1/bits/memoryfwd.h \
-  /usr/include/c++/16.1.1/bits/move.h \
-  /usr/include/c++/16.1.1/bits/new_allocator.h \
-  /usr/include/c++/16.1.1/bits/new_except.h \
-  /usr/include/c++/16.1.1/bits/new_throw.h \
-  /usr/include/c++/16.1.1/bits/predefined_ops.h \
-  /usr/include/c++/16.1.1/bits/ptr_traits.h \
-  /usr/include/c++/16.1.1/bits/range_access.h \
-  /usr/include/c++/16.1.1/bits/requires_hosted.h \
-  /usr/include/c++/16.1.1/bits/stdexcept_throw.h \
-  /usr/include/c++/16.1.1/bits/stdexcept_throwfwd.h \
-  /usr/include/c++/16.1.1/bits/stl_algobase.h \
-  /usr/include/c++/16.1.1/bits/stl_bvector.h \
-  /usr/include/c++/16.1.1/bits/stl_construct.h \
-  /usr/include/c++/16.1.1/bits/stl_function.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator_base_funcs.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator_base_types.h \
-  /usr/include/c++/16.1.1/bits/stl_pair.h \
-  /usr/include/c++/16.1.1/bits/stl_uninitialized.h \
-  /usr/include/c++/16.1.1/bits/stl_vector.h \
-  /usr/include/c++/16.1.1/bits/uses_allocator.h \
-  /usr/include/c++/16.1.1/bits/uses_allocator_args.h \
-  /usr/include/c++/16.1.1/bits/utility.h \
-  /usr/include/c++/16.1.1/bits/vector.tcc \
-  /usr/include/c++/16.1.1/bits/version.h \
-  /usr/include/c++/16.1.1/concepts \
-  /usr/include/c++/16.1.1/cstddef \
-  /usr/include/c++/16.1.1/debug/assertions.h \
-  /usr/include/c++/16.1.1/debug/debug.h \
-  /usr/include/c++/16.1.1/ext/alloc_traits.h \
-  /usr/include/c++/16.1.1/ext/numeric_traits.h \
-  /usr/include/c++/16.1.1/ext/type_traits.h \
-  /usr/include/c++/16.1.1/initializer_list \
-  /usr/include/c++/16.1.1/new \
-  /usr/include/c++/16.1.1/pstl/pstl_config.h \
-  /usr/include/c++/16.1.1/tuple \
-  /usr/include/c++/16.1.1/type_traits \
-  /usr/include/c++/16.1.1/vector \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++allocator.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++config.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/cpu_defines.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/os_defines.h \
   /usr/include/features-time64.h \
   /usr/include/features.h \
   /usr/include/gnu/stubs-64.h \
@@ -1275,157 +1333,30 @@ CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.o: /home/br4hem/Programming/In
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stdarg.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stddef.h
 
+CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Simulation_Options_Bar.cpp \
+  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Simulation_Options_Bar.hpp \
+  /usr/include/raylib.h \
+  /usr/include/stdc-predef.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stdarg.h
+
 CMakeFiles/Crimson.dir/src/Draw_The_Run_Simulation_Button.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_The_Run_Simulation_Button.cpp \
-  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Generate_Wall_Collision_Quads.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Config.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_The_Run_Simulation_Button.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Run_Simulation.hpp \
-  /usr/include/bits/long-double.h \
-  /usr/include/bits/timesize.h \
-  /usr/include/bits/wordsize.h \
-  /usr/include/c++/16.1.1/backward/binders.h \
-  /usr/include/c++/16.1.1/bit \
-  /usr/include/c++/16.1.1/bits/alloc_traits.h \
-  /usr/include/c++/16.1.1/bits/allocator.h \
-  /usr/include/c++/16.1.1/bits/concept_check.h \
-  /usr/include/c++/16.1.1/bits/cpp_type_traits.h \
-  /usr/include/c++/16.1.1/bits/erase_if.h \
-  /usr/include/c++/16.1.1/bits/exception.h \
-  /usr/include/c++/16.1.1/bits/exception_defines.h \
-  /usr/include/c++/16.1.1/bits/functional_hash.h \
-  /usr/include/c++/16.1.1/bits/hash_bytes.h \
-  /usr/include/c++/16.1.1/bits/invoke.h \
-  /usr/include/c++/16.1.1/bits/memory_resource.h \
-  /usr/include/c++/16.1.1/bits/memoryfwd.h \
-  /usr/include/c++/16.1.1/bits/move.h \
-  /usr/include/c++/16.1.1/bits/new_allocator.h \
-  /usr/include/c++/16.1.1/bits/new_except.h \
-  /usr/include/c++/16.1.1/bits/new_throw.h \
-  /usr/include/c++/16.1.1/bits/predefined_ops.h \
-  /usr/include/c++/16.1.1/bits/ptr_traits.h \
-  /usr/include/c++/16.1.1/bits/range_access.h \
-  /usr/include/c++/16.1.1/bits/requires_hosted.h \
-  /usr/include/c++/16.1.1/bits/stdexcept_throw.h \
-  /usr/include/c++/16.1.1/bits/stdexcept_throwfwd.h \
-  /usr/include/c++/16.1.1/bits/stl_algobase.h \
-  /usr/include/c++/16.1.1/bits/stl_bvector.h \
-  /usr/include/c++/16.1.1/bits/stl_construct.h \
-  /usr/include/c++/16.1.1/bits/stl_function.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator_base_funcs.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator_base_types.h \
-  /usr/include/c++/16.1.1/bits/stl_pair.h \
-  /usr/include/c++/16.1.1/bits/stl_uninitialized.h \
-  /usr/include/c++/16.1.1/bits/stl_vector.h \
-  /usr/include/c++/16.1.1/bits/uses_allocator.h \
-  /usr/include/c++/16.1.1/bits/uses_allocator_args.h \
-  /usr/include/c++/16.1.1/bits/utility.h \
-  /usr/include/c++/16.1.1/bits/vector.tcc \
-  /usr/include/c++/16.1.1/bits/version.h \
-  /usr/include/c++/16.1.1/concepts \
-  /usr/include/c++/16.1.1/cstddef \
-  /usr/include/c++/16.1.1/debug/assertions.h \
-  /usr/include/c++/16.1.1/debug/debug.h \
-  /usr/include/c++/16.1.1/ext/alloc_traits.h \
-  /usr/include/c++/16.1.1/ext/numeric_traits.h \
-  /usr/include/c++/16.1.1/ext/type_traits.h \
-  /usr/include/c++/16.1.1/initializer_list \
-  /usr/include/c++/16.1.1/new \
-  /usr/include/c++/16.1.1/pstl/pstl_config.h \
-  /usr/include/c++/16.1.1/tuple \
-  /usr/include/c++/16.1.1/type_traits \
-  /usr/include/c++/16.1.1/vector \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++allocator.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++config.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/cpu_defines.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/os_defines.h \
-  /usr/include/features-time64.h \
-  /usr/include/features.h \
-  /usr/include/gnu/stubs-64.h \
-  /usr/include/gnu/stubs.h \
   /usr/include/raylib.h \
   /usr/include/stdc-predef.h \
-  /usr/include/sys/cdefs.h \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stdarg.h \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stddef.h
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stdarg.h
 
 CMakeFiles/Crimson.dir/src/Draw_Tool_Bar.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Tool_Bar.cpp \
-  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Generate_Wall_Collision_Quads.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Config.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Tool_Bar.hpp \
-  /usr/include/bits/long-double.h \
-  /usr/include/bits/timesize.h \
-  /usr/include/bits/wordsize.h \
-  /usr/include/c++/16.1.1/backward/binders.h \
-  /usr/include/c++/16.1.1/bit \
-  /usr/include/c++/16.1.1/bits/alloc_traits.h \
-  /usr/include/c++/16.1.1/bits/allocator.h \
-  /usr/include/c++/16.1.1/bits/concept_check.h \
-  /usr/include/c++/16.1.1/bits/cpp_type_traits.h \
-  /usr/include/c++/16.1.1/bits/erase_if.h \
-  /usr/include/c++/16.1.1/bits/exception.h \
-  /usr/include/c++/16.1.1/bits/exception_defines.h \
-  /usr/include/c++/16.1.1/bits/functional_hash.h \
-  /usr/include/c++/16.1.1/bits/hash_bytes.h \
-  /usr/include/c++/16.1.1/bits/invoke.h \
-  /usr/include/c++/16.1.1/bits/memory_resource.h \
-  /usr/include/c++/16.1.1/bits/memoryfwd.h \
-  /usr/include/c++/16.1.1/bits/move.h \
-  /usr/include/c++/16.1.1/bits/new_allocator.h \
-  /usr/include/c++/16.1.1/bits/new_except.h \
-  /usr/include/c++/16.1.1/bits/new_throw.h \
-  /usr/include/c++/16.1.1/bits/predefined_ops.h \
-  /usr/include/c++/16.1.1/bits/ptr_traits.h \
-  /usr/include/c++/16.1.1/bits/range_access.h \
-  /usr/include/c++/16.1.1/bits/requires_hosted.h \
-  /usr/include/c++/16.1.1/bits/stdexcept_throw.h \
-  /usr/include/c++/16.1.1/bits/stdexcept_throwfwd.h \
-  /usr/include/c++/16.1.1/bits/stl_algobase.h \
-  /usr/include/c++/16.1.1/bits/stl_bvector.h \
-  /usr/include/c++/16.1.1/bits/stl_construct.h \
-  /usr/include/c++/16.1.1/bits/stl_function.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator_base_funcs.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator_base_types.h \
-  /usr/include/c++/16.1.1/bits/stl_pair.h \
-  /usr/include/c++/16.1.1/bits/stl_uninitialized.h \
-  /usr/include/c++/16.1.1/bits/stl_vector.h \
-  /usr/include/c++/16.1.1/bits/uses_allocator.h \
-  /usr/include/c++/16.1.1/bits/uses_allocator_args.h \
-  /usr/include/c++/16.1.1/bits/utility.h \
-  /usr/include/c++/16.1.1/bits/vector.tcc \
-  /usr/include/c++/16.1.1/bits/version.h \
-  /usr/include/c++/16.1.1/concepts \
-  /usr/include/c++/16.1.1/cstddef \
-  /usr/include/c++/16.1.1/debug/assertions.h \
-  /usr/include/c++/16.1.1/debug/debug.h \
-  /usr/include/c++/16.1.1/ext/alloc_traits.h \
-  /usr/include/c++/16.1.1/ext/numeric_traits.h \
-  /usr/include/c++/16.1.1/ext/type_traits.h \
-  /usr/include/c++/16.1.1/initializer_list \
-  /usr/include/c++/16.1.1/new \
-  /usr/include/c++/16.1.1/pstl/pstl_config.h \
-  /usr/include/c++/16.1.1/tuple \
-  /usr/include/c++/16.1.1/type_traits \
-  /usr/include/c++/16.1.1/vector \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++allocator.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++config.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/cpu_defines.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/os_defines.h \
-  /usr/include/features-time64.h \
-  /usr/include/features.h \
-  /usr/include/gnu/stubs-64.h \
-  /usr/include/gnu/stubs.h \
   /usr/include/raylib.h \
   /usr/include/stdc-predef.h \
-  /usr/include/sys/cdefs.h \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stdarg.h \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stddef.h
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stdarg.h
 
 CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Tool_Options_Bar.cpp \
   _deps/imgui-src/imconfig.h \
   _deps/imgui-src/imgui.h \
-  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Generate_Wall_Collision_Quads.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Config.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Tool_Options_Bar.hpp \
   /usr/include/assert.h \
@@ -1435,62 +1366,6 @@ CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o: /home/br4hem/Programming
   /usr/include/bits/types/__locale_t.h \
   /usr/include/bits/types/locale_t.h \
   /usr/include/bits/wordsize.h \
-  /usr/include/c++/16.1.1/backward/binders.h \
-  /usr/include/c++/16.1.1/bit \
-  /usr/include/c++/16.1.1/bits/alloc_traits.h \
-  /usr/include/c++/16.1.1/bits/allocator.h \
-  /usr/include/c++/16.1.1/bits/concept_check.h \
-  /usr/include/c++/16.1.1/bits/cpp_type_traits.h \
-  /usr/include/c++/16.1.1/bits/erase_if.h \
-  /usr/include/c++/16.1.1/bits/exception.h \
-  /usr/include/c++/16.1.1/bits/exception_defines.h \
-  /usr/include/c++/16.1.1/bits/functional_hash.h \
-  /usr/include/c++/16.1.1/bits/hash_bytes.h \
-  /usr/include/c++/16.1.1/bits/invoke.h \
-  /usr/include/c++/16.1.1/bits/memory_resource.h \
-  /usr/include/c++/16.1.1/bits/memoryfwd.h \
-  /usr/include/c++/16.1.1/bits/move.h \
-  /usr/include/c++/16.1.1/bits/new_allocator.h \
-  /usr/include/c++/16.1.1/bits/new_except.h \
-  /usr/include/c++/16.1.1/bits/new_throw.h \
-  /usr/include/c++/16.1.1/bits/predefined_ops.h \
-  /usr/include/c++/16.1.1/bits/ptr_traits.h \
-  /usr/include/c++/16.1.1/bits/range_access.h \
-  /usr/include/c++/16.1.1/bits/requires_hosted.h \
-  /usr/include/c++/16.1.1/bits/stdexcept_throw.h \
-  /usr/include/c++/16.1.1/bits/stdexcept_throwfwd.h \
-  /usr/include/c++/16.1.1/bits/stl_algobase.h \
-  /usr/include/c++/16.1.1/bits/stl_bvector.h \
-  /usr/include/c++/16.1.1/bits/stl_construct.h \
-  /usr/include/c++/16.1.1/bits/stl_function.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator_base_funcs.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator_base_types.h \
-  /usr/include/c++/16.1.1/bits/stl_pair.h \
-  /usr/include/c++/16.1.1/bits/stl_uninitialized.h \
-  /usr/include/c++/16.1.1/bits/stl_vector.h \
-  /usr/include/c++/16.1.1/bits/uses_allocator.h \
-  /usr/include/c++/16.1.1/bits/uses_allocator_args.h \
-  /usr/include/c++/16.1.1/bits/utility.h \
-  /usr/include/c++/16.1.1/bits/vector.tcc \
-  /usr/include/c++/16.1.1/bits/version.h \
-  /usr/include/c++/16.1.1/concepts \
-  /usr/include/c++/16.1.1/cstddef \
-  /usr/include/c++/16.1.1/debug/assertions.h \
-  /usr/include/c++/16.1.1/debug/debug.h \
-  /usr/include/c++/16.1.1/ext/alloc_traits.h \
-  /usr/include/c++/16.1.1/ext/numeric_traits.h \
-  /usr/include/c++/16.1.1/ext/type_traits.h \
-  /usr/include/c++/16.1.1/initializer_list \
-  /usr/include/c++/16.1.1/new \
-  /usr/include/c++/16.1.1/pstl/pstl_config.h \
-  /usr/include/c++/16.1.1/tuple \
-  /usr/include/c++/16.1.1/type_traits \
-  /usr/include/c++/16.1.1/vector \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++allocator.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++config.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/cpu_defines.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/os_defines.h \
   /usr/include/features-time64.h \
   /usr/include/features.h \
   /usr/include/gnu/stubs-64.h \
@@ -1797,6 +1672,7 @@ CMakeFiles/Crimson.dir/src/Draw_Transmitter_Placing.cpp.o: /home/br4hem/Programm
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stddef.h
 
 CMakeFiles/Crimson.dir/src/Draw_Wall_Collision_Quads_Debug.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Wall_Collision_Quads_Debug.cpp \
+  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Config.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Generate_Wall_Collision_Quads.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Wall_Collision_Quads_Debug.hpp \
   /usr/include/bits/long-double.h \
@@ -2618,11 +2494,11 @@ CMakeFiles/Crimson.dir/src/Generate_Visibility_Polygon.cpp.o: /home/br4hem/Progr
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stddef.h
 
 CMakeFiles/Crimson.dir/src/Generate_Wall_Collision_Quads.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Generate_Wall_Collision_Quads.cpp \
-  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Config.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Doors.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Utilities.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Windows.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Ceilings.hpp \
+  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Config.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Floors.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Transmitters.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Walls.hpp \
@@ -2773,7 +2649,6 @@ CMakeFiles/Crimson.dir/src/Generate_Wall_Collision_Quads.cpp.o: /home/br4hem/Pro
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stddef.h
 
 CMakeFiles/Crimson.dir/src/Grid.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Grid.cpp \
-  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Generate_Wall_Collision_Quads.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Config.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Grid.hpp \
   /usr/include/alloca.h \
@@ -2823,57 +2698,33 @@ CMakeFiles/Crimson.dir/src/Grid.cpp.o: /home/br4hem/Programming/Indoor_Propagati
   /usr/include/bits/wordsize.h \
   /usr/include/c++/16.1.1/backward/binders.h \
   /usr/include/c++/16.1.1/bit \
-  /usr/include/c++/16.1.1/bits/alloc_traits.h \
-  /usr/include/c++/16.1.1/bits/allocator.h \
   /usr/include/c++/16.1.1/bits/concept_check.h \
   /usr/include/c++/16.1.1/bits/cpp_type_traits.h \
-  /usr/include/c++/16.1.1/bits/erase_if.h \
-  /usr/include/c++/16.1.1/bits/exception.h \
   /usr/include/c++/16.1.1/bits/exception_defines.h \
-  /usr/include/c++/16.1.1/bits/functional_hash.h \
-  /usr/include/c++/16.1.1/bits/hash_bytes.h \
-  /usr/include/c++/16.1.1/bits/invoke.h \
-  /usr/include/c++/16.1.1/bits/memory_resource.h \
-  /usr/include/c++/16.1.1/bits/memoryfwd.h \
   /usr/include/c++/16.1.1/bits/move.h \
-  /usr/include/c++/16.1.1/bits/new_allocator.h \
-  /usr/include/c++/16.1.1/bits/new_except.h \
-  /usr/include/c++/16.1.1/bits/new_throw.h \
   /usr/include/c++/16.1.1/bits/predefined_ops.h \
   /usr/include/c++/16.1.1/bits/ptr_traits.h \
-  /usr/include/c++/16.1.1/bits/range_access.h \
   /usr/include/c++/16.1.1/bits/requires_hosted.h \
   /usr/include/c++/16.1.1/bits/specfun.h \
   /usr/include/c++/16.1.1/bits/std_abs.h \
   /usr/include/c++/16.1.1/bits/stdexcept_throw.h \
   /usr/include/c++/16.1.1/bits/stdexcept_throwfwd.h \
   /usr/include/c++/16.1.1/bits/stl_algobase.h \
-  /usr/include/c++/16.1.1/bits/stl_bvector.h \
-  /usr/include/c++/16.1.1/bits/stl_construct.h \
   /usr/include/c++/16.1.1/bits/stl_function.h \
   /usr/include/c++/16.1.1/bits/stl_iterator.h \
   /usr/include/c++/16.1.1/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/16.1.1/bits/stl_iterator_base_types.h \
   /usr/include/c++/16.1.1/bits/stl_pair.h \
-  /usr/include/c++/16.1.1/bits/stl_uninitialized.h \
-  /usr/include/c++/16.1.1/bits/stl_vector.h \
-  /usr/include/c++/16.1.1/bits/uses_allocator.h \
-  /usr/include/c++/16.1.1/bits/uses_allocator_args.h \
   /usr/include/c++/16.1.1/bits/utility.h \
-  /usr/include/c++/16.1.1/bits/vector.tcc \
   /usr/include/c++/16.1.1/bits/version.h \
   /usr/include/c++/16.1.1/cmath \
   /usr/include/c++/16.1.1/concepts \
-  /usr/include/c++/16.1.1/cstddef \
   /usr/include/c++/16.1.1/debug/assertions.h \
   /usr/include/c++/16.1.1/debug/debug.h \
-  /usr/include/c++/16.1.1/ext/alloc_traits.h \
   /usr/include/c++/16.1.1/ext/numeric_traits.h \
   /usr/include/c++/16.1.1/ext/type_traits.h \
-  /usr/include/c++/16.1.1/initializer_list \
   /usr/include/c++/16.1.1/limits \
   /usr/include/c++/16.1.1/math.h \
-  /usr/include/c++/16.1.1/new \
   /usr/include/c++/16.1.1/pstl/pstl_config.h \
   /usr/include/c++/16.1.1/tr1/bessel_function.tcc \
   /usr/include/c++/16.1.1/tr1/beta_function.tcc \
@@ -2887,10 +2738,7 @@ CMakeFiles/Crimson.dir/src/Grid.cpp.o: /home/br4hem/Programming/Indoor_Propagati
   /usr/include/c++/16.1.1/tr1/poly_laguerre.tcc \
   /usr/include/c++/16.1.1/tr1/riemann_zeta.tcc \
   /usr/include/c++/16.1.1/tr1/special_function_util.h \
-  /usr/include/c++/16.1.1/tuple \
   /usr/include/c++/16.1.1/type_traits \
-  /usr/include/c++/16.1.1/vector \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++allocator.h \
   /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++config.h \
   /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/cpu_defines.h \
   /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/os_defines.h \
@@ -2911,87 +2759,22 @@ CMakeFiles/Crimson.dir/src/Grid.cpp.o: /home/br4hem/Programming/Indoor_Propagati
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stddef.h
 
 CMakeFiles/Crimson.dir/src/Load_Resources.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Load_Resources.cpp \
-  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Generate_Wall_Collision_Quads.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Config.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Load_Resources.hpp \
-  /usr/include/bits/long-double.h \
-  /usr/include/bits/timesize.h \
-  /usr/include/bits/wordsize.h \
-  /usr/include/c++/16.1.1/backward/binders.h \
-  /usr/include/c++/16.1.1/bit \
-  /usr/include/c++/16.1.1/bits/alloc_traits.h \
-  /usr/include/c++/16.1.1/bits/allocator.h \
-  /usr/include/c++/16.1.1/bits/concept_check.h \
-  /usr/include/c++/16.1.1/bits/cpp_type_traits.h \
-  /usr/include/c++/16.1.1/bits/erase_if.h \
-  /usr/include/c++/16.1.1/bits/exception.h \
-  /usr/include/c++/16.1.1/bits/exception_defines.h \
-  /usr/include/c++/16.1.1/bits/functional_hash.h \
-  /usr/include/c++/16.1.1/bits/hash_bytes.h \
-  /usr/include/c++/16.1.1/bits/invoke.h \
-  /usr/include/c++/16.1.1/bits/memory_resource.h \
-  /usr/include/c++/16.1.1/bits/memoryfwd.h \
-  /usr/include/c++/16.1.1/bits/move.h \
-  /usr/include/c++/16.1.1/bits/new_allocator.h \
-  /usr/include/c++/16.1.1/bits/new_except.h \
-  /usr/include/c++/16.1.1/bits/new_throw.h \
-  /usr/include/c++/16.1.1/bits/predefined_ops.h \
-  /usr/include/c++/16.1.1/bits/ptr_traits.h \
-  /usr/include/c++/16.1.1/bits/range_access.h \
-  /usr/include/c++/16.1.1/bits/requires_hosted.h \
-  /usr/include/c++/16.1.1/bits/stdexcept_throw.h \
-  /usr/include/c++/16.1.1/bits/stdexcept_throwfwd.h \
-  /usr/include/c++/16.1.1/bits/stl_algobase.h \
-  /usr/include/c++/16.1.1/bits/stl_bvector.h \
-  /usr/include/c++/16.1.1/bits/stl_construct.h \
-  /usr/include/c++/16.1.1/bits/stl_function.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator_base_funcs.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator_base_types.h \
-  /usr/include/c++/16.1.1/bits/stl_pair.h \
-  /usr/include/c++/16.1.1/bits/stl_uninitialized.h \
-  /usr/include/c++/16.1.1/bits/stl_vector.h \
-  /usr/include/c++/16.1.1/bits/uses_allocator.h \
-  /usr/include/c++/16.1.1/bits/uses_allocator_args.h \
-  /usr/include/c++/16.1.1/bits/utility.h \
-  /usr/include/c++/16.1.1/bits/vector.tcc \
-  /usr/include/c++/16.1.1/bits/version.h \
-  /usr/include/c++/16.1.1/concepts \
-  /usr/include/c++/16.1.1/cstddef \
-  /usr/include/c++/16.1.1/debug/assertions.h \
-  /usr/include/c++/16.1.1/debug/debug.h \
-  /usr/include/c++/16.1.1/ext/alloc_traits.h \
-  /usr/include/c++/16.1.1/ext/numeric_traits.h \
-  /usr/include/c++/16.1.1/ext/type_traits.h \
-  /usr/include/c++/16.1.1/initializer_list \
-  /usr/include/c++/16.1.1/new \
-  /usr/include/c++/16.1.1/pstl/pstl_config.h \
-  /usr/include/c++/16.1.1/tuple \
-  /usr/include/c++/16.1.1/type_traits \
-  /usr/include/c++/16.1.1/vector \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++allocator.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++config.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/cpu_defines.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/os_defines.h \
-  /usr/include/features-time64.h \
-  /usr/include/features.h \
-  /usr/include/gnu/stubs-64.h \
-  /usr/include/gnu/stubs.h \
   /usr/include/raylib.h \
   /usr/include/stdc-predef.h \
-  /usr/include/sys/cdefs.h \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stdarg.h \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stddef.h
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stdarg.h
 
 CMakeFiles/Crimson.dir/src/Run_Simulation.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Run_Simulation.cpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Doors.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Utilities.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Windows.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Ceilings.hpp \
+  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Config.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Floors.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Transmitters.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Walls.hpp \
-  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Config.hpp \
+  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Calculate_World_Boundaries.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Floor_Plan.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Generate_Visibility_Polygon.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Generate_Wall_Collision_Quads.hpp \
@@ -3122,6 +2905,7 @@ CMakeFiles/Crimson.dir/src/Run_Simulation.cpp.o: /home/br4hem/Programming/Indoor
   /usr/include/math.h \
   /usr/include/raylib.h \
   /usr/include/raymath.h \
+  /usr/include/rlgl.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdlib.h \
   /usr/include/sys/cdefs.h \
@@ -3131,81 +2915,15 @@ CMakeFiles/Crimson.dir/src/Run_Simulation.cpp.o: /home/br4hem/Programming/Indoor
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stddef.h
 
 CMakeFiles/Crimson.dir/src/Unload_Resources.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Unload_Resources.cpp \
-  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Generate_Wall_Collision_Quads.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Config.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Unload_Resources.hpp \
-  /usr/include/bits/long-double.h \
-  /usr/include/bits/timesize.h \
-  /usr/include/bits/wordsize.h \
-  /usr/include/c++/16.1.1/backward/binders.h \
-  /usr/include/c++/16.1.1/bit \
-  /usr/include/c++/16.1.1/bits/alloc_traits.h \
-  /usr/include/c++/16.1.1/bits/allocator.h \
-  /usr/include/c++/16.1.1/bits/concept_check.h \
-  /usr/include/c++/16.1.1/bits/cpp_type_traits.h \
-  /usr/include/c++/16.1.1/bits/erase_if.h \
-  /usr/include/c++/16.1.1/bits/exception.h \
-  /usr/include/c++/16.1.1/bits/exception_defines.h \
-  /usr/include/c++/16.1.1/bits/functional_hash.h \
-  /usr/include/c++/16.1.1/bits/hash_bytes.h \
-  /usr/include/c++/16.1.1/bits/invoke.h \
-  /usr/include/c++/16.1.1/bits/memory_resource.h \
-  /usr/include/c++/16.1.1/bits/memoryfwd.h \
-  /usr/include/c++/16.1.1/bits/move.h \
-  /usr/include/c++/16.1.1/bits/new_allocator.h \
-  /usr/include/c++/16.1.1/bits/new_except.h \
-  /usr/include/c++/16.1.1/bits/new_throw.h \
-  /usr/include/c++/16.1.1/bits/predefined_ops.h \
-  /usr/include/c++/16.1.1/bits/ptr_traits.h \
-  /usr/include/c++/16.1.1/bits/range_access.h \
-  /usr/include/c++/16.1.1/bits/requires_hosted.h \
-  /usr/include/c++/16.1.1/bits/stdexcept_throw.h \
-  /usr/include/c++/16.1.1/bits/stdexcept_throwfwd.h \
-  /usr/include/c++/16.1.1/bits/stl_algobase.h \
-  /usr/include/c++/16.1.1/bits/stl_bvector.h \
-  /usr/include/c++/16.1.1/bits/stl_construct.h \
-  /usr/include/c++/16.1.1/bits/stl_function.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator_base_funcs.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator_base_types.h \
-  /usr/include/c++/16.1.1/bits/stl_pair.h \
-  /usr/include/c++/16.1.1/bits/stl_uninitialized.h \
-  /usr/include/c++/16.1.1/bits/stl_vector.h \
-  /usr/include/c++/16.1.1/bits/uses_allocator.h \
-  /usr/include/c++/16.1.1/bits/uses_allocator_args.h \
-  /usr/include/c++/16.1.1/bits/utility.h \
-  /usr/include/c++/16.1.1/bits/vector.tcc \
-  /usr/include/c++/16.1.1/bits/version.h \
-  /usr/include/c++/16.1.1/concepts \
-  /usr/include/c++/16.1.1/cstddef \
-  /usr/include/c++/16.1.1/debug/assertions.h \
-  /usr/include/c++/16.1.1/debug/debug.h \
-  /usr/include/c++/16.1.1/ext/alloc_traits.h \
-  /usr/include/c++/16.1.1/ext/numeric_traits.h \
-  /usr/include/c++/16.1.1/ext/type_traits.h \
-  /usr/include/c++/16.1.1/initializer_list \
-  /usr/include/c++/16.1.1/new \
-  /usr/include/c++/16.1.1/pstl/pstl_config.h \
-  /usr/include/c++/16.1.1/tuple \
-  /usr/include/c++/16.1.1/type_traits \
-  /usr/include/c++/16.1.1/vector \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++allocator.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++config.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/cpu_defines.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/os_defines.h \
-  /usr/include/features-time64.h \
-  /usr/include/features.h \
-  /usr/include/gnu/stubs-64.h \
-  /usr/include/gnu/stubs.h \
   /usr/include/raylib.h \
   /usr/include/stdc-predef.h \
-  /usr/include/sys/cdefs.h \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stdarg.h \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stddef.h
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stdarg.h
 
 CMakeFiles/Crimson.dir/src/Utilities.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Utilities.cpp \
-  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Generate_Wall_Collision_Quads.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Config.hpp \
+  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Generate_Wall_Collision_Quads.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Utilities.hpp \
   /usr/include/alloca.h \
   /usr/include/bits/atomic_wide_counter.h \
@@ -3351,151 +3069,19 @@ CMakeFiles/Crimson.dir/src/Utilities.cpp.o: /home/br4hem/Programming/Indoor_Prop
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stddef.h
 
 CMakeFiles/Crimson.dir/src/View_or_Hide_With_Shortcuts.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/View_or_Hide_With_Shortcuts.cpp \
-  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Generate_Wall_Collision_Quads.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Config.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/View_or_Hide_With_Shortcuts.hpp \
-  /usr/include/bits/long-double.h \
-  /usr/include/bits/timesize.h \
-  /usr/include/bits/wordsize.h \
-  /usr/include/c++/16.1.1/backward/binders.h \
-  /usr/include/c++/16.1.1/bit \
-  /usr/include/c++/16.1.1/bits/alloc_traits.h \
-  /usr/include/c++/16.1.1/bits/allocator.h \
-  /usr/include/c++/16.1.1/bits/concept_check.h \
-  /usr/include/c++/16.1.1/bits/cpp_type_traits.h \
-  /usr/include/c++/16.1.1/bits/erase_if.h \
-  /usr/include/c++/16.1.1/bits/exception.h \
-  /usr/include/c++/16.1.1/bits/exception_defines.h \
-  /usr/include/c++/16.1.1/bits/functional_hash.h \
-  /usr/include/c++/16.1.1/bits/hash_bytes.h \
-  /usr/include/c++/16.1.1/bits/invoke.h \
-  /usr/include/c++/16.1.1/bits/memory_resource.h \
-  /usr/include/c++/16.1.1/bits/memoryfwd.h \
-  /usr/include/c++/16.1.1/bits/move.h \
-  /usr/include/c++/16.1.1/bits/new_allocator.h \
-  /usr/include/c++/16.1.1/bits/new_except.h \
-  /usr/include/c++/16.1.1/bits/new_throw.h \
-  /usr/include/c++/16.1.1/bits/predefined_ops.h \
-  /usr/include/c++/16.1.1/bits/ptr_traits.h \
-  /usr/include/c++/16.1.1/bits/range_access.h \
-  /usr/include/c++/16.1.1/bits/requires_hosted.h \
-  /usr/include/c++/16.1.1/bits/stdexcept_throw.h \
-  /usr/include/c++/16.1.1/bits/stdexcept_throwfwd.h \
-  /usr/include/c++/16.1.1/bits/stl_algobase.h \
-  /usr/include/c++/16.1.1/bits/stl_bvector.h \
-  /usr/include/c++/16.1.1/bits/stl_construct.h \
-  /usr/include/c++/16.1.1/bits/stl_function.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator_base_funcs.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator_base_types.h \
-  /usr/include/c++/16.1.1/bits/stl_pair.h \
-  /usr/include/c++/16.1.1/bits/stl_uninitialized.h \
-  /usr/include/c++/16.1.1/bits/stl_vector.h \
-  /usr/include/c++/16.1.1/bits/uses_allocator.h \
-  /usr/include/c++/16.1.1/bits/uses_allocator_args.h \
-  /usr/include/c++/16.1.1/bits/utility.h \
-  /usr/include/c++/16.1.1/bits/vector.tcc \
-  /usr/include/c++/16.1.1/bits/version.h \
-  /usr/include/c++/16.1.1/concepts \
-  /usr/include/c++/16.1.1/cstddef \
-  /usr/include/c++/16.1.1/debug/assertions.h \
-  /usr/include/c++/16.1.1/debug/debug.h \
-  /usr/include/c++/16.1.1/ext/alloc_traits.h \
-  /usr/include/c++/16.1.1/ext/numeric_traits.h \
-  /usr/include/c++/16.1.1/ext/type_traits.h \
-  /usr/include/c++/16.1.1/initializer_list \
-  /usr/include/c++/16.1.1/new \
-  /usr/include/c++/16.1.1/pstl/pstl_config.h \
-  /usr/include/c++/16.1.1/tuple \
-  /usr/include/c++/16.1.1/type_traits \
-  /usr/include/c++/16.1.1/vector \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++allocator.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++config.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/cpu_defines.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/os_defines.h \
-  /usr/include/features-time64.h \
-  /usr/include/features.h \
-  /usr/include/gnu/stubs-64.h \
-  /usr/include/gnu/stubs.h \
   /usr/include/raylib.h \
   /usr/include/stdc-predef.h \
-  /usr/include/sys/cdefs.h \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stdarg.h \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stddef.h
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stdarg.h
 
 CMakeFiles/Crimson.dir/src/Viewport_Gizmo.cpp.o: /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Viewport_Gizmo.cpp \
-  /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Generate_Wall_Collision_Quads.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Cameras.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Config.hpp \
   /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Viewport_Gizmo.hpp \
-  /usr/include/bits/long-double.h \
-  /usr/include/bits/timesize.h \
-  /usr/include/bits/wordsize.h \
-  /usr/include/c++/16.1.1/backward/binders.h \
-  /usr/include/c++/16.1.1/bit \
-  /usr/include/c++/16.1.1/bits/alloc_traits.h \
-  /usr/include/c++/16.1.1/bits/allocator.h \
-  /usr/include/c++/16.1.1/bits/concept_check.h \
-  /usr/include/c++/16.1.1/bits/cpp_type_traits.h \
-  /usr/include/c++/16.1.1/bits/erase_if.h \
-  /usr/include/c++/16.1.1/bits/exception.h \
-  /usr/include/c++/16.1.1/bits/exception_defines.h \
-  /usr/include/c++/16.1.1/bits/functional_hash.h \
-  /usr/include/c++/16.1.1/bits/hash_bytes.h \
-  /usr/include/c++/16.1.1/bits/invoke.h \
-  /usr/include/c++/16.1.1/bits/memory_resource.h \
-  /usr/include/c++/16.1.1/bits/memoryfwd.h \
-  /usr/include/c++/16.1.1/bits/move.h \
-  /usr/include/c++/16.1.1/bits/new_allocator.h \
-  /usr/include/c++/16.1.1/bits/new_except.h \
-  /usr/include/c++/16.1.1/bits/new_throw.h \
-  /usr/include/c++/16.1.1/bits/predefined_ops.h \
-  /usr/include/c++/16.1.1/bits/ptr_traits.h \
-  /usr/include/c++/16.1.1/bits/range_access.h \
-  /usr/include/c++/16.1.1/bits/requires_hosted.h \
-  /usr/include/c++/16.1.1/bits/stdexcept_throw.h \
-  /usr/include/c++/16.1.1/bits/stdexcept_throwfwd.h \
-  /usr/include/c++/16.1.1/bits/stl_algobase.h \
-  /usr/include/c++/16.1.1/bits/stl_bvector.h \
-  /usr/include/c++/16.1.1/bits/stl_construct.h \
-  /usr/include/c++/16.1.1/bits/stl_function.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator_base_funcs.h \
-  /usr/include/c++/16.1.1/bits/stl_iterator_base_types.h \
-  /usr/include/c++/16.1.1/bits/stl_pair.h \
-  /usr/include/c++/16.1.1/bits/stl_uninitialized.h \
-  /usr/include/c++/16.1.1/bits/stl_vector.h \
-  /usr/include/c++/16.1.1/bits/uses_allocator.h \
-  /usr/include/c++/16.1.1/bits/uses_allocator_args.h \
-  /usr/include/c++/16.1.1/bits/utility.h \
-  /usr/include/c++/16.1.1/bits/vector.tcc \
-  /usr/include/c++/16.1.1/bits/version.h \
-  /usr/include/c++/16.1.1/concepts \
-  /usr/include/c++/16.1.1/cstddef \
-  /usr/include/c++/16.1.1/debug/assertions.h \
-  /usr/include/c++/16.1.1/debug/debug.h \
-  /usr/include/c++/16.1.1/ext/alloc_traits.h \
-  /usr/include/c++/16.1.1/ext/numeric_traits.h \
-  /usr/include/c++/16.1.1/ext/type_traits.h \
-  /usr/include/c++/16.1.1/initializer_list \
-  /usr/include/c++/16.1.1/new \
-  /usr/include/c++/16.1.1/pstl/pstl_config.h \
-  /usr/include/c++/16.1.1/tuple \
-  /usr/include/c++/16.1.1/type_traits \
-  /usr/include/c++/16.1.1/vector \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++allocator.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++config.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/cpu_defines.h \
-  /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/os_defines.h \
-  /usr/include/features-time64.h \
-  /usr/include/features.h \
-  /usr/include/gnu/stubs-64.h \
-  /usr/include/gnu/stubs.h \
   /usr/include/raylib.h \
   /usr/include/stdc-predef.h \
-  /usr/include/sys/cdefs.h \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stdarg.h \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stddef.h
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stdarg.h
 
 Crimson: /usr/lib/Scrt1.o \
   /usr/lib/crti.o \
@@ -3525,6 +3111,7 @@ Crimson: /usr/lib/Scrt1.o \
   /usr/lib32/libXdmcp.so.6 \
   /usr/lib32/libxcb.so.1 \
   CMakeFiles/Crimson.dir/main.cpp.o \
+  CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.o \
   CMakeFiles/Crimson.dir/src/Cameras.cpp.o \
   CMakeFiles/Crimson.dir/src/Draw_Ceiling_Placing.cpp.o \
   CMakeFiles/Crimson.dir/src/Draw_Ceilings.cpp.o \
@@ -3533,6 +3120,7 @@ Crimson: /usr/lib/Scrt1.o \
   CMakeFiles/Crimson.dir/src/Draw_Floor_Placing.cpp.o \
   CMakeFiles/Crimson.dir/src/Draw_Floors.cpp.o \
   CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.o \
+  CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.o \
   CMakeFiles/Crimson.dir/src/Draw_The_Run_Simulation_Button.cpp.o \
   CMakeFiles/Crimson.dir/src/Draw_Tool_Bar.cpp.o \
   CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o \
@@ -3574,6 +3162,26 @@ CMakeFiles/Crimson.dir/src/Draw_Window_Placing.cpp.o:
 
 CMakeFiles/Crimson.dir/src/Draw_Walls.cpp.o:
 
+CMakeFiles/Crimson.dir/src/Draw_Wall_Placing.cpp.o:
+
+CMakeFiles/Crimson.dir/src/Draw_Wall_Collision_Quads_Debug.cpp.o:
+
+CMakeFiles/Crimson.dir/src/Draw_Transmitter_Placing.cpp.o:
+
+CMakeFiles/Crimson.dir/src/Draw_Transmitter.cpp.o:
+
+CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o:
+
+CMakeFiles/Crimson.dir/src/Draw_Tool_Bar.cpp.o:
+
+/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Ceiling_Placing.cpp:
+
+/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Generate_Wall_Collision_Quads.cpp:
+
+CMakeFiles/Crimson.dir/src/Draw_Floor_Placing.cpp.o:
+
+/usr/include/c++/16.1.1/cstddef:
+
 /usr/include/c++/16.1.1/bits/version.h:
 
 /usr/include/c++/16.1.1/bits/stl_construct.h:
@@ -3585,6 +3193,10 @@ CMakeFiles/Crimson.dir/src/Draw_Walls.cpp.o:
 /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Cameras.cpp:
 
 /usr/include/c++/16.1.1/cstdlib:
+
+/usr/include/c++/16.1.1/debug/assertions.h:
+
+/usr/include/c++/16.1.1/bits/specfun.h:
 
 /usr/include/c++/16.1.1/bits/range_access.h:
 
@@ -3642,15 +3254,39 @@ CMakeFiles/Crimson.dir/src/Draw_Walls.cpp.o:
 
 /usr/include/bits/thread-shared-types.h:
 
-/usr/include/c++/16.1.1/bit:
+/usr/include/c++/16.1.1/bits/stl_iterator_base_funcs.h:
 
-/usr/include/bits/types/clockid_t.h:
+/usr/include/bits/uintn-identity.h:
 
-/usr/include/bits/stdint-intn.h:
+/usr/include/bits/typesizes.h:
 
-/usr/include/c++/16.1.1/vector:
+/usr/include/c++/16.1.1/bits/stl_bvector.h:
+
+/usr/lib/crti.o:
+
+/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Windows.hpp:
+
+/usr/include/bits/types/clock_t.h:
+
+/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Wall_Placing.hpp:
+
+/usr/include/bits/mathcalls.h:
+
+/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Doors.hpp:
+
+/usr/include/features-time64.h:
+
+/usr/include/bits/flt-eval-method.h:
+
+/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Transmitters.hpp:
+
+/usr/lib/libm.so.6:
 
 /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Transmitter_Placing.hpp:
+
+/usr/include/bits/struct_mutex.h:
+
+/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Tool_Options_Bar.hpp:
 
 /usr/include/bits/waitflags.h:
 
@@ -3661,12 +3297,6 @@ CMakeFiles/Crimson.dir/src/Draw_Walls.cpp.o:
 /usr/include/features.h:
 
 /usr/lib/libatomic.so:
-
-/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Transmitters.hpp:
-
-/usr/lib/libm.so.6:
-
-/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Floors.hpp:
 
 /usr/include/bits/types/sigset_t.h:
 
@@ -3682,45 +3312,29 @@ CMakeFiles/Crimson.dir/src/Draw_Walls.cpp.o:
 
 /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Generate_Wall_Collision_Quads.hpp:
 
-/usr/include/bits/struct_mutex.h:
+/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Simulation_Options_Bar.hpp:
 
-/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Tool_Options_Bar.hpp:
+/usr/include/c++/16.1.1/bits/stl_iterator_base_types.h:
 
-/usr/include/c++/16.1.1/debug/debug.h:
-
-/usr/include/c++/16.1.1/tr1/modified_bessel_func.tcc:
-
-CMakeFiles/Crimson.dir/src/Run_Simulation.cpp.o:
-
-/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Floors.hpp:
-
-/usr/include/c++/16.1.1/bits/functional_hash.h:
-
-/usr/include/bits/floatn.h:
-
-CMakeFiles/Crimson.dir/src/Viewport_Gizmo.cpp.o:
-
-/usr/include/bits/select.h:
-
-/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Cameras.hpp:
-
-_deps/imgui-src/imgui.h:
-
-/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Transmitters.hpp:
-
-/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Wall_Placing.cpp:
+/usr/lib/libc.so.6:
 
 /usr/include/c++/16.1.1/bits/uses_allocator_args.h:
 
 /usr/include/bits/fp-fast.h:
 
-/usr/include/bits/types/locale_t.h:
+_deps/imgui-src/imgui.h:
 
-/usr/include/bits/types/struct_timespec.h:
+/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Transmitters.hpp:
 
-_deps/imgui-src/imconfig.h:
+/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Cameras.hpp:
 
-/usr/include/bits/libc-header-start.h:
+/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Wall_Placing.cpp:
+
+/usr/include/c++/16.1.1/bit:
+
+/usr/include/bits/types/clockid_t.h:
+
+/usr/include/bits/stdint-intn.h:
 
 /usr/include/bits/types.h:
 
@@ -3740,39 +3354,23 @@ CMakeFiles/Crimson.dir/src/Draw_Ceiling_Placing.cpp.o:
 
 /home/br4hem/Programming/Indoor_Propagation_Simulator/src/View_or_Hide_With_Shortcuts.cpp:
 
-/usr/include/c++/16.1.1/bits/stdexcept_throw.h:
-
-/usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/cpu_defines.h:
-
-/usr/include/bits/iscanonical.h:
+/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Config.hpp:
 
 _deps/rlimgui-src/rlImGui.h:
 
 /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Unload_Resources.cpp:
 
-/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Config.hpp:
-
-/usr/include/c++/16.1.1/bits/new_except.h:
+/usr/include/c++/16.1.1/bits/stdexcept_throw.h:
 
 /usr/include/c++/16.1.1/bits/alloc_traits.h:
 
-/usr/include/bits/types/clock_t.h:
+/usr/include/c++/16.1.1/bits/new_except.h:
 
-/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Wall_Placing.hpp:
+/usr/include/bits/floatn.h:
 
-/usr/include/bits/mathcalls.h:
+/usr/include/bits/iscanonical.h:
 
-/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Doors.hpp:
-
-/usr/include/features-time64.h:
-
-/usr/include/bits/flt-eval-method.h:
-
-/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Ceilings.hpp:
-
-/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Generate_Visibility_Polygon.hpp:
-
-/usr/include/bits/floatn-common.h:
+/usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/cpu_defines.h:
 
 /usr/include/c++/16.1.1/tr1/ell_integral.tcc:
 
@@ -3782,17 +3380,21 @@ _deps/rlimgui-src/rlImGui.h:
 
 /usr/include/bits/mathcalls-narrow.h:
 
-/usr/include/c++/16.1.1/bits/stl_iterator_base_funcs.h:
+CMakeFiles/Crimson.dir/src/Calculate_World_Boundaries.cpp.o:
 
-/usr/include/bits/uintn-identity.h:
+/usr/include/bits/libc-header-start.h:
 
-/usr/include/bits/typesizes.h:
+CMakeFiles/Crimson.dir/src/Run_Simulation.cpp.o:
 
-/usr/include/c++/16.1.1/bits/stl_bvector.h:
+/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Floors.hpp:
 
-/usr/lib/crti.o:
+/usr/include/c++/16.1.1/bits/functional_hash.h:
 
-/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Windows.hpp:
+/usr/include/bits/types/locale_t.h:
+
+/usr/include/bits/types/struct_timespec.h:
+
+_deps/imgui-src/imconfig.h:
 
 /usr/include/c++/16.1.1/bits/stdexcept_throwfwd.h:
 
@@ -3816,11 +3418,19 @@ CMakeFiles/Crimson.dir/src/Utilities.cpp.o:
 
 /usr/lib/libraylib.so.6.0.0:
 
-CMakeFiles/Crimson.dir/src/Draw_Wall_Placing.cpp.o:
-
 /usr/include/c++/16.1.1/bits/predefined_ops.h:
 
 /home/br4hem/Programming/Indoor_Propagation_Simulator/include/Viewport_Gizmo.hpp:
+
+/usr/include/c++/16.1.1/debug/debug.h:
+
+/usr/include/c++/16.1.1/tr1/modified_bessel_func.tcc:
+
+/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Generate_Visibility_Polygon.hpp:
+
+/usr/include/bits/floatn-common.h:
+
+/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Ceilings.hpp:
 
 /usr/include/bits/wordsize.h:
 
@@ -3835,8 +3445,6 @@ CMakeFiles/Crimson.dir/src/Draw_Wall_Placing.cpp.o:
 _deps/rlimgui-src/extras/IconsFontAwesome6.h:
 
 /usr/include/endian.h:
-
-/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Ceiling_Placing.hpp:
 
 /usr/include/bits/fp-logb.h:
 
@@ -3876,17 +3484,13 @@ CMakeFiles/Crimson.dir/src/Generate_Visibility_Polygon.cpp.o:
 
 /usr/include/gnu/stubs.h:
 
-/usr/include/c++/16.1.1/cstddef:
+/usr/include/c++/16.1.1/vector:
 
-/usr/include/c++/16.1.1/bits/specfun.h:
+/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Simulation_Options_Bar.cpp:
 
-/usr/include/c++/16.1.1/debug/assertions.h:
+CMakeFiles/Crimson.dir/src/Viewport_Gizmo.cpp.o:
 
-/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Ceiling_Placing.cpp:
-
-/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Generate_Wall_Collision_Quads.cpp:
-
-CMakeFiles/Crimson.dir/src/Draw_Floor_Placing.cpp.o:
+/usr/include/bits/select.h:
 
 /usr/include/c++/16.1.1/ext/alloc_traits.h:
 
@@ -3950,13 +3554,11 @@ CMakeFiles/Crimson.dir/src/Draw_Ceilings.cpp.o:
 
 CMakeFiles/Crimson.dir/src/Draw_Door_Placing.cpp.o:
 
-/usr/include/c++/16.1.1/tr1/legendre_function.tcc:
-
 /usr/include/alloca.h:
 
-/usr/include/rlgl.h:
+/usr/include/c++/16.1.1/tr1/legendre_function.tcc:
 
-CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o:
+/usr/include/rlgl.h:
 
 /usr/include/stdlib.h:
 
@@ -3971,6 +3573,16 @@ CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o:
 /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stdarg.h:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stddef.h:
+
+CMakeFiles/Crimson.dir/src/Draw_Simulation_Options_Bar.cpp.o:
+
+/home/br4hem/Programming/Indoor_Propagation_Simulator/src/Calculate_World_Boundaries.cpp:
+
+/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Calculate_World_Boundaries.hpp:
+
+/usr/include/c++/16.1.1/bits/stl_tempbuf.h:
+
+/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Ceiling_Placing.hpp:
 
 /usr/include/c++/16.1.1/bits/requires_hosted.h:
 
@@ -3988,6 +3600,8 @@ CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o:
 
 /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Floors.cpp:
 
+/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Floors.hpp:
+
 /usr/include/sys/select.h:
 
 /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_The_Run_Simulation_Button.cpp:
@@ -3998,9 +3612,9 @@ CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o:
 
 /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Grid.cpp:
 
-/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Floor_Placing.hpp:
-
 /usr/lib/libXdmcp.so.6:
+
+/home/br4hem/Programming/Indoor_Propagation_Simulator/include/Draw_Floor_Placing.hpp:
 
 /home/br4hem/Programming/Indoor_Propagation_Simulator/src/Draw_Transmitter_Placing.cpp:
 
@@ -4013,8 +3627,6 @@ CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o:
 /usr/include/c++/16.1.1/bits/stl_pair.h:
 
 /usr/include/c++/16.1.1/bits/stl_algo.h:
-
-/usr/include/c++/16.1.1/bits/stl_tempbuf.h:
 
 /usr/include/stdc-predef.h:
 
@@ -4058,17 +3670,11 @@ CMakeFiles/Crimson.dir/src/Draw_Tool_Options_Bar.cpp.o:
 
 /usr/lib/libm.so:
 
-CMakeFiles/Crimson.dir/src/Draw_Transmitter.cpp.o:
-
 libimgui.a:
 
 /usr/lib/libstdc++.so:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o:
-
-/usr/include/c++/16.1.1/bits/stl_iterator_base_types.h:
-
-/usr/lib/libc.so.6:
 
 /usr/lib/libc_nonshared.a:
 
@@ -4091,9 +3697,3 @@ CMakeFiles/Crimson.dir/src/Draw_Floors.cpp.o:
 CMakeFiles/Crimson.dir/src/Draw_Main_Menu_Bar.cpp.o:
 
 CMakeFiles/Crimson.dir/src/Draw_The_Run_Simulation_Button.cpp.o:
-
-CMakeFiles/Crimson.dir/src/Draw_Tool_Bar.cpp.o:
-
-CMakeFiles/Crimson.dir/src/Draw_Transmitter_Placing.cpp.o:
-
-CMakeFiles/Crimson.dir/src/Draw_Wall_Collision_Quads_Debug.cpp.o:

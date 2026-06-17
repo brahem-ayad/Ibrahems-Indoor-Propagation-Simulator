@@ -14,8 +14,7 @@ void Unload_Resources(){
   UnloadShader(CONF::Wall_Shader_2D);
   UnloadShader(CONF::Wall_Shader_3D);
   UnloadShader(CONF::Ceiling_Shader_2D);
-  UnloadShader(CONF::ITU_NLOS_Shader_3D);
-  UnloadShader(CONF::ITU_LOS_Shader_3D);
+  UnloadShader(CONF::ITU_Shader_3D);
 
   // Images
   UnloadTexture(CONF::Walls_Tool_Icon);
